@@ -251,22 +251,61 @@ a[role=button] {
         }
 
     /* Hide the link that should open and close the topnav on small screens */
-    .topnav .icon {
-        display: none;
-    }
-    .topnav ul {
-        list-style: none;
+        .topnav .icon {
+            display: none;
+        }
+        .topnav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .topnav li {
+            float: left;
+            margin: 0 3em;
+            /*    margin: 0 auto;*/
+        }
+
+
+/*TOP NAV FOR PROFILE*/
+.ptopnav {
+    background-color: rgb(12, 8, 68);
+    overflow: hidden;
+    text-align: center;
+}
+
+
+    .ptopnav a {
+        /*float: left;*/
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
         padding: 0;
-        margin: 0;
-    }
-
-    .topnav li {
-        float: left;
-        margin: 0 3em;
-        /*    margin: 0 auto;*/
+        text-decoration: none;
+        font-size: 12px;
+        
     }
 
 
+        /* Add an active class to highlight the current page */
+        .ptopnav a.active {
+            background-color: #5e20af;
+            color: white;
+        }
 
+        /* Hide the link that should open and close the topnav on small screens */
+        .ptopnav .icon {
+            display: none;
+        }
 
+        /*.ptopnav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
 
+        .ptopnav li {
+            float: left;
+            /*margin: 0 1.5em;*/
+            /*margin: 0;
+        }*/

@@ -152,14 +152,48 @@
                                 </div>
                             </div>
                         </div>
-                        <!--Create Gig-->
+                        <!--Add Song-->
                         <div>
                             <br>
+
                             <center>
-                                <button>
-                                    Add Song
-                                </button>
+                                <button class="btn btn-primary" id="aSongBtn">Add Song</button>
                             </center>
+                        </div>
+
+
+
+                        <div class="bg-modal" style="display:none">
+
+                            <div class="modal-cont">
+                                <center>
+                                    <div class="close" id="cls1">x</div>
+
+                                    <h2>ADD SONG</h2>
+
+                                    <input type="text" class="row form-control" placeholder="Name of Song" id="nSongBox">
+                                    <br />
+                                    <input type="text" class="row form-control" placeholder="Main Artist" id="mArtistBox">
+                                    <br />
+                                    <input type="text" class="row form-control" placeholder="Featured Artist" id="cArtistBox">
+                                    <br />
+                                    <label for="genreSelect">Genre of Music:</label>
+                                    <select id="genreSelect" />
+                                    <br />
+                                    <input type="text" class="row form-control" placeholder="Description" id="descBox" />
+                                    <br />
+                            
+                                    <div class="col-sm-3">
+                                        <center>
+                                            <ul class="float-right">
+                                                <li><input class="btn btn-primary" type="button" value="Save Song" onclick="AddSong()" /></li>
+                                                <li><a href="prof.html" class="btn btn-primary" role="button">Close</a></li>
+
+                                            </ul>
+                                        </center>
+                                    </div>
+                            </center>
+                        </div>
                         </div>
                         <br />
                     </div>
@@ -334,6 +368,16 @@
             $("#Gigs").hide();
         });
 
+        $(document).ready(function () {
+            document.getElementById('aSongBtn').addEventListener('click', function () {
+                document.querySelector('.bg-modal').style.display = 'flex';
+            });
+            // When the user clicks the X on the login popup modal, close it
+            document.getElementById('cls1').addEventListener('click', function () {
+                document.querySelector('.bg-modal').style.display = 'none';
+            });
+        });
+
     </script>
 
 
@@ -443,6 +487,63 @@
             setTimeout(function () { document.location.href = "index.html", 500 });
         }
 
+        //-----------------------ADD SONGS-----------------------------------
+        function loadingFunctions() {
+            getGenres(document.getElementById("genreSelect"));
+            personJSON = JSON.parse(window.localStorage.getItem("userDetails"));
+
+
+            document.getElementById("mArtistBox").value = personJSON.Username;
+        }
+        //ADD CODE TO UPDATE THE LOCALSTORAGE OF SONGS OF THE USER
+        function AddSong() {
+
+            personJSON = JSON.parse(window.localStorage.getItem("userDetails"));
+            var songName = document.getElementById("nSongBox").value;
+            var genderID = document.getElementById("genreSelect").value;
+            var mainArtist = personJSON.ID;
+            var featuredArtist = document.getElementById("cArtistBox").value;
+            var description = document.getElementById("descBox").value;
+
+            if (songName && mainArtist) {
+                var songJSON = {
+                    "newSong": {
+                        Name: songName,
+                        Genre: genderID,
+                        MainArtist: mainArtist,
+                        FeaturedArtist: featuredArtist,
+                        Description: description
+                    }
+                }
+
+                var xhr = $.ajax({
+                    type: "POST",
+                    url: "http://localhost/GigmatesService/Service1.svc/AddSong",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(songJSON)
+
+                }).done(function (data) {
+                    alert(data.AddSongResult);
+                    if (data.AddSongResult == "1") {
+                        alert("Song Added");
+                        window.close = "addsong.html";
+                        setTimeout(function () { document.location.href = "prof.html", 500 });
+                    }
+                    else {
+                        alert("Song not added");
+                    }
+                }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message)
+                })
+
+            }
+            else {
+                alert("Song Not Added!");
+            }
+
+
+        }
     </script>
 
 </body>

@@ -219,6 +219,21 @@ a[role=button] {
    
 }
 
+div[role=button] {
+    background-color: #7f4caf;
+    border: none;
+    color: white;
+    padding: 12px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 10px;
+    margin-left: 2px;
+    
+}
+
+
 /*FOR MAINPAGE*/
 /*TOP NAVIGATION*/
 .topnav {

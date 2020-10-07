@@ -1,0 +1,362 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <title>Gigmates</title>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!--<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>-->
+    <!--<script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js"></script>
+    <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js"></script>-->
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/homepage.css" />
+    <link rel="stylesheet" type="text/css" href="css/items.css" />
+
+</head>
+<body style="background-color: rgb(100, 100, 128);" onload="mainloadingFunctions()">
+    <div data-role="page" id="MainPage">
+
+        <div role="main" class="ui-content">
+            <div id="wrapper">
+                <!--Search-->
+                <div class="search" id="searchBox">
+                    <form class="search-form">
+                        <input type="text" placeholder="Search for Gigs..">
+                        <input type="submit" value="Search">
+                    </form>
+                </div>
+                <!--TOP NAV-->
+                <div class="topnav" id="myTopnav">
+                    <ul class="actions" id="main-menu">
+
+                        <li>
+                            <a href="#MainPage" class="active">Upcoming Gigs</a>
+                        </li>
+                        <li>
+                            <a href="#Gigs">Gig Mates</a>
+                        </li>
+                    </ul>
+                </div>
+                <br />
+                <div>
+                    <select id="genreSelect"></select>
+                </div>
+
+                <div id="page-wrapper">
+                    <div id="page-inner">
+
+                        <div class="grid-container">
+                            <div class="col-sm-6 col-md-4">
+                                <div class="thumbnail">
+                                    <center>
+                                        <img src="images/logo.png" alt="" width="184" height="29">
+                                    </center>
+                                    <div class="caption">
+                                        <center>
+                                            <label><h1>Name of Gig</h1></label>
+                                        </center>
+                                        <br />
+                                        <label><h4>Venue</h4></label>
+                                        <br />
+                                        <label><h4>Schedule</h4></label>
+                                        <br />
+                                        <center>
+                                            <p><a href="#" class="btn btn-primary" role="button">Join</a></p>
+                                        </center>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Create Gig-->
+                        <div>
+                            <br>
+
+                            <center>
+                                <button class="btn btn-primary" id="cGigBtn">Create Gig</button>
+                            </center>
+                        </div>
+
+
+
+                        <div class="bg-modal" style="display:none">
+
+                            <div class="modal-cont">
+                                <center>
+                                    <div class="close" id="cls1">x</div>
+
+                                    <h2>CREATE GIG</h2>
+                                    <input type="text" class="row form-control" placeholder="Name of Gig" id="nGigBox">
+                                    <br />
+                                    <input type="text" class="row form-control" placeholder="Song" id="songBox">
+                                    <br />
+                                    <input type="text" class="row form-control" placeholder="Venue" id="venueBox">
+                                    <br />
+                                    <label for="sched">Schedule:</label>
+                                    <br />
+                                    <input type="number" class="col-2" placeholder="MM" id="monthBox">
+                                    <label>-</label>
+                                    <input type="number" class="col-2" placeholder="DD" id="dayBox">
+                                    <label>-</label>
+                                    <input type="number" class="col-3" placeholder="YYYY" id="yearBox">
+                                    <label>@ </label>
+                                    <select id="time">
+                                        <option value=""
+                                                hidden>
+                                            Time
+                                        </option>
+                                    </select>
+                                    <br />
+                                    <br />
+
+                                    <a href="#" class="btn btn-primary" role="button">Create</a>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+
+
+
+    <div data-role="page" id="Gigs" style="display:none">
+        <div role="main" class="ui-content">
+            <div id="wrapper">
+                <!--Search-->
+                <div class="search" id="searchBox">
+                    <form class="search-form">
+                        <input type="text" placeholder="Search for Gigs..">
+                        <input type="submit" value="Search">
+                    </form>
+                </div>
+                <!--TOP NAV-->
+                <div class="topnav" id="myTopnav">
+                    <ul class="actions" id="main-menu">
+
+                        <li>
+                            <a href="mainpage.html">Upcoming Gigs</a>
+                        </li>
+                        <li>
+                            <a href="#Gigs" class="active">Gig Mates</a>
+                        </li>
+                    </ul>
+                </div>
+                <br />
+
+                <div id="page-wrapper">
+                    <div id="page-inner">
+
+                        <div class="grid-container">
+                            <div class="col-sm-6 col-md-4">
+                                <div class="thumbnail">
+                                    <div class="caption">
+                                        <center>
+                                            <label><h1>Name of Gig Mate</h1></label>
+                                            <br />
+                                            <label><h4>@username</h4></label>
+                                            <br />
+                                            <label><h4>Type</h4></label>
+                                        </center>
+                                        <br />
+                                        <label><h4>Age</h4></label>
+                                        <br />
+                                        <label><h4>Gender</h4></label>
+                                        <br />
+                                        <label><h4>Location</h4></label>
+                                        <br />
+                                        <label><h4>Bio</h4></label>
+                                        <center>
+                                            <p><a href="#" class="btn btn-primary" role="button">Invite</a></p>
+                                        </center>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /. PAGE INNER  -->
+
+                    </div>
+                    <!-- /. PAGE WRAPPER  -->
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--BOTTOM NAV-->
+    <nav class="navbar fixed-bottom navbar-dark bg-dark" id="Main">
+        <div class="navbar-nav">
+            <ul class="actions" id="main-menu">
+                <li>
+                    <a class="nav-item nav-link active" href="mainpage.html">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li>
+                    <a class="nav-item nav-link" href="notif.html">Notifications</a>
+                </li>
+                <li>
+                    <a class="nav-item nav-link" href="prof.html">Profile</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <script type="text/javascript" language="javascript">
+
+
+
+        $('a[href="#Gigs"]').click(function () {
+            $('.navbar-toggle:visible').click();
+            $("#MainPage").hide();
+            $("#Gigs").show();
+        });
+
+
+        $(document).ready(function () {
+            document.getElementById('cGigBtn').addEventListener('click', function () {
+                document.querySelector('.bg-modal').style.display = 'flex';
+            });
+            // When the user clicks the X on the login popup modal, close it
+            document.getElementById('cls1').addEventListener('click', function () {
+                document.querySelector('.bg-modal').style.display = 'none';
+            });
+        });
+
+
+    </script>
+
+
+
+
+
+
+    <style>
+
+        .vertical-menu {
+            width: 500px;
+        }
+
+            .vertical-menu a {
+                background-color: transparent;
+                color: white;
+                display: block;
+                padding: 12px;
+                text-decoration: none;
+            }
+
+                .vertical-menu a:hover {
+                    background-color: #ccc;
+                }
+
+                .vertical-menu a.active {
+                    color: lightblue;
+                }
+
+        .search {
+            border: 2px solid #3b1fa0;
+            overflow: auto;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+        }
+
+            .search input[type="text"] {
+                border: 0px;
+                width: 67%;
+                padding: 10px 10px;
+            }
+
+                .search input[type="text"]:focus {
+                    outline: 0;
+                }
+
+            .search input[type="submit"] {
+                border: 0px;
+                background: none;
+                background-color: #4932c9;
+                color: #fff;
+                float: right;
+                padding: 10px;
+                border-radius-top-right: 5px;
+                -moz-border-radius-top-right: 5px;
+                -webkit-border-radius-top-right: 5px;
+                border-radius-bottom-right: 5px;
+                -moz-border-radius-bottom-right: 5px;
+                -webkit-border-radius-bottom-right: 5px;
+                cursor: pointer;
+            }
+
+        /* ===========================
+        ====== Medua Query for Search Box ======
+        =========================== */
+
+        @media only screen and (min-width : 150px) and (max-width : 780px) {
+
+        {
+        }
+
+        .search {
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        }
+
+        .grid-container {
+            display: grid;
+            grid-gap: 10px;
+            background-color: #3f1e9b;
+            padding: 15px;
+        }
+
+        .grid-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 20px;
+            font-size: 30px;
+        }
+
+        .item1 {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .item2 {
+            grid-column: 2 / span 3;
+            grid-row: 1;
+        }
+    </style>
+    <script type="text/javascript" src="scripts/jQuery/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="scripts/popper.min.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="scripts/functions.js"></script>
+
+    <!--<script src="assets2/js/jquery.min.js"></script>
+    <script src="assets2/js/browser.min.js"></script>
+    <script src="assets2/js/breakpoints.min.js"></script>
+    <script src="assets2/js/util.js"></script>
+    <script src="assets2/js/main.js"></script>-->
+
+
+    <script>
+        //FUNCTION CALLED ON MAINPAGE ONLOAD
+        function mainloadingFunctions() {
+            getUserData();
+            getGenres(document.getElementById("genreSelect"));
+        }
+
+
+
+    </script>
+</body>
+</html>

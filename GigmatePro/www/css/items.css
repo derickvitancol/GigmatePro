@@ -1,0 +1,272 @@
+﻿.signmid {
+    background: linear-gradient(to top right,#7A0BB9 0%,#3F0548 30%,#130417 100%);
+}
+
+
+/*STYLE OF ALL INPUT BOXES*/
+input[type=text] {
+    background-color: transparent;
+    color: #FFFFFF;
+
+    border-bottom-width: medium;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color:lightgray;
+
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+}
+
+input[type=text]:focus
+{
+    background-color: transparent;
+    color: #FFFFFF;
+}
+
+input[type=number] {
+    background-color: transparent;
+    color: #FFFFFF;
+    border-bottom-width: medium;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: lightgray;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+}
+
+input[type=number]:focus {
+    background-color: transparent;
+    color: #FFFFFF;
+}
+
+.mainpart {
+    position: absolute;
+    height: 100%;
+}
+
+p[class=float-right] {
+    width: 100px;
+    text-align:center;
+    
+    text-decoration: none;
+}
+
+
+a[id=addS] {
+    padding: 15px 32px;
+    margin-bottom: 100px;
+}
+
+/*FOR EDIT PROFILE*/
+input[id=nameLabel] {
+    background-color: transparent;
+    color: #FFFFFF;
+    border-bottom-width: medium;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: lightgray;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+    height: 10px;
+}
+
+input[id=nameLabel]::placeholder {    
+        text-align: center;
+} 
+
+input[id=usernameLabel] {
+    background-color: transparent;
+    color: #FFFFFF;
+    border-bottom-width: medium;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: lightgray;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+    height: 10px;
+}
+
+input[id=usernameLabel]::placeholder {
+        text-align: center;
+} 
+
+input[id=passwordLabel] {
+    background-color: transparent;
+    color: #FFFFFF;
+    border-bottom-width: medium;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: lightgray;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+    height: 10px;
+}
+
+input[id=passwordLabel]::placeholder {
+    text-align: center;
+} 
+
+input[id=ageLabel] {
+    background-color: transparent;
+    color: #FFFFFF;
+    border-bottom-width: medium;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: lightgray;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+    height: 12px;
+}
+
+
+input[id=locationLabel] {
+    background-color: transparent;
+    color: #FFFFFF;
+    border-bottom-width: medium;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: lightgray;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+    height: 10px;
+}
+
+input[id=bioLabel] {
+    background-color: transparent;
+    color: #FFFFFF;
+    border-bottom-width: medium;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: lightgray;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+    height: 10px;
+}
+
+
+/*ITEM STYLE IF OPENED IN DESKTOP*/
+@media only screen and (min-width:768px) {
+    .footstyle {
+        border-top:solid;
+        border-top-color: lightgray;
+    }
+
+    .nbar {
+        border-bottom: solid;
+        border-bottom-color: lightgray;
+    }
+
+    body {
+        padding-bottom: 0;
+        margin: 0;
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        height: 15%;
+        width: 100%;
+        background-color: aqua;
+        margin-bottom: 0%;
+    }
+
+    .mainpart {
+        position: absolute;
+        height: 75%;
+    }
+
+
+}
+
+/*FONT COLOR*/
+label {
+    color:white;
+}
+
+/*BUTTON*/
+button {
+    background-color: #7f4caf;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 12px;
+    
+}
+
+/*BUTTON*/
+a[role=button] {
+    background-color: #7f4caf; 
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 10px;
+   
+}
+
+/*FOR MAINPAGE*/
+/*TOP NAVIGATION*/
+.topnav {
+    background-color: rgb(12, 8, 68);
+    overflow: hidden;
+    text-align: center;
+}
+
+    /* Style the links inside the navigation bar */
+    .topnav a {
+        /*float: left;*/
+        display: inline-block;
+        color: #f2f2f2;
+        text-align: center;
+        /*padding: 14px 16px;*/
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+        /* Change the color of links on hover */
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Add an active class to highlight the current page */
+        .topnav a.active {
+            background-color: #5e20af;
+            color: white;
+        }
+
+    /* Hide the link that should open and close the topnav on small screens */
+    .topnav .icon {
+        display: none;
+    }
+    .topnav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .topnav li {
+        float: left;
+        margin: 0 3em;
+        /*    margin: 0 auto;*/
+    }
+
+
+
+
+

@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/homepage.css" />
+    <link rel="stylesheet" type="text/css" href="css/items.css" />
+
+    <title>Gigmates</title>
+</head>
+<body>
+   
+    <!-- Content part -->
+    <div class="container-fluid d-inline-block mainpart d-flex flex-column justify-content-center align-items-center">
+        <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
+            <img class="d-md-none" src="images/logo.png" />
+            <h1 class="h1 d-none d-md-block">
+                Sign In
+            </h1>
+            <div class="container d-flex flex-column align-items-center text-center" id="inputBoxes">
+                <div class="input-group col-xs-12 col-sm-12 col-md-4 col lg-3 p-2">
+                    <input type="text" class="form-control w-75 p-2" id="usernameBox" placeholder="Enter username" />
+                </div>
+                <div class="input-group col-xs-12 col-sm-12 col-md-4 col lg-3">
+                    <input type="text" class="form-control p-2" id="passwordBox" placeholder="Password" />
+                </div>
+                <br />
+                <button class="col-xs-12 col-sm-12 col-md-4 col lg-3 btnitem btn btn-dark" id="loginbtn" onclick="LoginClicked()">
+                    Login
+                </button>
+                <br />
+                <button class="btn btn-light col-xs-12 col-sm-12 col-md-4 col lg-3" onclick="SignupClicked()">
+                    Sign Up
+                </button>
+            </div>
+        </div>
+        <!--ABOUT PAGE-->
+        <div class="container w-100 d-none d-md-block">
+            <div>ABOUT</div>
+        </div>
+    </div>
+  
+    <script type="text/javascript" src="scripts/jQuery/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="scripts/popper.min.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/functions.js"></script>
+
+
+    <script>
+
+        function LoginClicked()
+        {
+            var uName = document.getElementById("usernameBox").value;
+            var pWord = document.getElementById("passwordBox").value;
+            var userDetails = { "personLog": { Username: uName, Password: pWord } };
+            var xhr = $.ajax({
+
+                type: "POST",
+                url: "http://localhost/GigmatesService/Service1.svc/Login",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(userDetails)
+
+            }).done(function (data)
+            {
+                alert(data.LoginResult);
+                userDetails = JSON.parse(data.LoginResult);
+                
+                alert("Account Details: " + userDetails.Firstname + " " + userDetails.Lastname);
+                if (userDetails.Firstname && userDetails.Lastname) {
+                    
+                    window.localStorage.setItem("userDetails", JSON.stringify(userDetails));
+                    GetSong(1);
+                    setTimeout(function () { document.location.href = "mainpage.html", 500 }); 
+                    window.close = "index.html";                   
+                    
+                }
+                else
+                {
+                    alert("Entered Data is incorrect!");
+                    resVar = false;
+                }
+
+                }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+                {
+                    alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message)
+                });
+        }
+
+
+
+        function SignupClicked()
+        {
+            window.close = "index.html";
+            setTimeout(function () { document.location.href = "signup.html", 500 }); 
+
+        }
+
+
+
+        function GetSong(uID) {
+
+            var personJSON = { userID: uID };
+            alert(personJSON.userID);
+
+            var xhr = $.ajax({
+
+                type: "POST",
+                url: "http://localhost/GigmatesService/Service1.svc/GetSongs",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify(personJSON)
+            }).done(function (data) {
+                alert("Data is " + JSON.stringify(data));
+                window.localStorage.setItem("songList", data);
+
+
+                }).fail(function (mess) {
+                    alert(JSON.stringify(mess));
+            });
+        }
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+﻿/*CSS FOR THE HOME PAGE*/
+.homeitem
+{
+    margin:10px;
+
+}
+
+
+
+/*CSS FOR DESKTOP SCREENS */
+@media only screen and (min-width:768px)
+{
+
+    
+
+    body{
+        padding-bottom:0;
+        margin:0;
+    }
+}
+
+

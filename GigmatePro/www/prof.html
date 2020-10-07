@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>   
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/homepage.css" />
+    <link rel="stylesheet" type="text/css" href="css/items.css" />
+
+    <title>Gigmates</title>
+</head>
+<body style="background-color: rgb(100, 100, 128);" onload="getProfileData()">
+
+    <!--MAIN PAGE-->
+    <div data-role="page" id="MainPage">
+        <div role="main" class="ui-content">
+            <div id="wrapper">
+                <!--Profile INFO-->
+                <div class="grid-container">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-4">
+                            <div class="thumbnail">
+                                <div class="col-sm-6">
+
+                                    <h6>
+                                        <input type="text" class="row form-control" id="nameLabel">
+                                    </h6>
+                                    <br />
+                                    <h5>
+                                        <input type="text" class="row form-control" id="usernameLabel" />
+                                    </h5>
+                                    <br />
+                                    <input type="text" class="row form-control" id="passwordLabel" />
+                                    <br />
+                                    <center>
+                                        <label for="UserTypebox" style="color:white;">Account Type</label>
+                                        <select name="usertype" id="typeLabel"></select>
+                                    </center>
+                                </div>
+                                <div class="col-sm-3">
+                                    <center>
+                                        <div id="ratingsLabel">--ratings--</div>
+                                    </center>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <input type="number" class="col-4" id="ageLabel">
+                                    <br />
+                                    <label for="gender">Gender</label>
+                                    <select name="gender" id="genderLabel"></select>
+                                    <br />
+                                    <input type="text" class="row form-control" id="locationLabel" />
+                                    <br />
+                                    <input type="text" class="row form-control" id="bioLabel" />
+                                    <br />
+                                </div>
+                                <div class="caption">
+                                    <p class="float-right"><div class="btn btn-primary" role="button" onclick="LogoutClicked()">Logout</div></p>
+                                    <p class="float-right"><a href="#" class="btn btn-primary" role="button">Edit Profile</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!--TOP NAV-->
+                <div class="topnav" id="myTopnav">
+                    <center>
+                        <a href="prof.html" class="active">Songs</a>
+                        <a href="pgigs.html">Gigs</a>
+                        <a href="phistory.html">History</a>
+
+
+                        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                            <i class="fa fa-bars"></i>
+                        </a>
+                    </center>
+                </div>
+
+                <br />
+
+
+
+
+                <!--GIGS-->
+                <div class="grid-container">
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <center>
+                                    <label><h1>Name of Song</h1></label>
+                                    <br />
+                                    <label><h4>Main Artist + Featured Artist</h4></label>
+                                </center>
+                                <label><h4>Genre of Music</h4></label>
+                                <br />
+                                <label><h4>Description</h4></label>
+                                <br />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Create Gig-->
+                <div>
+                    <br>
+                    <center>
+                        <p><a href="addsong.html" class="btn btn-primary" role="button" id=addS>Add Song</a></p>
+                    </center>
+                </div>
+                <br />
+            </div>
+        </div>
+    </div>
+    <!-- BOTTOM NAVBAR -->
+    <nav class="navbar fixed-bottom navbar-dark bg-dark" id="Main">
+        <div class="navbar-nav">
+            <ul class="actions" id="main-menu">
+                <li>
+                    <a class="nav-item nav-link" href="mainpage.html">Home</a>
+                </li>
+                <li>
+                    <a class="nav-item nav-link" href="notif.html">Notifications</a>
+                </li>
+                <li>
+                    <a class="nav-item nav-link active" href="prof.html">Profile<span class="sr-only">(current)</span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <style>
+
+        .vertical-menu {
+            width: 500px;
+        }
+
+            .vertical-menu a {
+                background-color: transparent;
+                color: white;
+                display: block;
+                padding: 12px;
+                text-decoration: none;
+            }
+
+                .vertical-menu a:hover {
+                    background-color: #ccc;
+                }
+
+                .vertical-menu a.active {
+                    color: lightblue;
+                }
+
+        .grid-container {
+            display: grid;
+            grid-gap: 10px;
+            background-color: #3f1e9b;
+            padding: 15px;
+        }
+
+        .grid-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 20px;
+            font-size: 30px;
+        }
+
+        .item1 {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+
+        .item2 {
+            grid-column: 2 / span 3;
+            grid-row: 1;
+        }
+    </style>
+
+
+    <script type="text/javascript" src="scripts/jQuery/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="scripts/popper.min.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="scripts/functions.js"></script>
+
+
+    <script>
+
+
+        function getProfileData() {
+            var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+
+            document.getElementById("nameLabel").value = userDetails.Firstname + " " + userDetails.Lastname;
+            document.getElementById("usernameLabel").value = userDetails.Username;
+            document.getElementById("passwordLabel").value = userDetails.Password;
+            document.getElementById("genderLabel").value = determineGenderName(userDetails.Gender);
+            document.getElementById("typeLabel").value = determineTypeName(userDetails.Type);
+            document.getElementById("ratingsLabel").innerHTML = userDetails.Rate;
+            document.getElementById("ageLabel").value = userDetails.Age;
+            document.getElementById("locationLabel").value = userDetails.Location;
+        }
+
+        function determineGenderName(genderID) {
+            var genderName;
+
+            if (genderID == "1") {
+                genderName = "Male";
+            }
+            else if (genderID == "2") {
+                genderName = "Female";
+            }
+
+            return genderName
+        }
+
+
+       
+        function determineTypeName(typeID) {
+            var userTypeName;
+
+            if (typeID == "1") {
+                userTypeName = "Musician";
+            }
+            else {
+                userTypeName = "Creator";
+            }
+
+            return userTypeName;
+        }
+
+        function LogoutClicked() {
+            localStorage.removeItem("userDetails");
+            window.close = "prof.html";
+            setTimeout(function () { document.location.href = "index.html", 500 });
+        }
+
+    </script>
+
+</body>
+</html>

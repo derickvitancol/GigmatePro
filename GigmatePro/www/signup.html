@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+
+    <link rel="stylesheet" type="text/css" href="css/items.css"/>
+
+    <title>Sign up</title>
+</head>
+<body>
+    <!--NAvbaar-->
+    <div class="navbar navbar-expand-md navbar-dark bg-dark d-none d-md-block nbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="images/logo.png" />
+            </a>
+            <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarContents">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContents">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../www/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">FAQ</a>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <!--CONTENT PART-->
+    <div class="container-fluid signmid d-inline-block mainpart d-flex flex-column justify-content-center align-items-center">
+        <div>
+            <h3 style="color:white;">Sign Up</h3>
+        </div>
+        <!--Container of the information inputs-->
+        <div class="container-fluid" data-role="page">
+            <div class="input-group row col-xs-12">
+                <input type="text" class="form-control" placeholder="Firstname" id="FirstnameBox" />
+                <input type="text" class="form-control" placeholder="Lastname" id="LastnameBox" />
+            </div>
+
+            <br />
+            <input type="text" class="row form-control" placeholder="Username" id="UsernameBox" />
+            <br />
+            <input type="text" class="row form-control" placeholder="Password" id="PasswordBox" />
+            <br />
+            <input type="text" class="row form-control" placeholder="Location" id="LocationBox" />
+            <br />
+            <input type="number" class="col-9" placeholder="Age" id="AgeBox"  min="18" max="90"/>
+            <br />
+            <br />
+
+            
+            <label for="gender">Gender</label>
+            <select name="gender" id="GenderBox">
+                <option value=1>Male</option>
+                <option value=2>Female</option>
+            </select>
+           
+           <br />
+
+            <label for="UserTypebox" style="color:white;">Account Type</label>
+            <select name="usertype" id="UserTypebox">
+                <option value=1>Musician</option>
+                <option value=2>yung isa pa</option>
+            </select>
+            <br />
+            <br />
+            <center>
+                <button class="btn btn-dark col-xs-12 col-sm-12 col-md-4 col-lg-3" id="proceedButton" onclick="RegisterClicked()">Proceed</button>
+                <br />
+                <br />
+              
+                <button class="btn btn-dark col-xs-12 col-sm-12 col-md-4 col-lg-3 border-0" onclick="CancelSignupClicked()">Cancel</button>
+
+                <!--<input type="button" class="btn btn-dark col-xs-12 col-sm-12 col-md-4 col-lg-3" onclick="CancelClicked()" placeholder="Cancel" />-->
+        
+        </center>
+    </div>
+
+
+    <script type="text/javascript" src="scripts/jQuery/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="scripts/popper.min.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="scripts/functions.js"></script>
+    <script>
+        /*FUNCTIONS FOR SIGNUP PAGE*/
+        //FUNCTION TO REGISTER A NEW USER - NEEDS CHECKING OF INPUT
+        function RegisterClicked() {
+            var firstname = document.getElementById("FirstnameBox").value;
+            var lastname = document.getElementById("LastnameBox").value;
+            var username = document.getElementById("UsernameBox").value;
+            var password = document.getElementById("PasswordBox").value;
+            var location = document.getElementById("LocationBox").value;
+            var age = document.getElementById("AgeBox").value;
+            var gender = document.getElementById("GenderBox").value;
+            var type = document.getElementById("UserTypebox").value;
+
+
+            if (firstname && !hasNumber(firstname) && !hasSpecialChar(firstname) && lastname && !hasNumber(lastname) && !hasSpecialChar(lastname) && username && password && location && !hasNumber(location) && !hasSpecialChar(location) && age && !hasLetter(age) && gender && type)
+            {
+                var personJSON = {
+                    "newPerson": {
+                        Firstname: firstname,
+                        Lastname: lastname,
+                        Username: username,
+                        Password: password,
+                        Location: location,
+                        Age: age,
+                        Type: type,
+                        Gender: gender
+                    }
+                };
+
+                var val;
+                var prob;
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost/GigmatesService/Service1.svc/Register",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(personJSON)
+                }).done(function (data) {
+                    alert(JSON.stringify(data.RegisterResult) + " is result");
+                    alert("registered");
+                    val = data.RegisterResult;
+
+                    CancelSignupClicked();
+                }).fail(function (prob) {
+                    console.log(prob);
+                    alert(prob);
+                    val = prob;
+                });
+
+            }
+            else
+            {
+                alert("Please make sure all boxes have correct inputs");
+            }
+
+            
+        }
+
+        //FUNCTION TO RETURN TO LOGIN PAGE ON SIGN UP
+        function CancelSignupClicked()
+        {
+
+            window.close = "signup.html";
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

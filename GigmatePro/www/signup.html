@@ -77,7 +77,7 @@
             <label for="UserTypebox" style="color:white;">Account Type</label>
             <select name="usertype" id="UserTypebox">
                 <option value=1>Musician</option>
-                <option value=2>yung isa pa</option>
+                <option value=2>Creator</option>
             </select>
             <br />
             <br />
@@ -113,7 +113,7 @@
             var type = document.getElementById("UserTypebox").value;
 
 
-            if (firstname && !hasNumber(firstname) && !hasSpecialChar(firstname) && lastname && !hasNumber(lastname) && !hasSpecialChar(lastname) && username && password && location && !hasNumber(location) && !hasSpecialChar(location) && age && !hasLetter(age) && gender && type)
+            if (firstname && !hasNumber(firstname) && !hasSpecialChar(firstname) && lastname && !hasNumber(lastname) && !hasSpecialChar(lastname) && username && password && location && !hasNumber(location) && !hasSpecialChar(location) && age && age > 17 && !hasLetter(age) && gender && type)
             {
                 var personJSON = {
                     "newPerson": {

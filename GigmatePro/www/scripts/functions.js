@@ -37,6 +37,59 @@ function getGenres(selectBox)
 }
 
 
+function GetSong(uID) {
+
+    var personJSON = { userID: uID };
+    alert(personJSON.userID);
+
+    var xhr = $.ajax({
+
+        type: "POST",
+        url: "http://localhost/GigmatesService/Service1.svc/GetSongs",
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        data: JSON.stringify(personJSON)
+    }).done(function (data) {
+        
+        var songList = JSON.parse(data.GetGenreListResult);
+        window.localStorage.setItem("songList", songList);
+
+
+
+    }).fail(function (mess) {
+        alert(JSON.stringify(mess));
+    });
+}
+
+
+function determineGenderName(genderID) {
+    var genderName;
+
+    if (genderID == "1") {
+        genderName = "Male";
+    }
+    else if (genderID == "2") {
+        genderName = "Female";
+    }
+
+    return genderName
+}
+
+
+
+function determineTypeName(typeID) {
+    var userTypeName;
+
+    if (typeID == "1") {
+        userTypeName = "Musician";
+    }
+    else {
+        userTypeName = "Creator";
+    }
+
+    return userTypeName;
+}
+
 
 //CHECKS IF THE STRING HAS A NUMBER
 function hasNumber(testStr)

@@ -56,7 +56,7 @@
         {
             var uName = document.getElementById("usernameBox").value;
             var pWord = document.getElementById("passwordBox").value;
-            var userDetails = { "personLog": { Username: uName, Password: pWord } };
+            var userDetails = { "personLog": { Username: uName, Password: pWord }};
             var xhr = $.ajax({
 
                 type: "POST",
@@ -74,7 +74,7 @@
                 if (userDetails.Firstname && userDetails.Lastname) {
                     
                     window.localStorage.setItem("userDetails", JSON.stringify(userDetails));
-                    GetSong(1);
+                    GetSong(userDetails.ID);
                     setTimeout(function () { document.location.href = "mainpage.html", 500 }); 
                     window.close = "index.html";                   
                     
@@ -98,30 +98,6 @@
             window.close = "index.html";
             setTimeout(function () { document.location.href = "signup.html", 500 }); 
 
-        }
-
-
-
-        function GetSong(uID) {
-
-            var personJSON = { userID: uID };
-            alert(personJSON.userID);
-
-            var xhr = $.ajax({
-
-                type: "POST",
-                url: "http://localhost/GigmatesService/Service1.svc/GetSongs",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                data: JSON.stringify(personJSON)
-            }).done(function (data) {
-                alert("Data is " + JSON.stringify(data));
-                window.localStorage.setItem("songList", data);
-
-
-                }).fail(function (mess) {
-                    alert(JSON.stringify(mess));
-            });
         }
     </script>
 

@@ -138,7 +138,7 @@
 
                         <div class="grid-container">
                             <div class="col-sm-6 col-md-4">
-                                <div class="thumbnail">
+                                <div class="thumbnail" id="SongListDiv">
                                     <div class="caption">
                                         <center>
                                             <label><h1>Name of Song</h1></label>
@@ -344,41 +344,6 @@
 
     <script type="text/javascript" language="javascript">
 
-
-        $('a[href="#Songs"]').click(function () {
-            $('.navbar-toggle:visible').click();
-            $("#MainPage").hide();
-            $("#Songs").show();
-            $("#Gigs").hide();
-            $("#History").hide();
-        });
-
-        $('a[href="#Gigs"]').click(function () {
-            $('.navbar-toggle:visible').click();
-            $("#MainPage").hide();
-            $("#Gigs").show();
-            $("#Songs").hide();
-            $("#History").hide();
-        });
-
-        $('a[href="#History"]').click(function () {
-            $('.navbar-toggle:visible').click();
-            $("#MainPage").hide();
-            $("#History").show();
-            $("#Songs").hide();
-            $("#Gigs").hide();
-        });
-
-        $(document).ready(function () {
-            document.getElementById('aSongBtn').addEventListener('click', function () {
-                document.querySelector('.bg-modal').style.display = 'flex';
-            });
-            // When the user clicks the X on the login popup modal, close it
-            document.getElementById('cls1').addEventListener('click', function () {
-                document.querySelector('.bg-modal').style.display = 'none';
-            });
-        });
-
     </script>
 
 
@@ -454,23 +419,6 @@
             document.getElementById("locationLabel").value = userDetails.Location;
         }
 
-            return genderName
-        }
-
-
-
-        function determineTypeName(typeID) {
-            var userTypeName;
-
-            if (typeID == "1") {
-                userTypeName = "Musician";
-            }
-            else {
-                userTypeName = "Creator";
-            }
-
-            return userTypeName;
-        }
 
         function LogoutClicked() {
             localStorage.removeItem("userDetails");
@@ -479,16 +427,20 @@
             setTimeout(function () { document.location.href = "index.html", 500 });
         }
 
-        //-----------------------ADD SONGS-----------------------------------
+        
         function loadingFunctions() {
             getGenres(document.getElementById("genreSelect"));
             personJSON = JSON.parse(window.localStorage.getItem("userDetails"));
 
 
             document.getElementById("mArtistBox").value = personJSON.Username;
+
+            
         }
+
         //ADD CODE TO UPDATE THE LOCALSTORAGE OF SONGS OF THE USER
-        function AddSong() {
+        function AddSong()
+        {
 
             personJSON = JSON.parse(window.localStorage.getItem("userDetails"));
             var songName = document.getElementById("nSongBox").value;
@@ -519,6 +471,8 @@
                     alert(data.AddSongResult);
                     if (data.AddSongResult == "1") {
                         alert("Song Added");
+                        var userDetails = window.localStorage.getItem("userDetails");
+                        GetSong(userDetails.ID);
                         window.close = "addsong.html";
                         setTimeout(function () { document.location.href = "prof.html", 500 });
                     }
@@ -533,9 +487,80 @@
             else {
                 alert("Song Not Added!");
             }
-
-
         }
+
+        function DisplaySongs()
+        {
+            var songList = window.localStorage.getItem("songList");
+            var songDisplay = document.getElementById("SongListDiv");
+            songList = JSON.parse(songList);
+            for (var i = 0; i < Object.keys(songList).length; i++)
+            {
+                var capElem = document.createElement("div");
+                capElem.setAttribute("class", "caption");
+                var centerCon = document.createElement("center");
+                var labCon = document.createElement("label");
+
+                var titleCon = document.createElement("h1");
+                var descCon = document.createElement("h4");
+                var genreCon = document.createElement("h4");
+                var SongGenre = songList[i].Genre;
+
+
+                descCon.innerHTML = songList[i].Description;
+                genreCon.innerHTML = determineGenre(songList[i].Genre);
+                titleCon.innerHTML = songList[i].Name;
+
+                
+                labCon.appendChild(titleCon);
+                centerCon.appendChild(labCon);
+                capElem.appendChild(labCon);
+                capElem.appendChild(genreCon);
+                capElem.appendChild(descCon);
+                songDisplay.appendChild(capElem);
+            }
+            
+        }
+
+
+
+
+
+        $('a[href="#Songs"]').click(function () {
+            $('.navbar-toggle:visible').click();
+            $("#MainPage").hide();
+            $("#Songs").show();
+            $("#Gigs").hide();
+            $("#History").hide();
+            DisplaySongs();
+        });
+
+        $('a[href="#Gigs"]').click(function () {
+            $('.navbar-toggle:visible').click();
+            $("#MainPage").hide();
+            $("#Gigs").show();
+            $("#Songs").hide();
+            $("#History").hide();
+        });
+
+        $('a[href="#History"]').click(function () {
+            $('.navbar-toggle:visible').click();
+            $("#MainPage").hide();
+            $("#History").show();
+            $("#Songs").hide();
+            $("#Gigs").hide();
+        });
+
+        $(document).ready(function () {
+            document.getElementById('aSongBtn').addEventListener('click', function () {
+                document.querySelector('.bg-modal').style.display = 'flex';
+            });
+            // When the user clicks the X on the login popup modal, close it
+            document.getElementById('cls1').addEventListener('click', function () {
+                document.querySelector('.bg-modal').style.display = 'none';
+            });
+        });
+
     </script>
 
 </body>

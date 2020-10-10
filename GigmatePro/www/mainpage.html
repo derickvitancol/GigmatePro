@@ -7,7 +7,7 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <title>Gigmates</title>
     <script type="text/javascript" src="cordova.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!--<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>-->
     <!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
     <!--<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>-->
     <!--<script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js"></script>
@@ -78,24 +78,19 @@
                         <!--Create Gig-->
                         <div>
                             <br>
-
                             <center>
                                 <button class="btn btn-primary" id="cGigBtn">Create Gig</button>
                             </center>
                         </div>
-
-
-
                         <div class="bg-modal" style="display:none">
-
                             <div class="modal-cont">
                                 <center>
                                     <div class="close" id="cls1">x</div>
 
                                     <h2>CREATE GIG</h2>
-                                    <input type="text" class="row form-control" placeholder="Name of Gig" id="nGigBox">
+                                    <input type="text" class="row form-control" placeholder="Name of Gig" id="nameBox">
                                     <br />
-                                    <input type="text" class="row form-control" placeholder="Song" id="songBox">
+                                    <select type="text" class="row form-control" placeholder="Genre" id="GigGenreBox" ></select>
                                     <br />
                                     <input type="text" class="row form-control" placeholder="Venue" id="venueBox">
                                     <br />
@@ -107,11 +102,23 @@
                                     <label>-</label>
                                     <input type="number" class="col-3" placeholder="YYYY" id="yearBox">
                                     <label>@ </label>
-                                    <select id="time">
-                                        <option value=""
-                                                hidden>
-                                            Time
-                                        </option>
+                                    <select id="timeSelect" placeholder="Time">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                    </select>
+                                    <select id="timeType">
+                                        <option value="AM">AM</option>
+                                        <option value="PM">PM</option>
                                     </select>
                                     <br />
                                     <br />
@@ -210,35 +217,6 @@
             </ul>
         </div>
     </nav>
-
-    <script type="text/javascript" language="javascript">
-
-
-
-        $('a[href="#Gigs"]').click(function () {
-            $('.navbar-toggle:visible').click();
-            $("#MainPage").hide();
-            $("#Gigs").show();
-        });
-
-
-        $(document).ready(function () {
-            document.getElementById('cGigBtn').addEventListener('click', function () {
-                document.querySelector('.bg-modal').style.display = 'flex';
-            });
-            // When the user clicks the X on the login popup modal, close it
-            document.getElementById('cls1').addEventListener('click', function () {
-                document.querySelector('.bg-modal').style.display = 'none';
-            });
-        });
-
-
-    </script>
-
-
-
-
-
 
     <style>
 
@@ -354,9 +332,31 @@
         function mainloadingFunctions() {
             getUserData();
             getGenres(document.getElementById("genreSelect"));
+            getGenres(document.getElementById("GigGenreBox"));
         }
 
 
+        $('a[href="#Gigs"]').click(function () {
+            $('.navbar-toggle:visible').click();
+            $("#MainPage").hide();
+            $("#Gigs").show();           
+        });
+
+
+        $(document).ready(function () {
+            document.getElementById('cGigBtn').addEventListener('click', function () {
+                document.querySelector('.bg-modal').style.display = 'flex';
+            });
+            // When the user clicks the X on the login popup modal, close it
+            document.getElementById('cls1').addEventListener('click', function () {
+                document.querySelector('.bg-modal').style.display = 'none';                
+            });
+        });
+
+        function CreateGigClicked()
+        {
+            
+        }
 
     </script>
 </body>

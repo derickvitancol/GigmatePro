@@ -1,5 +1,6 @@
 ﻿/* THIS FILE CONTAINS THE FUNCTIONS THAT ARE USED IN DIFFERENT PAGES */
 
+
 //FUNCTION TO GET THE USER DATA FROM LOGIN
 function getUserData() {
     var personInfo = JSON.parse(window.localStorage.getItem("userDetails"));
@@ -19,7 +20,7 @@ function getGenres(selectBox)
     }).done(function (data) {
         var genreList = data.GetGenreListResult;
         var genreSelect = selectBox;
-
+        window.localStorage.setItem("genreList", genreList);
         var genreList = JSON.parse(data.GetGenreListResult);
         for (var i = 0; i < Object.keys(genreList).length; i++) {
             var opt = document.createElement("option");
@@ -40,7 +41,6 @@ function getGenres(selectBox)
 function GetSong(uID) {
 
     var personJSON = { userID: uID };
-    alert(personJSON.userID);
 
     var xhr = $.ajax({
 
@@ -56,8 +56,8 @@ function GetSong(uID) {
 
 
 
-    }).fail(function (mess) {
-        alert(JSON.stringify(mess));
+        }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+            alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
     });
 }
 
@@ -75,7 +75,21 @@ function determineGenderName(genderID) {
     return genderName
 }
 
+function determineGenre(genreID)
+{
+    var GenreName = "di nakuha tols";
+    var GenreList = window.localStorage.getItem("genreList");
+    GenreList = JSON.parse(GenreList);
+    for (var i=0; i < Object.keys(GenreList).length; i++)
+    {
+        if (GenreList[i].ID == genreID)
+        {
+            GenreName = GenreList[i].Name;
+        }
+    }
 
+    return GenreName;
+}
 
 function determineTypeName(typeID) {
     var userTypeName;

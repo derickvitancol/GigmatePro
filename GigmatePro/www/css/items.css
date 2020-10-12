@@ -59,6 +59,12 @@ a[id=addS] {
     margin-bottom: 100px;
 }
 
+button[id=cGigBtn] {
+    /*padding: 15px 32px;*/
+    margin-bottom: 100px;
+}
+
+
 /*FOR EDIT PROFILE*/
 input[id=nameLabel] {
     background-color: transparent;

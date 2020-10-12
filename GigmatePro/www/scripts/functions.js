@@ -1,5 +1,16 @@
 ﻿/* THIS FILE CONTAINS THE FUNCTIONS THAT ARE USED IN DIFFERENT PAGES */
 
+//CLASS USED FOR GIGS
+class Gig
+{
+
+    set Name(value) { this._gigName = value; } get Name() { return this._gigName; }
+    set Date(value) { this._gigDate = value; } get Date() { return this._gigDate; }
+    set Venue(value) { this._gigVenue = value; } get Venue() { return this._gigVenue; }
+    set Creator(value) { this._gigCreator = value; } get Creator() { return this._gigCreator; }
+    set GenreID(value) { this._gigGenre = value; } get GenreID() { return this._gigGenre; }
+    set ID(value) { this._gigID = value; } get ID() { return this._gigID; }
+}
 
 //FUNCTION TO GET THE USER DATA FROM LOGIN
 function getUserData() {
@@ -37,7 +48,7 @@ function getGenres(selectBox)
         });
 }
 
-
+//FUNCTION TO GET THE SONG BASED ON THE USER ID 
 function GetSong(uID) {
 
     var personJSON = { userID: uID };
@@ -61,6 +72,44 @@ function GetSong(uID) {
     });
 }
 
+//FUNCTION TO GET THE PERSON TYPES FROM THE DATABASE
+function GetPersonTypes()
+{
+    var xhr = $.ajax(
+        {
+            type: "POST",
+            url: "http://localhost/GigmatesService/Service1.svc/GetPersonTypes",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        }).done(function (data)
+        {
+            window.localStorage.setItem("PersonTypes", data.GetPersonTypesResult);
+        }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+        {
+            alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+        });
+}
+
+// SET THE OPTIONS OF A SELECT BOX FOR THE PERSON TYPES 
+//CALL ONLY IF THE PERSONTYPES ARE ALREADY SAVED IN THE LOCALSTORAGE
+function GetPersonTypesSelect(selectBox)
+{
+    var typesJSON = JSON.parse(window.localStorage.getItem("PersonTypes"));
+    for (var i = 0; i < Object.keys(typesJSON).length; i++)
+    {
+        var personOption = document.createElement("option");
+        personOption.value = typesJSON[i].ID;
+        personOption.innerHTML = typesJSON[i].Name;
+
+        selectBox.appendChild(personOption);
+    }
+}
+
+//INPUT THE MONTH AND DATE HERE FOR CHECKING RETURNS TRUE IF DATE IS VALID
+function CheckDate(date)
+{
+    return /^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/.test(date);
+}
 
 function determineGenderName(genderID) {
     var genderName;

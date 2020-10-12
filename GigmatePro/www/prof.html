@@ -50,32 +50,36 @@
                             <div class="col-sm-6 col-md-4">
                                 <div class="thumbnail">
                                     <div class="col-sm-6">
-                                        <center>
-                                            <label><h6>Fname+Lname</h6></label>
+                                        
+                                            <input type="text" class="row form-control" id="nameLabel" />
                                             <br />
-                                            <label><h5>@username</h5></label>
+                                            <input type="text" class="row form-control" id="usernameLabel" />
                                             <br />
-                                            <label><h5>Type</h5></label>
-                                        </center>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <center>
-                                            <label><h5>--ratings--</h5></label>
-                                        </center>
-                                    </div>
-                                    <div class="caption">
-                                        <label><h4>Age</h4></label>
-                                        <br />
-                                        <label><h4>Gender</h4></label>
-                                        <br />
-                                        <label><h4>Location</h4></label>
-                                        <br />
-                                        <label><h4>Bio</h4></label>
-                                        <br />
+                                            <input type="password" class="row form-control" id="passwordLabel" />
+                                            <br />
+                                            <label for="typeLabel" style="color:white;">Account Type</label>
+                                            <input type="text" name="usertype" id="typeLabel" />
+                                            <br />
+                                            <label for="instrumentBox" style="color:white;">Musical Instrument</label>
+                                            <input type="text" name="mInstru" id="instrumentBox" />
+                                            <br />
+                                            <label for="ratingsBox">Rating</label>
+                                            <input id="ratingsBox" type="text" />
+                                            <br />
+                                            <label for="age">Age</label>
+                                            <input type="number" class="col-4" id="ageLabel" />
+                                            <br />
+                                            <label for="gender">Gender</label>
+                                            <select name="gender" id="genderLabel"></select>
+                                            <br />
+                                            <input type="text" class="row form-control" id="locationLabel" />
+                                            <br />
+                                            <input type="text" class="row form-control" id="bioLabel" />
 
-                                        <p class="float-left"><a href="#" class="btn btn-primary" role="button" id="eProfBtn">Edit Profile</a></p>
-                                        <p class="float-right"><div class="btn btn-primary" role="button" onclick="LogoutClicked()">Logout</div></p>
-                                    </div>
+
+                                            <p class="float-left"><a href="#" class="btn btn-primary" role="button" id="eProfBtn">Edit Profile</a></p>
+                                            <p class="float-right"><div class="btn btn-primary" role="button" onclick="LogoutClicked()">Logout</div></p>
+</div>
                                     <!--<div class="row">
                         <div class="col-sm-6 col-md-4">
                             <div class="thumbnail">
@@ -137,34 +141,34 @@
 
                                     <center>
 
-                                        <input type="text" class="row form-control" id="nameLabel" />
+                                        <input type="text" class="row form-control" id="nameLabelModal" />
                                         <br />
-                                        <input type="text" class="row form-control" id="usernameLabel" />
+                                        <input type="text" class="row form-control" id="usernameLabelModal" />
                                         <br />
-                                        <input type="password" class="row form-control" id="passwordLabel" />
+                                        <input type="password" class="row form-control" id="passwordLabelModal" />
                                         <br />
-                                        <label for="typeLabel" style="color:white;">Account Type</label>
-                                        <input type="text" name="usertype" id="typeLabel" />
+                                        <label for="typeLabelModal" style="color:white;">Account Type</label>
+                                        <input type="text" name="usertype" id="typeLabelModal" />
                                         <br />
-                                        <label for="instrumentBox" style="color:white;">Musical Instrument</label>
-                                        <input type="text" name="mInstru" id="instrumentBox" />
+                                        <label for="instrumentBoxModal" style="color:white;">Musical Instrument</label>
+                                        <input type="text" name="mInstru" id="instrumentBoxModal" />
                                         <br />
-                                        <label for="ratingsBox">Rating</label>
-                                        <input id="ratingsBox" type="text" />
+                                        <label for="ratingsBoxModal">Rating</label>
+                                        <input id="ratingsBoxModal" type="text" />
                                         <br />
-                                        <label for="age">Age</label>
-                                        <input type="number" class="col-4" id="ageLabel" />
+                                        <label for="ageLabelModal">Age</label>
+                                        <input type="number" class="col-4" id="ageLabelModal" />
                                         <br />
                                         <label for="gender">Gender</label>
-                                        <select name="gender" id="genderLabel"></select>
+                                        <input  type="text" name="gender" id="genderLabelModal"/>
                                         <br />
-                                        <input type="text" class="row form-control" id="locationLabel" />
+                                        <input type="text" class="row form-control" id="locationLabelModal" />
                                         <br />
-                                        <input type="text" class="row form-control" id="bioLabel" />
+                                        <input type="text" class="row form-control" id="bioLabelModal" />
                                     </center>
                                     <br />
                                     <center>
-                                        <a href="#" class="btn btn-primary" role="button">Create</a>
+                                        <a href="#" class="btn btn-primary" role="button">Edit Information</a>
                                     </center>
                                 </center>
                             </div>
@@ -518,6 +522,19 @@
             GetSong(userDetails.ID); 
         }
 
+        function getProfileDataForModal()
+        {
+            var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+
+            document.getElementById("nameLabelModal").value = userDetails.Firstname + " " + userDetails.Lastname;
+            document.getElementById("usernameLabelModal").value = userDetails.Username;
+            document.getElementById("passwordLabelModal").value = userDetails.Password;
+            document.getElementById("genderLabelModal").value = determineGenderName(userDetails.Gender);
+            document.getElementById("typeLabelModal").value = determineTypeName(userDetails.Type);
+            document.getElementById("ageLabelModal").value = userDetails.Age;
+            document.getElementById("locationLabelModal").value = userDetails.Location;
+        }
+
 
         function LogoutClicked() {
             localStorage.removeItem("userDetails");
@@ -622,9 +639,6 @@
         }
 
 
-
-
-
         $('a[href="#Songs"]').click(function () {
             $('.navbar-toggle:visible').click();
             $("#MainPage").hide();
@@ -653,7 +667,9 @@
 
         $(document).ready(function () {
             document.getElementById('eProfBtn').addEventListener('click', function () {
+                getProfileDataForModal();
                 document.querySelector('.bg-modal').style.display = 'flex';
+                
             });
             // When the user clicks the X on the login popup modal, close it
             document.getElementById('cls1').addEventListener('click', function () {

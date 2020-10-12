@@ -45,9 +45,7 @@
                     </ul>
                 </div>
                 <br />
-                <div>
-                    <select id="genreSelect"></select>
-                </div>
+               
 
                 <div id="page-wrapper">
                     <div id="page-inner">
@@ -58,21 +56,23 @@
                                     <center>
                                         <img src="images/logo.png" alt="" width="184" height="29">
                                     </center>
-                                    <div class="caption">
-                                        <center>
-                                            <label class="names">Name of Gig</label>
-                                        </center>
-                                        
-                                        
-                                        <br />
-                                        <label class="capt">Venue</label>
-                                        <br />
-                                        <label class="capt">Schedule</label>
-                                        <br />
-                                        <center>
-                                            <p><a href="#" class="btn btn-primary" role="button" id="jBtn">Join</a></p>
-                                        </center>
+                                    <div class="caption" id="GigsContainer">
+                                        <!--<div>
+                                            <center>
+                                                <label class="names">Name of Gig</label>
+                                            </center>
 
+
+                                            <br />
+                                            <label class="capt">Venue</label>
+                                            <br />
+                                            <label class="capt">Schedule</label>
+                                            <br />
+                                            <center>
+                                                <p><a href="#" class="btn btn-primary" role="button">Join</a></p>
+                                            </center>
+                                        </div>-->
+                                       
                                     </div>
 
 
@@ -94,40 +94,21 @@
                                     <h2>CREATE GIG</h2>
                                     <input type="text" class="row form-control" placeholder="Name of Gig" id="nameBox">
                                     <br />
-                                    <select type="text" class="row form-control" placeholder="Genre" id="GigGenreBox" ></select>
+                                    <select type="text" class="row form-control" placeholder="Genre" id="GigGenreBox"></select>
                                     <br />
                                     <input type="text" class="row form-control" placeholder="Venue" id="venueBox">
                                     <br />
                                     <label for="sched">Schedule:</label>
                                     <br />
-                                    <!--<input type="number" class="col-2" placeholder="MM" id="monthBox">
-                                    <label>-</label>
-                                    <input type="number" class="col-2" placeholder="DD" id="dayBox">
-                                    <label>-</label>
-                                    <input type="number" class="col-3" placeholder="YYYY" id="yearBox">
-                                    <label>@ </label>
-                                    <select id="timeSelect" placeholder="Time">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                    </select>
-                                    <select id="timeType">
-                                        <option value="AM">AM</option>
-                                        <option value="PM">PM</option>
-                                    </select>
+                                    <label for="dateBox">Date</label>
+                                    <input type="date" id="dateBox">
+                                    <label>TIME: </label>
+                                    <input type="time" id="timeBox" placeholder="Time"/>                                      
+
                                     <br />
                                     <br />-->
 
-                                    <a href="#" class="btn btn-primary" role="button">Create</a>
+                                    <button class="btn btn-primary" role="button" onclick="CreateGigClicked()">Create</button>
                                 </center>
                             </div>
                         </div>
@@ -331,8 +312,9 @@
         //FUNCTION CALLED ON MAINPAGE ONLOAD
         function mainloadingFunctions() {
             getUserData();
-            getGenres(document.getElementById("genreSelect"));
             getGenres(document.getElementById("GigGenreBox"));
+            GetAvailableGigs();
+
         }
 
 
@@ -356,6 +338,116 @@
         function CreateGigClicked()
         {
             
+            if (!document.getElementById("nameBox").value) {
+                alert("Gig Name cannot be empty!");
+            }
+            else if (!document.getElementById("venueBox").value) {
+                alert("Gig Venue cannot be empty!");
+            }
+            else if (!document.getElementById("dateBox").value && !document.getElementById("timeBox").value)
+            {
+                alert("date is not valid");
+            }
+            else
+            {
+
+                var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+                var gigName = document.getElementById("nameBox").value;
+                var gigVenue = document.getElementById("venueBox").value;
+                var gigGenre = document.getElementById("GigGenreBox").value;
+                var gigDate = document.getElementById("dateBox").value + " " + document.getElementById("timeBox").value+":00";
+                var gigCreator = userDetails.ID;
+                var gigJSON = {
+                    "newGig": {
+                        Name: gigName,
+                        Date: gigDate,
+                        Creator: gigCreator,
+                        Venue: gigVenue,
+                        GenreID: gigGenre
+                    }
+                } 
+                var xhr = $.ajax(
+                    {
+                        type: "POST",
+                        url: "http://localhost/GigmatesService/Service1.svc/AddGig",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: JSON.stringify(gigJSON)
+
+                    }).done(function (data)
+                    {
+                        alert("Number of gigs created: " + data.AddGigResult);
+                        document.getElementById("nameBox").value = "";
+                        gigVenue = document.getElementById("venueBox").value = "";
+                    }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+                    {
+                        alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                    });
+            }
+        }
+
+
+        function GetAvailableGigs()
+        {
+            var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+            var userJSON = { "userID": userDetails.ID };   
+            var WCFCall = $.ajax(
+                {
+                    type: "POST",
+                    url: "http://localhost/GigmatesService/Service1.svc/GetAvailableGigs",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(userJSON)
+
+                }).done(function (data)
+                {
+                    var containerDiv = document.getElementById("GigsContainer");
+                    var AvailableGigJSON = JSON.parse(data.GetAvailableGigsResult);
+
+                    //FUNCTION THAT DISPLAYS EACH GIG
+                    for (var i = 0; i < Object.keys(AvailableGigJSON).length; i++)
+                    {
+                        var divParent = document.createElement("div");
+                        var centerCon = document.createElement("center");
+                        divParent.classList = "caption";
+                        var nameCon = document.createElement("label");
+                        nameCon.classList = "capt";
+                        nameCon.innerHTML = AvailableGigJSON[i].Name;
+
+                        var venueCon = document.createElement("label");
+                        venueCon.innerHTML = "Venue: " + AvailableGigJSON[i].Venue;
+                        venueCon.classList = "capt";
+                        var scheduleCon = document.createElement("label");
+                        scheduleCon.innerHTML = "Date And Time: " + AvailableGigJSON[i].Date;
+                        scheduleCon.classList = "capt";
+                        var genreCon = document.createElement("label");
+                        genreCon.innerHTML = "Genre: "+ AvailableGigJSON[i].GenreName;
+                        genreCon.classList = "capt";
+
+                        var brElem = document.createElement("br");
+
+                        var buttonCenter = document.createElement("center");
+                        
+                        var joinGigButton = document.createElement("button");
+                        joinGigButton.classList = "btn btn-primary";
+                        joinGigButton.type = "button";
+                        joinGigButton.innerHTML = "Join Gig";
+                        
+                        centerCon.appendChild(nameCon);
+                        divParent.appendChild(centerCon);
+                        divParent.appendChild(venueCon);
+                        divParent.appendChild(scheduleCon);
+                        divParent.appendChild(genreCon);
+                        divParent.appendChild(brElem);
+                        buttonCenter.appendChild(joinGigButton);
+                        divParent.appendChild(buttonCenter);
+                        containerDiv.appendChild(divParent);
+
+                    }
+                }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+                {
+                    alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                });
         }
 
     </script>

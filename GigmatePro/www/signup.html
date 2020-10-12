@@ -75,8 +75,6 @@
 
             <label for="UserTypebox" style="color:white;">Account Type</label>
             <select name="usertype" id="UserTypebox">
-                <option value=1>Musician</option>
-                <option value=2>Creator</option>
             </select>
             <br />
             <br />
@@ -101,6 +99,12 @@
     <script>
         /*FUNCTIONS FOR SIGNUP PAGE*/
         //FUNCTION TO REGISTER A NEW USER - NEEDS CHECKING OF INPUT
+        function loadingFunc()
+        {
+            GetPersonTypes();
+            GetPersonTypesSelect(document.getElementById("UserTypebox"));
+        }
+
         function RegisterClicked() {
             var firstname = document.getElementById("FirstnameBox").value;
             var lastname = document.getElementById("LastnameBox").value;

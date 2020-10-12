@@ -33,14 +33,51 @@
                     <label class="capt">Description</label>
                     <br />
                     <ul class="button">
-                        <center>
-                            <li><a href="#" class="btn btn-primary" role="button">Show more</a></li>
+                        <center>                           
                             <li><a href="#" class="btn btn-primary" role="button">Accept</a></li>
                             <li><a href="#" class="btn btn-primary" role="button">Decline</a></li>
                         </center>
                     </ul>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <div class="grid-container">
+        <div class="col-sm-6 col-md-6">
+            <div class="thumbnail">
+                <div class="caption">
+                    <label class="names">Review User</label>
+                    <br />
+                    <label class="capt">Description</label>
+                    <br />
+                    <ul class="button">
+                        <center>
+                            <li><a href="#" class="btn btn-primary" role="button" id="sMBtn">Show more</a></li>
+                        </center>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-modal" style="display:none">
+        <div class="modal-cont">
+            <center>
+                <div class="close" id="cls1">x</div>
+                <br />
+                <h2>REVIEW USER</h2>            
+                <br />
+                <label for="rating">Rating:</label>
+                <input type="number" class="row form-control" id="ratingBox" min="1" max="5">
+                <br />
+                <label for="rating">Remarks:</label>
+                <input type="text" class="row form-control" id="remarkBox">
+                <br />
+
+
+                <button class="btn btn-primary" role="button">Save Review</button>              
+            </center>
         </div>
     </div>
 
@@ -96,6 +133,7 @@
             grid-gap: 10px;
             background-color: #3f1e9b;
             padding: 15px;
+            margin-bottom:10px;
         }
 
         .grid-item {
@@ -121,5 +159,16 @@
     <script type="text/javascript" src="scripts/bootstrap.js"></script>
     <script type="text/javascript" src="scripts/homepage.js"></script>
 
+    <script>
+        $(document).ready(function () {
+            document.getElementById('sMBtn').addEventListener('click', function () {
+                document.querySelector('.bg-modal').style.display = 'flex';
+            });
+            // When the user clicks the X on the login popup modal, close it
+            document.getElementById('cls1').addEventListener('click', function () {
+                document.querySelector('.bg-modal').style.display = 'none';
+            });
+        });
+    </script>
 </body>
 </html>

@@ -47,55 +47,95 @@
                 <div id="page-wrapper">
                     <div id="page-inner">
                         <div class="grid-container">
-                            <div class="row">
-                                <div class="col-sm-6 col-md-4">
-                                    <div class="thumbnail">
-                                        <div class="col-sm-6">
+                            <div class="col-sm-6 col-md-4">
+                                <div class="thumbnail">
+                                    <div class="col-sm-6">
+                                        <center>
+                                            <label><h6>Fname+Lname</h6></label>
+                                            <br />
+                                            <label><h5>@username</h5></label>
+                                            <br />
+                                            <label><h5>Type</h5></label>
+                                        </center>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <center>
+                                            <label><h5>--ratings--</h5></label>
+                                        </center>
+                                    </div>
+                                    <div class="caption">
+                                        <label><h4>Age</h4></label>
+                                        <br />
+                                        <label><h4>Gender</h4></label>
+                                        <br />
+                                        <label><h4>Location</h4></label>
+                                        <br />
+                                        <label><h4>Bio</h4></label>
+                                        <br />
 
-                                            <h6>
-                                                <input type="text" class="row form-control" id="nameLabel">
-                                            </h6>
-                                            <br />
-                                            <h5>
-                                                <input type="text" class="row form-control" id="usernameLabel" />
-                                            </h5>
-                                            <br />
-                                            <input type="text" class="row form-control" id="passwordLabel" />
-                                            <br />
-                                            <center>
-                                                <label for="UserTypebox" style="color:white;">Account Type</label>
-                                                <select name="usertype" id="typeLabel"></select>
-                                                <br />
-                                                <label for="mInstrubox" style="color:white;">Musical Instrument</label>
-                                                <select name="mInstru" id="minstrument"></select>
-                                            </center>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <center>
-                                                <div id="ratingsLabel">--ratings--</div>
-                                            </center>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <input type="number" class="col-4" id="ageLabel">
-                                            <br />
-                                            <label for="gender">Gender</label>
-                                            <select name="gender" id="genderLabel"></select>
-                                            <br />
-                                            <input type="text" class="row form-control" id="locationLabel" />
-                                            <br />
-                                            <input type="text" class="row form-control" id="bioLabel" />
-                                            <br />
-                                        </div>
-                                        <div class="caption">
-
-                                            <p class="float-left"><a href="#" class="btn btn-primary" role="button">Edit Profile</a></p>
-                                            <p class="float-right"><div class="btn btn-primary" role="button" onclick="LogoutClicked()">Logout</div></p>
-                                        </div>
+                                        <p class="float-left"><a href="#" class="btn btn-primary" role="button" id="eProfBtn">Edit Profile</a></p>
+                                        <p class="float-right"><div class="btn btn-primary" role="button" onclick="LogoutClicked()">Logout</div></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class="bg-modal" style="display:none">
+                            <div class="modal-cont">
+                                <center>
+                                    <div class="close" id="cls1">x</div>
+
+                                    <h2>EDIT PROFILE</h2>
+                                    <br />
+
+                                    <center>
+                                        <h6>
+                                            <input type="text" class="row form-control" id="nameLabel">
+                                        </h6>
+                                        <br />
+                                        <h5>
+                                            <input type="text" class="row form-control" id="usernameLabel" />
+                                        </h5>
+                                        <br />
+                                        <input type="password" class="row form-control" id="passwordLabel" />
+                                        <br />
+                                    
+                                    
+                                    
+                                        <label for="UserTypebox" style="color:white;">Account Type</label>
+                                        <select name="usertype" id="typeLabel"></select>
+                                        <br />
+                                        <label for="mInstrubox" style="color:white;">Musical Instrument</label>
+                                        <select name="mInstru" id="minstrument"></select>
+                                    
+
+
+                                    
+                                        <div id="ratingsLabel">--ratings--</div>
+                                    </center>
+
+
+
+                                    <input type="number" class="col-4" id="ageLabel">
+                                    <br />
+                                    <label for="gender">Gender</label>
+                                    <select name="gender" id="genderLabel"></select>
+                                    <br />
+                                    <input type="text" class="row form-control" id="locationLabel" />
+                                    <br />
+                                    <input type="text" class="row form-control" id="bioLabel" />
+                                    <br />
+
+
+                                    <center>
+                                        <a href="#" class="btn btn-primary" role="button">Create</a>
+                                    </center>
+                                </center>
+                            </div>
+                        </div>
+
+
+
+                    </div>
                     </div>
                 </div>
             <!-- /. PAGE WRAPPER  -->
@@ -549,6 +589,17 @@
             $("#History").show();
             $("#Songs").hide();
             $("#Gigs").hide();
+        });
+
+
+        $(document).ready(function () {
+            document.getElementById('eProfBtn').addEventListener('click', function () {
+                document.querySelector('.bg-modal').style.display = 'flex';
+            });
+            // When the user clicks the X on the login popup modal, close it
+            document.getElementById('cls1').addEventListener('click', function () {
+                document.querySelector('.bg-modal').style.display = 'none';
+            });
         });
 
         $(document).ready(function () {

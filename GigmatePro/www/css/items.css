@@ -64,6 +64,11 @@ button[id=cGigBtn] {
     margin-bottom: 100px;
 }
 
+a[id=jBtn] {
+    /*padding: 15px 32px;*/
+    margin-bottom: 10px;
+}
+
 
 /*FOR EDIT PROFILE*/
 input[id=nameLabel] {
@@ -76,7 +81,7 @@ input[id=nameLabel] {
     border-top: hidden;
     border-left: hidden;
     border-right: hidden;
-    height: 10px;
+    height: 15px;
 }
 
 input[id=nameLabel]::placeholder {    
@@ -93,7 +98,7 @@ input[id=usernameLabel] {
     border-top: hidden;
     border-left: hidden;
     border-right: hidden;
-    height: 10px;
+    height: 15px;
 }
 
 input[id=usernameLabel]::placeholder {
@@ -110,7 +115,7 @@ input[id=passwordLabel] {
     border-top: hidden;
     border-left: hidden;
     border-right: hidden;
-    height: 10px;
+    height: 15px;
 }
 
 input[id=passwordLabel]::placeholder {

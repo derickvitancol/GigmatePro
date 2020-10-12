@@ -402,6 +402,7 @@
                 }).done(function (data)
                 {
                     var containerDiv = document.getElementById("GigsContainer");
+                    window.localStorage.setItem("AvailableGigs", data.GetAvailableGigsResult);
                     var AvailableGigJSON = JSON.parse(data.GetAvailableGigsResult);
 
                     //FUNCTION THAT DISPLAYS EACH GIG
@@ -440,6 +441,11 @@
                         joinGigButton.classList = "btn btn-primary";
                         joinGigButton.type = "button";
                         joinGigButton.innerHTML = "Join Gig";
+
+                        $(joinGigButton).click(function () {
+                            window.localStorage.setItem("selectedGigID", $(joinGigButton).parent().siblings("#gigID").html());
+                            alert("button clicked: " + $(joinGigButton).parent().siblings("#gigID").html());
+                        });
                         
                         centerCon.appendChild(nameCon);
                         divParent.appendChild(centerCon);
@@ -460,7 +466,6 @@
                     alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
                 });
         }
-
     </script>
 </body>
 </html>

@@ -74,7 +74,6 @@
                 if (userDetails.Firstname && userDetails.Lastname) {
                     
                     window.localStorage.setItem("userDetails", JSON.stringify(userDetails));
-                    GetSong(userDetails.ID);
                     GetPersonTypes();
                     setTimeout(function () { document.location.href = "mainpage.html", 500 }); 
                     window.close = "index.html";                   

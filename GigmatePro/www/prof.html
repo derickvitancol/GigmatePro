@@ -139,7 +139,7 @@
                         <div class="grid-container">
                             <div class="col-sm-6 col-md-4">
                                 <div class="thumbnail" id="SongListDiv">
-                                    <div class="caption">
+                                    <!--<div class="caption">
                                         <center>
                                             <label class="names">Name of Song</label>
                                         </center>
@@ -149,7 +149,7 @@
                                         <label class="capt">Description</label>
                                         <br />
 
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -414,9 +414,10 @@
             document.getElementById("passwordLabel").value = userDetails.Password;
             document.getElementById("genderLabel").value = determineGenderName(userDetails.Gender);
             document.getElementById("typeLabel").value = determineTypeName(userDetails.Type);
-            document.getElementById("ratingsLabel").innerHTML = userDetails.Rate;
             document.getElementById("ageLabel").value = userDetails.Age;
             document.getElementById("locationLabel").value = userDetails.Location;
+
+            GetSong(userDetails.ID); 
         }
 
 
@@ -530,9 +531,10 @@
             $('.navbar-toggle:visible').click();
             $("#MainPage").hide();
             $("#Songs").show();
+            DisplaySongs();
             $("#Gigs").hide();
             $("#History").hide();
-            DisplaySongs();
+            
         });
 
         $('a[href="#Gigs"]').click(function () {

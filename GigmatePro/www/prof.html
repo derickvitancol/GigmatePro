@@ -47,59 +47,132 @@
                 <div id="page-wrapper">
                     <div id="page-inner">
                         <div class="grid-container">
-                            <div class="row">
-                                <div class="col-sm-6 col-md-4">
-                                    <div class="thumbnail">
-                                        <div class="col-sm-6">
-
-                                            <h6>
-                                                <input type="text" class="row form-control" id="nameLabel">
-                                            </h6>
+                            <div class="col-sm-6 col-md-4">
+                                <div class="thumbnail">
+                                    <div class="col-sm-6">
+                                        <center>
+                                            <label><h6>Fname+Lname</h6></label>
                                             <br />
-                                            <h5>
-                                                <input type="text" class="row form-control" id="usernameLabel" />
-                                            </h5>
+                                            <label><h5>@username</h5></label>
                                             <br />
-                                            <input type="text" class="row form-control" id="passwordLabel" />
-                                            <br />
-                                            <center>
-                                                <label for="typeLabel" style="color:white;">Account Type</label>
-                                                <input type="text" name="usertype" id="typeLabel"/>                                                <br />
-                                                <label for="instrumentBox" style="color:white;">Musical Instrument</label>
-                                                <input type="text" name="mInstru" id="instrumentBox"/>
-                                            </center>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            <center>
-                                                <label for="ratingsBox">Rating</label>
-                                                <input id="ratingsBox" type="text"/>
-                                            </center>
-                                        </div>
-
-                                        <div class="col-sm-6">
-                                            <input type="number" class="col-4" id="ageLabel">
-                                            <br />
-                                            <label for="gender">Gender</label>
-                                            <select name="gender" id="genderLabel"></select>
-                                            <br />
-                                            <input type="text" class="row form-control" id="locationLabel" />
-                                            <br />
-                                            <input type="text" class="row form-control" id="bioLabel" />
-                                            <br />
-                                        </div>
-                                        <div class="caption">
-
-                                            <p class="float-left"><a href="#" class="btn btn-primary" role="button">Edit Profile</a></p>
-                                            <p class="float-right"><div class="btn btn-primary" role="button" onclick="LogoutClicked()">Logout</div></p>
-                                        </div>
+                                            <label><h5>Type</h5></label>
+                                        </center>
                                     </div>
+                                    <div class="col-sm-3">
+                                        <center>
+                                            <label><h5>--ratings--</h5></label>
+                                        </center>
+                                    </div>
+                                    <div class="caption">
+                                        <label><h4>Age</h4></label>
+                                        <br />
+                                        <label><h4>Gender</h4></label>
+                                        <br />
+                                        <label><h4>Location</h4></label>
+                                        <br />
+                                        <label><h4>Bio</h4></label>
+                                        <br />
+
+                                        <p class="float-left"><a href="#" class="btn btn-primary" role="button" id="eProfBtn">Edit Profile</a></p>
+                                        <p class="float-right"><div class="btn btn-primary" role="button" onclick="LogoutClicked()">Logout</div></p>
+                                    </div>
+                                    <!--<div class="row">
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <div class="col-sm-6">
+
+                            <h6>
+                                <input type="text" class="row form-control" id="nameLabel">
+                            </h6>
+                            <br />
+                            <h5>
+                                <input type="text" class="row form-control" id="usernameLabel" />
+                            </h5>
+                            <br />
+                            <input type="text" class="row form-control" id="passwordLabel" />
+                            <br />
+                            <center>
+                                <label for="typeLabel" style="color:white;">Account Type</label>
+                                <input type="text" name="usertype" id="typeLabel"/>
+                                <br />
+                                <label for="instrumentBox" style="color:white;">Musical Instrument</label>
+                                <input type="text" name="mInstru" id="instrumentBox"/>
+                            </center>
+                        </div>
+                        <div class="col-sm-3">
+                            <center>
+                                <label for="ratingsBox">Rating</label>
+                                <input id="ratingsBox" type="text"/>
+                            </center>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <input type="number" class="col-4" id="ageLabel">
+                            <br />
+                            <label for="gender">Gender</label>
+                            <select name="gender" id="genderLabel"></select>
+                            <br />
+                            <input type="text" class="row form-control" id="locationLabel" />
+                            <br />
+                            <input type="text" class="row form-control" id="bioLabel" />
+                            <br />
+                        </div>
+                        <div class="caption">
+
+                            <p class="float-left"><a href="#" class="btn btn-primary" role="button">Edit Profile</a></p>
+                            <p class="float-right"><div class="btn btn-primary" role="button" onclick="LogoutClicked()">Logout</div></p>
+                        </div>
+                    </div>
+                </div>-->
                                 </div>
                             </div>
                         </div>
+                        <div class="bg-modal" style="display:none">
+                            <div class="modal-cont">
+                                <center>
+                                    <div class="close" id="cls1">x</div>
+
+                                    <h2>EDIT PROFILE</h2>
+                                    <br />
+
+                                    <center>
+
+                                        <input type="text" class="row form-control" id="nameLabel" />
+                                        <br />
+                                        <input type="text" class="row form-control" id="usernameLabel" />
+                                        <br />
+                                        <input type="password" class="row form-control" id="passwordLabel" />
+                                        <br />
+                                        <label for="typeLabel" style="color:white;">Account Type</label>
+                                        <input type="text" name="usertype" id="typeLabel" />
+                                        <br />
+                                        <label for="instrumentBox" style="color:white;">Musical Instrument</label>
+                                        <input type="text" name="mInstru" id="instrumentBox" />
+                                        <br />
+                                        <label for="ratingsBox">Rating</label>
+                                        <input id="ratingsBox" type="text" />
+                                        <br />
+                                        <label for="age">Age</label>
+                                        <input type="number" class="col-4" id="ageLabel" />
+                                        <br />
+                                        <label for="gender">Gender</label>
+                                        <select name="gender" id="genderLabel"></select>
+                                        <br />
+                                        <input type="text" class="row form-control" id="locationLabel" />
+                                        <br />
+                                        <input type="text" class="row form-control" id="bioLabel" />
+                                    </center>
+                                    <br />
+                                    <center>
+                                        <a href="#" class="btn btn-primary" role="button">Create</a>
+                                    </center>
+                                </center>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- /. PAGE WRAPPER  -->
                 </div>
-            <!-- /. PAGE WRAPPER  -->
-            </div>
         </div>
     </div>
 
@@ -551,6 +624,16 @@
             $("#History").show();
             $("#Songs").hide();
             $("#Gigs").hide();
+        });
+
+        $(document).ready(function () {
+            document.getElementById('eProfBtn').addEventListener('click', function () {
+                document.querySelector('.bg-modal').style.display = 'flex';
+            });
+            // When the user clicks the X on the login popup modal, close it
+            document.getElementById('cls1').addEventListener('click', function () {
+                document.querySelector('.bg-modal').style.display = 'none';
+            });
         });
 
         $(document).ready(function () {

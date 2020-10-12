@@ -49,7 +49,7 @@ function getGenres(selectBox)
 }
 
 //FUNCTION TO GET THE SONG BASED ON THE USER ID 
-function GetSong(uID) {
+function GetSong(uID){
 
     var personJSON = { userID: uID };
 
@@ -60,13 +60,10 @@ function GetSong(uID) {
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         data: JSON.stringify(personJSON)
-    }).done(function (data) {
-        
-        var songList = JSON.parse(data.GetGenreListResult);
-        window.localStorage.setItem("songList", songList);
-
-
-
+    }).done(function (data)
+        {
+            var songList = data.GetSongsResult;
+            window.localStorage.setItem("songList", songList);
         }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
             alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
     });

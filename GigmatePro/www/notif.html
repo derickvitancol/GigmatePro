@@ -14,7 +14,7 @@
 
     <title>Gigmates</title>
 </head>
-<body style="background-color: rgb(100, 100, 128);">
+<body style="background-color: rgb(100, 100, 128);" onload="GetNotifs()">
 
     <div class="topnav" id="myTopnav">
         <center style="color:white">
@@ -27,17 +27,8 @@
     <div class="grid-container">
         <div class="col-sm-6 col-md-6">
             <div class="thumbnail">
-                <div class="caption">
-                    <label class="names">Request to Join Notif</label>
-                    <br />
-                    <label class="capt">Description</label>
-                    <br />
-                    <ul class="button">
-                        <center>                           
-                            <li><a href="#" class="btn btn-primary" role="button">Accept</a></li>
-                            <li><a href="#" class="btn btn-primary" role="button">Decline</a></li>
-                        </center>
-                    </ul>
+                <div class="caption" id="requestCon">
+
                 </div>
             </div>
         </div>
@@ -157,11 +148,94 @@
     <script type="text/javascript" src="scripts/popper.min.js"></script>
     <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
     <script type="text/javascript" src="scripts/bootstrap.js"></script>
-    <script type="text/javascript" src="scripts/homepage.js"></script>
-    <script>
-
 
     <script>
+
+        function GetNotifs()
+        {
+
+            var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+            var WCFCall = $.ajax(
+                {
+                    type: "POST",
+                    url: "http://localhost/GigmatesService/Service1.svc/GetInvites",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify({ "userID": userDetails.ID })
+                }).done(function (data)
+                {
+                    var notifsJSON = JSON.parse(data.GetInvitesResult);
+                    for (var i = 0; i < Object.keys(notifsJSON).length; i++)
+                    {
+                        var requestCon = document.getElementById("requestCon");
+                        if (notifsJSON[i].TypeID == 1)
+                        {
+                            var inviteIDCon = document.createElement("div");
+                            inviteIDCon.innerHTML = notifsJSON[i].ID;
+                            inviteIDCon.classList = "d-none";
+                            inviteIDCon.id = "inviteID";
+
+                            var senderNameCon = document.createElement("label");
+                            senderNameCon.innerHTML = "Request by: "+notifsJSON[i].SenderName;
+
+                            var centerMessage = document.createElement("center");
+                            var inviteMess = document.createElement("label");
+                            inviteMess.innerHTML = "Request to join your Gig";
+                            inviteMess.classList = "capt";
+                            centerMessage.appendChild(inviteMess);
+
+                            var gigNameCon = document.createElement("label");
+                            gigNameCon.innerHTML = notifsJSON[i].GigInvite.Name;
+                            gigNameCon.classList = "names";
+                            gigNameCon.id = "gigName";
+
+                            var gigDateCon = document.createElement("label");
+                            gigDateCon.innerHTML = "Date and Time: "+notifsJSON[i].GigInvite.Date;
+                            gigDateCon.classList = "capt";
+
+                            var gigIDCon = document.createElement("div");
+                            gigIDCon.innerHTML = notifsJSON[i].GigInvite.GigID;
+                            gigIDCon.classList = "d-none";
+                            gigIDCon.id = "gigID";
+
+                            var buttonsCon = document.createElement("ul");
+                            var centerButton = document.createElement("center");
+                            var acceptItemCon = document.createElement("li");
+                            var acceptButton = document.createElement("button");
+                            acceptButton.classList = "btn btn-primary";
+                            acceptButton.type = "button";
+                            acceptButton.innerHTML = "Accept";
+                            acceptItemCon.appendChild(acceptButton);
+
+                            var rejectItemCon = document.createElement("li");
+                            var rejectItemButton = document.createElement("button");
+                            rejectItemButton.classList = "btn btn-primary";
+                            rejectItemButton.type = "button";
+                            rejectItemButton.innerHTML = "Reject";
+                            rejectItemCon.appendChild(rejectItemButton);
+
+                            centerButton.appendChild(acceptItemCon);
+                            centerButton.appendChild(rejectItemCon);
+
+                            buttonsCon.appendChild(centerButton);
+
+                            requestCon.appendChild(inviteIDCon);
+                            requestCon.appendChild(senderNameCon);
+                            requestCon.appendChild(centerMessage);
+                            requestCon.appendChild(gigNameCon);
+                            requestCon.appendChild(gigDateCon);
+                            requestCon.appendChild(gigIDCon);
+                            requestCon.appendChild(buttonsCon);                            
+                        }
+                    }
+                }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+                {
+                    alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                });
+        }
+
+
+
         $(document).ready(function () {
             document.getElementById('sMBtn').addEventListener('click', function () {
                 document.querySelector('.bg-modal').style.display = 'flex';

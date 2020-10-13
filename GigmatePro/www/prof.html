@@ -71,7 +71,7 @@
                                         <br />
 
                                         <!--<p class="float-left"><a href="#" class="btn btn-primary" role="button" id="eProfBtn">Edit Profile</a></p>-->
-                                        <p class="float-left"><a href="#" class="btn btn-primary" role="button" id="eProfBtn" onclick="loadEditProfModal">Edit Profile</a></p>
+                                        <p class="float-left"><a href="#" class="btn btn-primary" role="button" id="eProfBtn" onclick="loadModal()">Edit Profile</a></p>
                                         <p class="float-right"><div class="btn btn-primary" role="button" onclick="LogoutClicked()">Logout</div></p>
                                     </div>       
                                 </div>
@@ -104,7 +104,7 @@
                         <div class="bg-modal" style="display:none">
                             <div class="modal-cont">
                                 <center>
-                                    <div class="close" id="cls1" onclick="loadCloseModal" >x</div>
+                                     <div class="close" id="cls1">x</div>
 
                                     <h2>EDIT PROFILE</h2>
                                     <br />
@@ -210,17 +210,18 @@
                             <br>
 
                             <center>
-                                <button class="btn btn-primary" id="aSongBtn">Add Song</button>
+                                <p><a href="#" class="btn btn-primary" role="button" id="aSongBtn" onclick="addSModal()">Add Song</a></p>
+                                <!--<button class="btn btn-primary" id="aSongBtn" onclick="addSModal">Add Song</button>-->
                             </center>
                         </div>
 
 
 
-                        <div class="bg-modal" style="display:none">
+                        <div class="bg-modal-reg" style="display:none">
 
                             <div class="modal-cont">
                                 <center>
-                                    <div class="close" id="cls1">x</div>
+                                    <div class="close" id="cls2">x</div>
 
                                     <h2>ADD SONG</h2>
 
@@ -676,7 +677,26 @@
         //    });
         //});
 
-       
+        function loadModal() {
+            document.querySelector('.bg-modal').style.display = 'flex';
+        }
+
+        //function closeModal() {
+        //    document.querySelector('.bg-modal').style.display = 'none';
+        //}
+
+        document.getElementById('cls1').addEventListener('click', function () {
+               document.querySelector('.bg-modal').style.display = 'none';
+           });
+
+        
+        function addSModal() {
+            document.querySelector('.bg-modal-reg').style.display = 'flex';
+        }
+
+        document.getElementById('cls2').addEventListener('click', function () {
+            document.querySelector('.bg-modal-reg').style.display = 'none';
+        });
         
 
     </script>

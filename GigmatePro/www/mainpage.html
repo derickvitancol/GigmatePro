@@ -438,6 +438,11 @@
                         idCon.classList = "d-none";
                         var brElem = document.createElement("br");
 
+                        var creatorIDCon = document.createElement("div");
+                        creatorIDCon.id = "creatorID";
+                        creatorIDCon.innerHTML = AvailableGigJSON[i].Creator;
+                        creatorIDCon.classList = "d-none";
+
                         var buttonCenter = document.createElement("center");
                         
                         var joinGigButton = document.createElement("button");
@@ -446,8 +451,11 @@
                         joinGigButton.innerHTML = "Join Gig";
 
                         $(joinGigButton).click(function () {
-                            window.localStorage.setItem("selectedGigID", $(joinGigButton).parent().siblings("#gigID").html());
-                            alert("button clicked: " + $(joinGigButton).parent().siblings("#gigID").html());
+                            var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+                            var gigID = $(joinGigButton).parent().siblings("#gigID").html();
+                            var receiverID = $(joinGigButton).parent().siblings("#creatorID").html();
+                            SendGigRequest(gigID, userDetails.ID, receiverID);
+                            //MAKE REFRESH THEN RECALL AVAILABLE GIGS WITH THE REMOVED GIG REQUEST UPDATE DATABASE STORED PROC
                         });
                         
                         centerCon.appendChild(nameCon);
@@ -461,9 +469,40 @@
                         buttonCenter.appendChild(joinGigButton);
                         divParent.appendChild(buttonCenter);
                         divParent.appendChild(idCon);
+                        divParent.appendChild(creatorIDCon);
                         containerDiv.appendChild(divParent);
 
                     }
+                }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+                {
+                    alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                });
+        }
+
+        function SendGigRequest(gigID,senderID,receiverID)
+        {
+            var inviteType = 1;
+            var InviteStatus = 2;
+
+            var inviteJSON = {
+                "NewInvite": {
+                    ReceiverID: receiverID,
+                    SenderID: senderID,
+                    StatusID: InviteStatus,
+                    TypeID: inviteType,
+                    PurposeID: gigID
+                }
+            };
+            var WCFCall = $.ajax(
+                {
+                    type: "POST",
+                    url: "http://localhost/GigmatesService/Service1.svc/SendGigInvite",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(inviteJSON)
+                }).done(function (data)
+                {
+                    alert("Number of Invites Sent: " + data.SendGigInviteResult);
                 }).fail(function (XMLHttpRequest, textStatus, errorThrown)
                 {
                     alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);

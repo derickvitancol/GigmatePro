@@ -595,6 +595,7 @@
 
         function DisplaySongs()
         {
+            //NOTE: ADD A CLEAR TO PREVENT SONGS FROM DISPLAYING OVER AND OVER
             var songList = window.localStorage.getItem("songList");
             var songDisplay = document.getElementById("SongListDiv");
             songList = JSON.parse(songList);

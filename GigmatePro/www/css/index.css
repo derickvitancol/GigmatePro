@@ -91,6 +91,15 @@ label[class=hfive] {
     text-align: center;
 }
 
+label[class=hfour] {
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0px;
+    overflow: visible;
+    padding: 0px;
+    text-align: center;
+}
+
 label[class=namess] {
     font-size: 24px;
     font-weight: normal;
@@ -100,6 +109,8 @@ label[class=namess] {
     text-align: center;
     color:gray;
 }
+
+
 
 h1 {
     font-size:24px;
@@ -224,7 +235,8 @@ name2 {
     border-radius: 4px;
     text-align: center;
     padding: 20px;
-    position: relative;
+    position: center;
+
 }
 
 .bg-modal-reg {
@@ -235,8 +247,13 @@ name2 {
     top: 0;
     justify-content: center;
     align-items: center;
-    overflow: auto;
+    overflow: auto ;
     display: none;
-    /*padding-left: 10px;
-    padding-right: 10px;*/
+   
+}
+
+.grid-cont {
+    width: 100%;
+    height: 100%;
+    background-color: darkslateblue;
 }

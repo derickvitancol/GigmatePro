@@ -21,17 +21,27 @@
 
 </head>
 <body style="background-color: rgb(100, 100, 128);" onload="mainloadingFunctions()">
+    <!--Search-->
+    <div class="search" id="searchBox">
+        <form class="search-form">
+            <input type="text" placeholder="Search for Gigs..">
+            <p class="float-right"><a href="#" class="btn-block" role="button" id="loadSModal">Search</a></p>
+        </form>
+    </div>
+
+
+
     <div data-role="page" id="MainPage">
 
         <div role="main" class="ui-content">
             <div id="wrapper">
                 <!--Search-->
-                <div class="search" id="searchBox">
+                <!--<div class="search" id="searchBox">
                     <form class="search-form">
                         <input type="text" placeholder="Search for Gigs..">
                         <input type="submit" value="Search">
                     </form>
-                </div>
+                </div>-->
                 <!--TOP NAV-->
                 <div class="topnav" id="myTopnav">
                     <ul class="actions" id="main-menu">
@@ -45,7 +55,7 @@
                     </ul>
                 </div>
                 <br />
-               
+
 
                 <div id="page-wrapper">
                     <div id="page-inner">
@@ -79,7 +89,7 @@
                                 </div>
                             </div>
                         </div>
-                       
+
                         <!--Create Gig-->
                         <div>
                             <br>
@@ -104,7 +114,7 @@
                                     <label for="dateBox">Date</label>
                                     <input type="date" id="dateBox">
                                     <label>TIME: </label>
-                                    <input type="time" id="timeBox" placeholder="Time"/>                                      
+                                    <input type="time" id="timeBox" placeholder="Time" />
 
                                     <br />
                                     <br />
@@ -126,12 +136,12 @@
         <div role="main" class="ui-content">
             <div id="wrapper">
                 <!--Search-->
-                <div class="search" id="searchBox">
+                <!--<div class="search" id="searchBox">
                     <form class="search-form">
                         <input type="text" placeholder="Search for Gigs..">
                         <input type="submit" value="Search">
                     </form>
-                </div>
+                </div>-->
                 <!--TOP NAV-->
                 <div class="topnav" id="myTopnav">
                     <ul class="actions" id="main-menu">
@@ -184,6 +194,21 @@
                 </div>
 
             </div>
+        </div>
+    </div>
+
+    <!--MODAL OF SEARCH-->
+    <div class="bg-modal-reg" style="display:none">
+        <div class="modal-cont">
+
+            <center>
+                <div class="close" id="cls">x</div>
+                <br />
+                <h2>SEARCH RESULTS</h2>
+
+            </center>
+
+
         </div>
     </div>
 
@@ -244,7 +269,7 @@
                     outline: 0;
                 }
 
-            .search input[type="submit"] {
+            .search a[id=loadSModal] {
                 border: 0px;
                 background: none;
                 background-color: #4932c9;
@@ -258,7 +283,13 @@
                 -moz-border-radius-bottom-right: 5px;
                 -webkit-border-radius-bottom-right: 5px;
                 cursor: pointer;
+                border-radius: 0px;
             }
+
+            .search p[class=float-right] {
+                margin-bottom: 0;
+            }
+
 
         /* ===========================
         ====== Medua Query for Search Box ======
@@ -281,7 +312,7 @@
             grid-gap: 10px;
             background-color: #3f1e9b;
             padding: 15px;
-            height:auto;
+            height: auto;
         }
 
         .grid-item {
@@ -322,43 +353,50 @@
         $('a[href="#Gigs"]').click(function () {
             $('.navbar-toggle:visible').click();
             $("#MainPage").hide();
-            $("#Gigs").show();           
+            $("#Gigs").show();
         });
 
+
+        $(document).ready(function () {
+            document.getElementById('loadSModal').addEventListener('click', function () {
+                document.querySelector('.bg-modal-reg').style.display = 'flex';
+            });
+
+            document.getElementById('cls').addEventListener('click', function () {
+                document.querySelector('.bg-modal-reg').style.display = 'none';
+            });
+        });
 
         $(document).ready(function () {
             document.getElementById('cGigBtn').addEventListener('click', function () {
                 document.querySelector('.bg-modal').style.display = 'flex';
             });
-            // When the user clicks the X on the login popup modal, close it
+
             document.getElementById('cls1').addEventListener('click', function () {
-                document.querySelector('.bg-modal').style.display = 'none';                
+                document.querySelector('.bg-modal').style.display = 'none';
             });
         });
 
-        
 
-        function CreateGigClicked()
-        {
-            
+
+        function CreateGigClicked() {
+
             if (!document.getElementById("nameBox").value) {
                 alert("Gig Name cannot be empty!");
             }
             else if (!document.getElementById("venueBox").value) {
                 alert("Gig Venue cannot be empty!");
             }
-            else if (!document.getElementById("dateBox").value && !document.getElementById("timeBox").value)
-            {
+            else if (!document.getElementById("dateBox").value && !document.getElementById("timeBox").value) {
                 alert("date is not valid");
             }
-            else
-            {
+            else {
 
                 var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
                 var gigName = document.getElementById("nameBox").value;
                 var gigVenue = document.getElementById("venueBox").value;
                 var gigGenre = document.getElementById("GigGenreBox").value;
-                var gigDate = document.getElementById("dateBox").value + " " + document.getElementById("timeBox").value+":00";
+                var gigDate = document.getElementById("dateBox").value + " " + document.getElementById("timeBox").value + ":00";
                 var gigCreator = userDetails.ID;
                 var gigJSON = {
                     "newGig": {
@@ -368,7 +406,7 @@
                         Venue: gigVenue,
                         GenreID: gigGenre
                     }
-                } 
+                }
                 var xhr = $.ajax(
                     {
                         type: "POST",
@@ -377,23 +415,20 @@
                         dataType: "json",
                         data: JSON.stringify(gigJSON)
 
-                    }).done(function (data)
-                    {
+                    }).done(function (data) {
                         alert("Number of gigs created: " + data.AddGigResult);
                         document.getElementById("nameBox").value = "";
                         gigVenue = document.getElementById("venueBox").value = "";
-                    }).fail(function (XMLHttpRequest, textStatus, errorThrown)
-                    {
+                    }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
                         alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
                     });
             }
         }
 
 
-        function GetAvailableGigs()
-        {
+        function GetAvailableGigs() {
             var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
-            var userJSON = { "userID": userDetails.ID };   
+            var userJSON = { "userID": userDetails.ID };
             var WCFCall = $.ajax(
                 {
                     type: "POST",
@@ -402,15 +437,13 @@
                     dataType: "json",
                     data: JSON.stringify(userJSON)
 
-                }).done(function (data)
-                {
+                }).done(function (data) {
                     var containerDiv = document.getElementById("GigsContainer");
                     window.localStorage.setItem("AvailableGigs", data.GetAvailableGigsResult);
                     var AvailableGigJSON = JSON.parse(data.GetAvailableGigsResult);
 
                     //FUNCTION THAT DISPLAYS EACH GIG
-                    for (var i = 0; i < Object.keys(AvailableGigJSON).length; i++)
-                    {
+                    for (var i = 0; i < Object.keys(AvailableGigJSON).length; i++) {
                         var divParent = document.createElement("div");
                         var centerCon = document.createElement("center");
                         divParent.classList = "caption";
@@ -425,12 +458,12 @@
                         scheduleCon.innerHTML = "Date And Time: " + AvailableGigJSON[i].Date;
                         scheduleCon.classList = "capt";
                         var genreCon = document.createElement("label");
-                        genreCon.innerHTML = "Genre: "+ AvailableGigJSON[i].GenreName;
+                        genreCon.innerHTML = "Genre: " + AvailableGigJSON[i].GenreName;
                         genreCon.classList = "capt";
 
                         var brElem2 = document.createElement("br");
                         var creatorNameCon = document.createElement("label");
-                        creatorNameCon.innerHTML = "Creator Name: "+AvailableGigJSON[i].CreatorName;
+                        creatorNameCon.innerHTML = "Creator Name: " + AvailableGigJSON[i].CreatorName;
                         creatorNameCon.classList = "capt";
                         var idCon = document.createElement("div");
                         idCon.id = "gigID";
@@ -444,7 +477,7 @@
                         creatorIDCon.classList = "d-none";
 
                         var buttonCenter = document.createElement("center");
-                        
+
                         var joinGigButton = document.createElement("button");
                         joinGigButton.classList = "btn btn-primary";
                         joinGigButton.type = "button";
@@ -457,7 +490,7 @@
                             SendGigRequest(gigID, userDetails.ID, receiverID);
                             //MAKE REFRESH THEN RECALL AVAILABLE GIGS WITH THE REMOVED GIG REQUEST UPDATE DATABASE STORED PROC
                         });
-                        
+
                         centerCon.appendChild(nameCon);
                         divParent.appendChild(centerCon);
                         divParent.appendChild(venueCon);
@@ -473,14 +506,12 @@
                         containerDiv.appendChild(divParent);
 
                     }
-                }).fail(function (XMLHttpRequest, textStatus, errorThrown)
-                {
+                }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
                     alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
                 });
         }
 
-        function SendGigRequest(gigID,senderID,receiverID)
-        {
+        function SendGigRequest(gigID, senderID, receiverID) {
             var inviteType = 1;
             var InviteStatus = 2;
 
@@ -500,11 +531,9 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     data: JSON.stringify(inviteJSON)
-                }).done(function (data)
-                {
+                }).done(function (data) {
                     alert("Number of Invites Sent: " + data.SendGigInviteResult);
-                }).fail(function (XMLHttpRequest, textStatus, errorThrown)
-                {
+                }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
                     alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
                 });
         }

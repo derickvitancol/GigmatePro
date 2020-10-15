@@ -245,6 +245,11 @@ div[role=button] {
     
 }
 
+button[id=cGigBtn] {
+    background-color: #7f4caf;
+    border-color: #7f4caf;
+}
+
 /*FOR NOTIF TOP NAV*/
 /*img[class=d-md-none]{
     width: 60%;
@@ -279,6 +284,7 @@ div[id=cls] {
 /*TOP NAVIGATION*/
 .topnav {
     background-color: rgb(12, 8, 68);
+    opacity: 0.7;
     overflow: hidden;
     text-align: center;
 }
@@ -327,9 +333,9 @@ div[id=cls] {
 /*TOP NAV FOR PROFILE*/
 .ptopnav {
     background-color: rgb(12, 8, 68);
+    opacity: 0.8;
     overflow: hidden;
     text-align: center;
-  
 }
 
 

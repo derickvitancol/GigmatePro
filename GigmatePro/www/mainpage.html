@@ -23,11 +23,13 @@
 </head>
 <body style="background-color: rgb(100, 100, 128);" onload="mainloadingFunctions()">
     <!--Search-->
-    <div class="search" id="searchBox">
-        <form class="search-form">
-            <input type="text" placeholder="Search for Gigs..">
-            <p class="float-right"><a href="#" class="btn-block" role="button" id="loadSModal">Search</a></p>
-        </form>
+    <div class="grid-conta">
+        <div class="search" id="searchBox">
+            <form class="search-form">
+                <input type="text" placeholder="Search for Gigs..">
+                <p class="float-right"><a href="#" class="btn-block" role="button" id="loadSModal">Search</a></p>
+            </form>
+        </div>
     </div>
 
 
@@ -288,7 +290,10 @@
                 }
 
         .search {
-            border: 2px solid #3b1fa0;
+            /*border: 2px solid #3b1fa0;*/
+            /*border: 2px solid #7f4caf;*/
+            /*border: 2px solid rgb(18, 15, 51);*/
+            border: 2px solid #36498f;
             overflow: auto;
             border-radius: 5px;
             -moz-border-radius: 5px;
@@ -308,7 +313,11 @@
             .search a[id=loadSModal] {
                 border: 0px;
                 background: none;
-                background-color: #4932c9;
+                /*background-color: #4932c9;*/
+                /*background-color: rgb(12, 8, 68);*/
+                background-color: #36498f;
+
+                opacity: 0.7;
                 color: #fff;
                 float: right;
                 padding: 10px;

@@ -241,14 +241,50 @@ div[role=button] {
     font-size: 12px;
     border-radius: 10px;
     margin-left: 2px;
+    /*margin-bottom:10px;*/
     
 }
+
+button[id=cGigBtn] {
+    background-color: #7f4caf;
+    border-color: #7f4caf;
+}
+
+/*FOR NOTIF TOP NAV*/
+/*img[class=d-md-none]{
+    width: 60%;
+    height: 40%;
+}*/
+div[id=mynTopnav] {
+    font-family: 'Cairo';
+    font-size: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+
+
+/*FOR CLOSE*/
+div[id=cls1] {
+    cursor: pointer;
+}
+
+div[id=cls2] {
+    cursor: pointer;
+}
+
+div[id=cls] {
+    cursor: pointer;
+}
+
 
 
 /*FOR MAINPAGE*/
 /*TOP NAVIGATION*/
 .topnav {
     background-color: rgb(12, 8, 68);
+    opacity: 0.7;
     overflow: hidden;
     text-align: center;
 }
@@ -262,6 +298,7 @@ div[role=button] {
         /*padding: 14px 16px;*/
         text-decoration: none;
         font-size: 17px;
+        font-family: 'Signika', sans-serif;
     }
 
         /* Change the color of links on hover */
@@ -296,6 +333,7 @@ div[role=button] {
 /*TOP NAV FOR PROFILE*/
 .ptopnav {
     background-color: rgb(12, 8, 68);
+    opacity: 0.8;
     overflow: hidden;
     text-align: center;
 }
@@ -306,10 +344,14 @@ div[role=button] {
         display: block;
         color: #f2f2f2;
         text-align: center;
-        padding: 0;
+        /*padding: 0;*/
+        padding-top: 10px;
+        padding-bottom: 10px;
         text-decoration: none;
-        font-size: 12px;
-        
+        font-size: 15px;
+        /*height: 40px;*/
+        width: 70px;
+        font-family: 'Signika', sans-serif;
     }
 
 
@@ -319,19 +361,24 @@ div[role=button] {
             color: white;
         }
 
-        /* Hide the link that should open and close the topnav on small screens */
-        .ptopnav .icon {
-            display: none;
-        }
+    /* Hide the link that should open and close the topnav on small screens */
+    .ptopnav .icon {
+        display: none;
+    }
 
-        /*.ptopnav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+    .ptopnav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        
+    }
 
-        .ptopnav li {
-            float: left;
-            /*margin: 0 1.5em;*/
-            /*margin: 0;
-        }*/
+    .ptopnav li {
+        float: left;
+        /*margin: 0 1.5em;*/
+        margin-right: 15px;
+        margin-left: 20px;
+        width: 50px;
+      
+    }
+

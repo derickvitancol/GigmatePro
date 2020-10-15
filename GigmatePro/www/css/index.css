@@ -60,6 +60,7 @@ label[class=names] {
     overflow: visible;
     padding: 5px;
     text-align: center;
+    font-family: 'Signika', sans-serif;
 }
 
 label[class=capt] {
@@ -69,6 +70,7 @@ label[class=capt] {
     overflow: visible;
     padding: 0px;
     text-align: center;
+    font-family: 'Signika', sans-serif;
 }
 
 label[class=hsix] {
@@ -79,6 +81,7 @@ label[class=hsix] {
     overflow: visible;
     padding: 0px;
     text-align: center;
+    font-family: 'Signika', sans-serif;
 }
 
 label[class=hfive] {
@@ -89,6 +92,17 @@ label[class=hfive] {
     overflow: visible;
     padding: 0px;
     text-align: center;
+    font-family: 'Signika', sans-serif;
+}
+
+label[class=hfour] {
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0px;
+    overflow: visible;
+    padding: 0px;
+    text-align: center;
+    font-family: 'Signika', sans-serif;
 }
 
 label[class=namess] {
@@ -98,8 +112,11 @@ label[class=namess] {
     overflow: visible;
     padding: 5px;
     text-align: center;
-    color:gray;
+    color: gray;
+    font-family: 'Signika', sans-serif;
 }
+
+
 
 h1 {
     font-size:24px;
@@ -224,7 +241,8 @@ name2 {
     border-radius: 4px;
     text-align: center;
     padding: 20px;
-    position: relative;
+    position: center;
+
 }
 
 .bg-modal-reg {
@@ -235,8 +253,23 @@ name2 {
     top: 0;
     justify-content: center;
     align-items: center;
-    overflow: auto;
+    overflow: auto ;
     display: none;
-    /*padding-left: 10px;
-    padding-right: 10px;*/
+   
 }
+
+.grid-cont {
+    width: 100%;
+    height: 100%;
+    background-color: darkslateblue;
+}
+
+.grid-conta {
+    display: grid;
+    grid-gap: 10px;
+    background-color: rgb(18, 15, 51);
+    /*opacity: 0.9;*/
+    padding: 15px;
+    height: auto;
+}
+

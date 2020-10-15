@@ -299,6 +299,7 @@ div[role=button] {
     background-color: rgb(12, 8, 68);
     overflow: hidden;
     text-align: center;
+  
 }
 
 
@@ -310,7 +311,10 @@ div[role=button] {
         padding: 0;
         text-decoration: none;
         font-size: 12px;
+        height: 30px;
+        /*width:70px;*/
         
+       
     }
 
 
@@ -320,19 +324,24 @@ div[role=button] {
             color: white;
         }
 
-        /* Hide the link that should open and close the topnav on small screens */
-        .ptopnav .icon {
-            display: none;
-        }
+    /* Hide the link that should open and close the topnav on small screens */
+    .ptopnav .icon {
+        display: none;
+    }
 
-        /*.ptopnav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+    .ptopnav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        
+    }
 
-        .ptopnav li {
-            float: left;
-            /*margin: 0 1.5em;*/
-            /*margin: 0;
-        }*/
+    .ptopnav li {
+        float: left;
+        /*margin: 0 1.5em;*/
+        margin-right: 15px;
+        margin-left: 20px;
+        width: 50px;
+      
+    }
+

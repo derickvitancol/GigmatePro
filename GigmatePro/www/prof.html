@@ -162,7 +162,7 @@
             <div id="wrapper">
 
                 <!--TOP NAV-->
-                <div class="ptopnav" id="myTopnav">
+                <div class="ptopnav" id="mypTopnav">
                     <center>
                         <ul class="actions" id="main-menu">
 
@@ -268,7 +268,7 @@
             <div id="wrapper">
 
                 <!--TOP NAV-->
-                <div class="ptopnav" id="myTopnav">
+                <div class="ptopnav" id="mypTopnav">
                     <center>
                         <ul class="actions" id="main-menu">
                             <li>
@@ -325,7 +325,7 @@
             <div id="wrapper">
 
                 <!--TOP NAV-->
-                <div class="ptopnav" id="myTopnav">
+                <div class="ptopnav" id="mypTopnav">
                     <center>
                         <ul class="actions" id="main-menu">
 
@@ -631,10 +631,11 @@
         $('a[href="#Songs"]').click(function () {
             $('.navbar-toggle:visible').click();
             $("#MainPage").hide();
-            $("#Songs").show();
-            DisplaySongs();
             $("#Gigs").hide();
             $("#History").hide();
+            $("#Songs").show();
+            DisplaySongs();
+           
 
         });
 

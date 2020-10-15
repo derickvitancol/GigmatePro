@@ -52,20 +52,21 @@
                                 <div class="thumbnail">
                                     <div class="col-sm-6">
                                         <center>
-                                            <label class="hsix">Fname+Lname</label>
+
+                                            <label class="hsix" id="nameLabel">Fname+Lname</label>
                                             <br />
-                                            <label class="hfive">@username</label>
+                                            <label class="hfive" id="usernameLabel">@username</label>
                                             <br />
-                                            <label class="hfive">Type</label>
+                                            <label class="hfive" id="typeLabel">Type</label>
 
                                             <label class="hfive">--ratings--</label>
                                         </center>
 
-                                        <label class="hfour">Age</h4></label>
+                                        <label class="hfour" id="ageLabel">Age</h4></label>
                                         <br />
-                                        <label class="hfour">Gender</label>
+                                        <label class="hfour" id="genderLabel">Gender</label>
                                         <br />
-                                        <label class="hfour">Location</label>
+                                        <label class="hfour" id="locationLabel">Location</label>
                                         <br />
                                         <label class="hfour">Bio</label>
                                         <br /> 
@@ -110,21 +111,23 @@
                                     <br />
 
                                     <center>
-
-                                        <input type="text" class="row form-control" id="nameLabelModal" />
+                                        <label for="nameLabelModal">Full Name</label>
+                                        <input type="text" class="row form-control" id="nameLabelModal"readonly />
                                         <br />
-                                        <input type="text" class="row form-control" id="usernameLabelModal" />
+                                        <label for="usernameLabelModal">Username</label>
+                                        <input type="text" class="row form-control" id="usernameLabelModal" readonly/>
                                         <br />
+                                        <label for="passwordLabelModal">Password</label>
                                         <input type="password" class="row form-control" id="passwordLabelModal" />
                                         <br />
                                         <label for="typeLabelModal" style="color:white;">Account Type</label>
-                                        <input type="text" name="usertype" id="typeLabelModal" />
+                                        <input type="text" name="usertype" id="typeLabelModal" readonly/>
                                         <br />
                                         <label for="instrumentBoxModal" style="color:white;">Musical Instrument</label>
                                         <input type="text" name="mInstru" id="instrumentBoxModal" />
                                         <br />
                                         <label for="ratingsBoxModal">Rating</label>
-                                        <input id="ratingsBoxModal" type="text" />
+                                        <input id="ratingsBoxModal" type="text" readonly/>
                                         <br />
                                         <label for="ageLabelModal">Age</label>
                                         <input type="number" class="col-4" id="ageLabelModal" />
@@ -132,6 +135,7 @@
                                         <label for="gender">Gender</label>
                                         <input  type="text" name="gender" id="genderLabelModal"/>
                                         <br />
+                                        <label for="locationLabelModal">Location</label>
                                         <input type="text" class="row form-control" id="locationLabelModal" />
                                         <br />
                                         <input type="text" class="row form-control" id="bioLabelModal" />
@@ -297,15 +301,15 @@
                         <div class="grid-container">
                             <div class="col-sm-6 col-md-4">
                                 <div class="thumbnail">
-                                    <div class="caption">
-                                        <center>
+                                    <div class="caption" id="GigsCon">
+                                        <!--<center>
                                             <label class="names">Name of Gig</label>
                                         </center>
                                         <br />
                                         <label class="capt">Venue</label>
                                         <br />
                                         <label class="capt">Schedule</label>
-                                        <br />
+                                        <br />-->
 
                                     </div>
                                 </div>
@@ -489,7 +493,7 @@
     <script>
 
          function loadEditProfModal() {
-            getProfileDataForModal();
+            
             document.querySelector('.bg-modal').style.display = 'flex';
 
         }
@@ -606,13 +610,20 @@
             {
                 var capElem = document.createElement("div");
                 capElem.setAttribute("class", "caption");
+
                 var centerCon = document.createElement("center");
                 var labCon = document.createElement("label");
 
-                var titleCon = document.createElement("h1");
-                var descCon = document.createElement("h4");
-                var genreCon = document.createElement("h4");
+                var titleCon = document.createElement("label");
+                titleCon.classList = "names";
+
+                var descCon = document.createElement("label");
+                descCon.classList = "capt";
+
+                var genreCon = document.createElement("label");
+                genreCon.classList = "capt";
                 var SongGenre = songList[i].Genre;
+
 
 
                 descCon.innerHTML = songList[i].Description;
@@ -630,6 +641,80 @@
             
         }
 
+        function GetGigsForProf()
+        {
+            var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+            var personJSON = { userID: userDetails.ID };
+
+            var WCFCall = $.ajax(
+                {
+                    type: "POST",
+                    url: "http://localhost/GigmatesService/Service1.svc/GetGigsForProf",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(personJSON)
+                }).done(function (data)
+                {
+
+                    var gigList = JSON.parse(data.GetGigsForProfResult);
+                    var parentContainer = document.getElementById("GigsCon");
+                    if (Object.keys(gigList).length > 0)
+                    {
+                        for (var i = 0; i < Object.keys(gigList).length; i++)
+                        {
+                            var centerName = document.createElement("center");
+                            var nameCon = document.createElement("label");
+                            nameCon.innerHTML = gigList[i].Name;
+                            nameCon.classList = "names";
+
+                            centerName.appendChild(nameCon);
+
+                            var brElem = document.createElement("br");
+
+                            var venueCon = document.createElement("label");
+                            venueCon.innerHTML = "Venue: "+gigList[i].Venue;
+                            venueCon.classList = "capt";
+                            var br2Elem = document.createElement("br");
+
+                            var dateCon = document.createElement("label");
+                            dateCon.innerHTML = "Schedule: "+gigList[i].Date;
+                            dateCon.classList = "capt";
+                            var br3Elem = document.createElement("br");
+
+                            var genreCon = document.createElement("label");
+                            genreCon.innerHTML = "Genre: "+gigList[i].GenreName;
+                            genreCon.classList = "capt";
+                            var br4Elem = document.createElement("br");
+
+                            var creatorCon = document.createElement("label");
+                            creatorCon.innerHTML = "Gig By: "+gigList[i].CreatorName;
+                            creatorCon.classList = "capt";
+                            var br5Elem = document.createElement("br");
+
+                            var statusCon = document.createElement("label");
+                            statusCon.innerHTML = "Status: "+gigList[i].Status;
+                            statusCon.classList = "capt";
+
+                            parentContainer.appendChild(centerName);
+                            parentContainer.appendChild(brElem);
+                            parentContainer.appendChild(venueCon);
+                            parentContainer.appendChild(br2Elem);
+                            parentContainer.appendChild(dateCon);
+                            parentContainer.appendChild(br3Elem);
+                            parentContainer.appendChild(genreCon);
+                            parentContainer.appendChild(br4Elem);
+                            parentContainer.appendChild(creatorCon);
+                            parentContainer.appendChild(br5Elem);
+                            parentContainer.appendChild(statusCon);
+
+                        }
+                    }
+                }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+                {
+                    alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                });
+        }
+
         $('a[href="#Songs"]').click(function () {
             $('.navbar-toggle:visible').click();
             $("#MainPage").hide();
@@ -645,6 +730,7 @@
             $('.navbar-toggle:visible').click();
             $("#MainPage").hide();
             $("#Gigs").show();
+            GetGigsForProf();
             $("#Songs").hide();
             $("#History").hide();
         });
@@ -681,6 +767,7 @@
         //});
 
         function loadModal() {           
+            getProfileDataForModal()
             document.querySelector('.bg-modal').style.display = 'flex';
             
         }

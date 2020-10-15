@@ -241,7 +241,21 @@ div[role=button] {
     font-size: 12px;
     border-radius: 10px;
     margin-left: 2px;
+    /*margin-bottom:10px;*/
     
+}
+
+/*FOR CLOSE*/
+div[id=cls1] {
+    cursor:pointer;
+}
+
+div[id=cls2] {
+    cursor: pointer;
+}
+
+div[id=cls] {
+    cursor: pointer;
 }
 
 

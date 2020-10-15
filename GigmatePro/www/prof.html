@@ -51,7 +51,6 @@
                             <div class="col-sm-6 col-md-4">
                                 <div class="thumbnail">
                                     <div class="col-sm-6">
-
                                         <center>
                                             <label class="hsix">Fname+Lname</label>
                                             <br />
@@ -229,7 +228,7 @@
 
                                     <input type="text" class="row form-control" placeholder="Name of Song" id="nSongBox">
                                     <br />
-                                    <input type="text" class="row form-control" placeholder="Main Artist" id="mArtistBox">
+                                    <input type="text" class="row form-control" placeholder="Main Artist" id="mArtistBox" readonly>
                                     <br />
                                     <input type="text" class="row form-control" placeholder="Featured Artist" id="cArtistBox">
                                     <br />
@@ -504,13 +503,12 @@
         function getProfileData() {
             var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
 
-            document.getElementById("nameLabel").value = userDetails.Firstname + " " + userDetails.Lastname;
-            document.getElementById("usernameLabel").value = userDetails.Username;
-            document.getElementById("passwordLabel").value = userDetails.Password;
-            document.getElementById("genderLabel").value = determineGenderName(userDetails.Gender);
-            document.getElementById("typeLabel").value = determineTypeName(userDetails.Type);
-            document.getElementById("ageLabel").value = userDetails.Age;
-            document.getElementById("locationLabel").value = userDetails.Location;
+            document.getElementById("nameLabel").innerHTML = "Full Name: "+userDetails.Firstname + " " + userDetails.Lastname;
+            document.getElementById("usernameLabel").innerHTML = "Username: "+userDetails.Username;
+            document.getElementById("genderLabel").innerHTML = "Gender: "+determineGenderName(userDetails.Gender);
+            document.getElementById("typeLabel").innerHTML= "Type: " + determineTypeName(userDetails.Type);
+            document.getElementById("ageLabel").innerHTML = "Age: "+userDetails.Age;
+            document.getElementById("locationLabel").innerHTML = "Location: "+userDetails.Location;
 
             GetSong(userDetails.ID); 
         }
@@ -682,8 +680,9 @@
         //    });
         //});
 
-        function loadModal() {
+        function loadModal() {           
             document.querySelector('.bg-modal').style.display = 'flex';
+            
         }
 
         //function closeModal() {
@@ -696,7 +695,12 @@
 
         
         function addSModal() {
+            var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
             document.querySelector('.bg-modal-reg').style.display = 'flex';
+            getGenres(document.getElementById("genreSelect"));
+            //mArtistBox
+            document.getElementById("mArtistBox").value = userDetails.Firstname + " " + userDetails.Lastname;
+
         }
 
         document.getElementById('cls2').addEventListener('click', function () {

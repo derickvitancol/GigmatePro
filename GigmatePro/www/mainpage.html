@@ -489,70 +489,83 @@
                     var AvailableGigJSON = JSON.parse(data.GetAvailableGigsResult);
 
                     //FUNCTION THAT DISPLAYS EACH GIG
-                    for (var i = 0; i < Object.keys(AvailableGigJSON).length; i++) {
-                        var divParent = document.createElement("div");
-                        var centerCon = document.createElement("center");
-                        divParent.classList = "caption";
-                        var nameCon = document.createElement("label");
-                        nameCon.classList = "capt";
-                        nameCon.innerHTML = AvailableGigJSON[i].Name;
+                    if (Object.keys(AvailableGigJSON).length > 0)
+                    {
+                        for (var i = 0; i < Object.keys(AvailableGigJSON).length; i++) {
+                            var divParent = document.createElement("div");
+                            var centerCon = document.createElement("center");
+                            divParent.classList = "caption";
+                            var nameCon = document.createElement("label");
+                            nameCon.classList = "capt";
+                            nameCon.innerHTML = AvailableGigJSON[i].Name;
 
-                        var venueCon = document.createElement("label");
-                        venueCon.innerHTML = "Venue: " + AvailableGigJSON[i].Venue;
-                        venueCon.classList = "capt";
-                        var scheduleCon = document.createElement("label");
-                        scheduleCon.innerHTML = "Date And Time: " + AvailableGigJSON[i].Date;
-                        scheduleCon.classList = "capt";
-                        var genreCon = document.createElement("label");
-                        genreCon.innerHTML = "Genre: " + AvailableGigJSON[i].GenreName;
-                        genreCon.classList = "capt";
+                            var venueCon = document.createElement("label");
+                            venueCon.innerHTML = "Venue: " + AvailableGigJSON[i].Venue;
+                            venueCon.classList = "capt";
+                            var scheduleCon = document.createElement("label");
+                            scheduleCon.innerHTML = "Date And Time: " + AvailableGigJSON[i].Date;
+                            scheduleCon.classList = "capt";
+                            var genreCon = document.createElement("label");
+                            genreCon.innerHTML = "Genre: " + AvailableGigJSON[i].GenreName;
+                            genreCon.classList = "capt";
 
-                        var brElem2 = document.createElement("br");
-                        var creatorNameCon = document.createElement("label");
-                        creatorNameCon.innerHTML = "Creator Name: " + AvailableGigJSON[i].CreatorName;
-                        creatorNameCon.classList = "capt";
-                        var idCon = document.createElement("div");
-                        idCon.id = "gigID";
-                        idCon.innerHTML = AvailableGigJSON[i].GigID;
-                        idCon.classList = "d-none";
-                        var brElem = document.createElement("br");
+                            var brElem2 = document.createElement("br");
+                            var creatorNameCon = document.createElement("label");
+                            creatorNameCon.innerHTML = "Creator Name: " + AvailableGigJSON[i].CreatorName;
+                            creatorNameCon.classList = "capt";
+                            var idCon = document.createElement("div");
+                            idCon.id = "gigID";
+                            idCon.innerHTML = AvailableGigJSON[i].GigID;
+                            idCon.classList = "d-none";
+                            var brElem = document.createElement("br");
 
-                        var creatorIDCon = document.createElement("div");
-                        creatorIDCon.id = "creatorID";
-                        creatorIDCon.innerHTML = AvailableGigJSON[i].Creator;
-                        creatorIDCon.classList = "d-none";
+                            var creatorIDCon = document.createElement("div");
+                            creatorIDCon.id = "creatorID";
+                            creatorIDCon.innerHTML = AvailableGigJSON[i].Creator;
+                            creatorIDCon.classList = "d-none";
 
-                        var buttonCenter = document.createElement("center");
+                            var buttonCenter = document.createElement("center");
 
-                        var joinGigButton = document.createElement("button");
-                        joinGigButton.classList = "btn btn-primary";
-                        joinGigButton.type = "button";
-                        joinGigButton.innerHTML = "Join Gig";
+                            var joinGigButton = document.createElement("button");
+                            joinGigButton.classList = "btn btn-primary";
+                            joinGigButton.type = "button";
+                            joinGigButton.innerHTML = "Join Gig";
 
-                        $(joinGigButton).click(function () {
-                            var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
-                            var gigID = $(joinGigButton).parent().siblings("#gigID").html();
-                            var receiverID = $(joinGigButton).parent().siblings("#creatorID").html();
-                            SendGigRequest(gigID, userDetails.ID, receiverID);
-                            //MAKE REFRESH THEN RECALL AVAILABLE GIGS WITH THE REMOVED GIG REQUEST UPDATE DATABASE STORED PROC
-                        });
+                            $(joinGigButton).click(function () {
+                                var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+                                var gigID = $(joinGigButton).parent().siblings("#gigID").html();
+                                var receiverID = $(joinGigButton).parent().siblings("#creatorID").html();
+                                SendGigRequest(gigID, userDetails.ID, receiverID);
+                                //MAKE REFRESH THEN RECALL AVAILABLE GIGS WITH THE REMOVED GIG REQUEST UPDATE DATABASE STORED PROC
+                            });
 
-                        centerCon.appendChild(nameCon);
-                        divParent.appendChild(centerCon);
-                        divParent.appendChild(venueCon);
-                        divParent.appendChild(scheduleCon);
-                        divParent.appendChild(genreCon);
-                        divParent.appendChild(brElem2);
-                        divParent.appendChild(creatorNameCon);
-                        divParent.appendChild(brElem);
-                        buttonCenter.appendChild(joinGigButton);
-                        divParent.appendChild(buttonCenter);
-                        divParent.appendChild(idCon);
-                        divParent.appendChild(creatorIDCon);
-                        containerDiv.appendChild(divParent);
+                            centerCon.appendChild(nameCon);
+                            divParent.appendChild(centerCon);
+                            divParent.appendChild(venueCon);
+                            divParent.appendChild(scheduleCon);
+                            divParent.appendChild(genreCon);
+                            divParent.appendChild(brElem2);
+                            divParent.appendChild(creatorNameCon);
+                            divParent.appendChild(brElem);
+                            buttonCenter.appendChild(joinGigButton);
+                            divParent.appendChild(buttonCenter);
+                            divParent.appendChild(idCon);
+                            divParent.appendChild(creatorIDCon);
+                            containerDiv.appendChild(divParent);
+
+                        }
+                    }
+                    else
+                    {
+                        var messageCon = document.createElement("label");
+                        messageCon.innerHTML = "There are no available gigs at the moment.";
+                        containerDiv.appendChild(messageCon);
 
                     }
-                }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                    
+                    
+                }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+                {
                     alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
                 });
         }

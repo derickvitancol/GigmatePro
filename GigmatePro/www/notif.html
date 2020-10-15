@@ -167,76 +167,161 @@
                 }).done(function (data)
                 {
                     var notifsJSON = JSON.parse(data.GetInvitesResult);
-                    for (var i = 0; i < Object.keys(notifsJSON).length; i++)
+                    var requestCon = document.getElementById("requestCon");
+                    if (Object.keys(notifsJSON).length > 0)
                     {
-                        var requestCon = document.getElementById("requestCon");
-                        if (notifsJSON[i].TypeID == 1)
-                        {
-                            var inviteIDCon = document.createElement("div");
-                            inviteIDCon.innerHTML = notifsJSON[i].ID;
-                            inviteIDCon.classList = "d-none";
-                            inviteIDCon.id = "inviteID";
+                        for (var i = 0; i < Object.keys(notifsJSON).length; i++) {
+                            
+                            if (notifsJSON[i].TypeID == 1) {
+                                var inviteIDCon = document.createElement("div");
+                                inviteIDCon.innerHTML = notifsJSON[i].ID;
+                                inviteIDCon.classList = "d-none";
+                                inviteIDCon.id = "inviteID";
 
-                            var senderNameCon = document.createElement("label");
-                            senderNameCon.innerHTML = "Request by: "+notifsJSON[i].SenderName;
+                                var inviteTypeCon = document.createElement("div");
+                                inviteTypeCon.innerHTML = notifsJSON[i].TypeID;
+                                inviteTypeCon.classList = "d-none";
+                                inviteTypeCon.id = "inviteType";
 
-                            var centerMessage = document.createElement("center");
-                            var inviteMess = document.createElement("label");
-                            inviteMess.innerHTML = "Request to join your Gig";
-                            inviteMess.classList = "capt";
-                            centerMessage.appendChild(inviteMess);
+                                var senderIDCon = document.createElement("div");
+                                senderIDCon.innerHTML = notifsJSON[i].SenderID;
+                                senderIDCon.classList = "d-none";
+                                senderIDCon.id = "senderID";
 
-                            var gigNameCon = document.createElement("label");
-                            gigNameCon.innerHTML = notifsJSON[i].GigInvite.Name;
-                            gigNameCon.classList = "names";
-                            gigNameCon.id = "gigName";
+                                var senderNameCon = document.createElement("label");
+                                senderNameCon.innerHTML = "Request by: " + notifsJSON[i].SenderName;
 
-                            var gigDateCon = document.createElement("label");
-                            gigDateCon.innerHTML = "Date and Time: "+notifsJSON[i].GigInvite.Date;
-                            gigDateCon.classList = "capt";
+                                var centerMessage = document.createElement("center");
+                                var inviteMess = document.createElement("label");
+                                inviteMess.innerHTML = "Request to join your Gig";
+                                inviteMess.classList = "capt";
+                                centerMessage.appendChild(inviteMess);
 
-                            var gigIDCon = document.createElement("div");
-                            gigIDCon.innerHTML = notifsJSON[i].GigInvite.GigID;
-                            gigIDCon.classList = "d-none";
-                            gigIDCon.id = "gigID";
+                                var gigNameCon = document.createElement("label");
+                                gigNameCon.innerHTML = notifsJSON[i].GigInvite.Name;
+                                gigNameCon.classList = "names";
+                                gigNameCon.id = "gigName";
 
-                            var buttonsCon = document.createElement("ul");
-                            var centerButton = document.createElement("center");
-                            var acceptItemCon = document.createElement("li");
-                            var acceptButton = document.createElement("button");
-                            acceptButton.classList = "btn btn-primary";
-                            acceptButton.type = "button";
-                            acceptButton.innerHTML = "Accept";
-                            acceptItemCon.appendChild(acceptButton);
+                                var gigDateCon = document.createElement("label");
+                                gigDateCon.innerHTML = "Date and Time: " + notifsJSON[i].GigInvite.Date;
+                                gigDateCon.classList = "capt";
 
-                            var rejectItemCon = document.createElement("li");
-                            var rejectItemButton = document.createElement("button");
-                            rejectItemButton.classList = "btn btn-primary";
-                            rejectItemButton.type = "button";
-                            rejectItemButton.innerHTML = "Reject";
-                            rejectItemCon.appendChild(rejectItemButton);
+                                var gigIDCon = document.createElement("div");
+                                gigIDCon.innerHTML = notifsJSON[i].GigInvite.GigID;
+                                gigIDCon.classList = "d-none";
+                                gigIDCon.id = "gigID";
 
-                            centerButton.appendChild(acceptItemCon);
-                            centerButton.appendChild(rejectItemCon);
+                                var buttonsCon = document.createElement("ul");
+                                var centerButton = document.createElement("center");
+                                var acceptItemCon = document.createElement("li");
+                                var acceptButton = document.createElement("button");
+                                acceptButton.classList = "btn btn-primary";
+                                acceptButton.type = "button";
+                                acceptButton.innerHTML = "Accept";
 
-                            buttonsCon.appendChild(centerButton);
+                                $(acceptButton).click(function () {
+                                    var inviteResponseJSON;
+                                    //LAGAY NG IF DITOOOO 1 - GIG; 2 - BAND; 3 - GIGMATE;
+                                    if (parseInt(inviteTypeCon.innerHTML) == 1) {
+                                        inviteResponseJSON = {
+                                            "inviteReceived": {
+                                                ID: parseInt(inviteIDCon.innerHTML),
+                                                StatusID: 1,
+                                                SenderID: parseInt(senderIDCon.innerHTML),
+                                                TypeID: parseInt(inviteTypeCon.innerHTML),
+                                                GigInvite: { GigID: parseInt(gigIDCon.innerHTML) }
+                                            }
+                                        };
+                                    }
+                                    var WCFCall = $.ajax(
+                                        {
+                                            type: "POST",
+                                            url: "http://localhost/GigmatesService/Service1.svc/InviteResponse",
+                                            contentType: "application/json; charset=utf-8",
+                                            dataType: "json",
+                                            data: JSON.stringify(inviteResponseJSON)
+                                        }).done(function (data) {
+                                            alert("THE RESULT IS " + data.InviteResponseResult);
 
-                            requestCon.appendChild(inviteIDCon);
-                            requestCon.appendChild(senderNameCon);
-                            requestCon.appendChild(centerMessage);
-                            requestCon.appendChild(gigNameCon);
-                            requestCon.appendChild(gigDateCon);
-                            requestCon.appendChild(gigIDCon);
-                            requestCon.appendChild(buttonsCon);                            
+                                        }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                                            alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                                        });
+
+                                });
+                                acceptItemCon.appendChild(acceptButton);
+
+                                var rejectItemCon = document.createElement("li");
+                                var rejectItemButton = document.createElement("button");
+                                rejectItemButton.classList = "btn btn-primary";
+                                rejectItemButton.type = "button";
+                                rejectItemButton.innerHTML = "Reject";
+
+                                $(rejectItemButton).click(function () {
+                                    var inviteResponseJSON;
+                                    //LAGAY NG IF DITOOOO 1 - GIG; 2 - BAND; 3 - GIGMATE;
+                                    if (parseInt(inviteTypeCon.innerHTML) == 1) {
+                                        inviteResponseJSON = {
+                                            "inviteReceived": {
+                                                ID: parseInt(inviteIDCon.innerHTML),
+                                                StatusID: 3,
+                                                SenderID: parseInt(senderIDCon.innerHTML),
+                                                TypeID: parseInt(inviteTypeCon.innerHTML),
+                                                GigInvite: { GigID: parseInt(gigIDCon.innerHTML) }
+                                            }
+                                        };
+                                    }
+                                    var WCFCall = $.ajax(
+                                        {
+                                            type: "POST",
+                                            url: "http://localhost/GigmatesService/Service1.svc/InviteResponse",
+                                            contentType: "application/json; charset=utf-8",
+                                            dataType: "json",
+                                            data: JSON.stringify(inviteResponseJSON)
+                                        }).done(function (data) {
+                                            alert("THE RESULT IS " + data.InviteResponseResult);
+                                            document.location.href = "notif.html"
+                                        }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                                            alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                                        });
+
+                                });
+
+                                rejectItemCon.appendChild(rejectItemButton);
+
+                                centerButton.appendChild(acceptItemCon);
+                                centerButton.appendChild(rejectItemCon);
+
+                                buttonsCon.appendChild(centerButton);
+
+                                requestCon.appendChild(inviteIDCon);
+                                requestCon.appendChild(inviteTypeCon);
+                                requestCon.appendChild(senderIDCon);
+                                requestCon.appendChild(senderNameCon);
+                                requestCon.appendChild(centerMessage);
+                                requestCon.appendChild(gigNameCon);
+                                requestCon.appendChild(gigDateCon);
+                                requestCon.appendChild(gigIDCon);
+                                requestCon.appendChild(buttonsCon);
+
+                                //CREATE FUNCTION WHEN USER ACCEPTS OR REJECTS 
+                            }
                         }
                     }
+                    else
+                    {
+
+                        var capCon = document.createElement("label");
+                        capCon.innerHTML = "You have no pending requests";
+
+                        requestCon.appendChild(capCon);
+                    }
+
+                   
                 }).fail(function (XMLHttpRequest, textStatus, errorThrown)
                 {
                     alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
                 });
         }
-
-
 
         $(document).ready(function () {
             document.getElementById('sMBtn').addEventListener('click', function () {

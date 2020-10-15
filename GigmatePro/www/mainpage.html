@@ -472,7 +472,8 @@
         }
 
 
-        function GetAvailableGigs() {
+        function GetAvailableGigs()
+        {
             var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
             var userJSON = { "userID": userDetails.ID };
             var WCFCall = $.ajax(
@@ -570,7 +571,8 @@
                 });
         }
 
-        function SendGigRequest(gigID, senderID, receiverID) {
+        function SendGigRequest(gigID, senderID, receiverID)
+        {
             var inviteType = 1;
             var InviteStatus = 2;
 

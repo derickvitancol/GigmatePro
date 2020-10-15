@@ -60,6 +60,7 @@ label[class=names] {
     overflow: visible;
     padding: 5px;
     text-align: center;
+    font-family: 'Signika', sans-serif;
 }
 
 label[class=capt] {
@@ -69,6 +70,7 @@ label[class=capt] {
     overflow: visible;
     padding: 0px;
     text-align: center;
+    font-family: 'Signika', sans-serif;
 }
 
 label[class=hsix] {
@@ -110,7 +112,8 @@ label[class=namess] {
     overflow: visible;
     padding: 5px;
     text-align: center;
-    color:gray;
+    color: gray;
+    font-family: 'Signika', sans-serif;
 }
 
 

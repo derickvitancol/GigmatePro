@@ -228,6 +228,7 @@ a[role=button] {
     font-size: 12px;
     border-radius: 10px;
    
+   
 }
 
 div[role=button] {
@@ -243,6 +244,10 @@ div[role=button] {
     margin-left: 2px;
     /*margin-bottom:10px;*/
     
+}
+
+button[id=EditProfileButton] {
+    margin-bottom: 50%;
 }
 
 button[id=cGigBtn] {

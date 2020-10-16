@@ -310,7 +310,6 @@
                                         <br />
                                         <label class="capt">Schedule</label>
                                         <br />-->
-
                                     </div>
                                 </div>
                             </div>
@@ -351,7 +350,6 @@
                 </div>
 
                 <br />
-
 
                 <div id="page-wrapper">
                     <div id="page-inner">
@@ -640,7 +638,7 @@
             }
             
         }
-
+        //FUNCTION TO GET JOINS JOINED THAT ARE UPCOMING
         function GetGigsForProf()
         {
             var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
@@ -714,6 +712,25 @@
                     alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
                 });
         }
+
+        //NOT YT DONE
+        function GetGigsHistory()
+        {
+            var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+            var personJSON = { userID: userDetails.ID };
+
+            //var WCFCall = $.ajax(
+            //    {
+
+            //    }).done(function (data)
+            //    {
+                    
+            //    }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+            //    {
+            //        alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+            //    });
+        }
+
 
         $('a[href="#Songs"]').click(function () {
             $('.navbar-toggle:visible').click();

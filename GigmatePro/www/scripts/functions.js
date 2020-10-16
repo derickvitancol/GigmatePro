@@ -102,6 +102,26 @@ function GetPersonTypesSelect(selectBox)
     }
 }
 
+
+function GetUserDataById(uID)
+{
+    var userJSON = { userID: uID };
+    var WCFCall = $.ajax(
+        {
+            type: "POST",
+            url: "http://localhost/GigmatesService/Service1.svc/GetUserDataByID",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(userJSON)
+        }).done(function (data)
+        {
+            window.localStorage.setItem("userDetails", data.GetUserDataByIDResult);
+        }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+        {
+            alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+        });
+}
+
 //INPUT THE MONTH AND DATE HERE FOR CHECKING RETURNS TRUE IF DATE IS VALID
 function CheckDate(date)
 {

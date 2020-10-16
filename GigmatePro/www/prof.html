@@ -146,7 +146,7 @@
                                     </center>
                                     <br />
                                     <center>
-                                        <button class="btn btn-primary" id="EditProfileButton" onclick="EditPofileClicked()">Edit Information</button>
+                                        <button class="btn btn-primary" id="EditProfileButton" onclick="EditProfileClicked()">Edit Information</button>
                                     </center>
                                 </center>
                             </div>
@@ -737,15 +737,57 @@
             //    });
         }
 
-        function EditPofileClicked()
+       
+        function EditProfileClicked()
         {
-            var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
-
+          
             var password = document.getElementById("passwordLabelModal").value;
             var age = document.getElementById("ageLabelModal").value;
             var location = document.getElementById("locationLabelModal").value;
             var bio = document.getElementById("bioLabelModal").value;
-            alert(age);
+
+
+            if (!password || password.length <= 5) {
+                alert("Password is not valid");
+            }
+            else if (!age && hasLetter(age)) {
+                alert("Age is not valid");
+            }
+            else if (!location && hasNumber(location))
+            {
+                alert("Location is not valid");
+            }
+            else
+            {
+                var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+                var personJSON = {
+                    "EditPerson":
+                    {
+                        ID: userDetails.ID,
+                        Age: age,
+                        Location: location,
+                        Password: password,
+                        Bio: bio
+                    }
+                };
+                var WCFCall = $.ajax(
+                    {
+                        type: "POST",
+                        url: "http://localhost/GigmatesService/Service1.svc/EditProfile",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: JSON.stringify(personJSON)
+                    }).done(function (data)
+                    {
+                        alert("rows affected: " + data.EditProfileResult);
+                        GetUserDataById(userDetails.ID);
+                        getProfileData();
+                        window.location.href = "prof.html";
+                    }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+                    {
+                        alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                    });
+            }
         }
 
         $('a[href="#Songs"]').click(function () {

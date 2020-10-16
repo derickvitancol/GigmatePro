@@ -56,39 +56,45 @@
         {
             var uName = document.getElementById("usernameBox").value;
             var pWord = document.getElementById("passwordBox").value;
-            var userDetails = { "personLog": { Username: uName, Password: pWord }};
-            var xhr = $.ajax({
 
-                type: "POST",
-                url: "http://localhost/GigmatesService/Service1.svc/Login",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                data: JSON.stringify(userDetails)
-
-            }).done(function (data)
+            if (!uName || !pWord)
             {
-                alert(data.LoginResult);
-                userDetails = JSON.parse(data.LoginResult);
-                
-                alert("Account Details: " + userDetails.Firstname + " " + userDetails.Lastname);
-                if (userDetails.Firstname && userDetails.Lastname) {
-                    
-                    window.localStorage.setItem("userDetails", JSON.stringify(userDetails));
-                    GetPersonTypes();
-                    setTimeout(function () { document.location.href = "mainpage.html", 500 }); 
-                    window.close = "index.html";                   
-                    
-                }
-                else
-                {
-                    alert("Entered Data is incorrect!");
-                    resVar = false;
-                }
+                alert("The username/password entered is not valid");
+            }
+            else
+            {
+                var userDetails = { "personLog": { Username: uName, Password: pWord } };
+                var xhr = $.ajax({
 
-                }).fail(function (XMLHttpRequest, textStatus, errorThrown)
-                {
+                    type: "POST",
+                    url: "http://localhost/GigmatesService/Service1.svc/Login",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(userDetails)
+
+                }).done(function (data) {
+                    alert(data.LoginResult);
+                    userDetails = JSON.parse(data.LoginResult);
+
+                    alert("Account Details: " + userDetails.Firstname + " " + userDetails.Lastname);
+                    if (userDetails.Firstname && userDetails.Lastname) {
+
+                        window.localStorage.setItem("userDetails", JSON.stringify(userDetails));
+                        GetPersonTypes();
+                        setTimeout(function () { document.location.href = "mainpage.html", 500 });
+                        window.close = "index.html";
+
+                    }
+                    else {
+                        alert("Entered Data is incorrect!");
+                        resVar = false;
+                    }
+
+                }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
                     alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
                 });
+            }
+            
         }
 
 

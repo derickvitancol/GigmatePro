@@ -243,6 +243,8 @@ name2 {
     text-align: center;
     padding: 20px;
     position: center;
+    margin-bottom:auto;
+    margin-top:auto;
 
 }
 
@@ -269,6 +271,7 @@ name2 {
     align-items: center;
     overflow: auto;
     display: none;
+ 
 }
 
 .modal-header {

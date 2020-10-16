@@ -24,6 +24,23 @@ input[type=text]:focus
     color: #FFFFFF;
 }
 
+input[type=password] {
+    background-color: transparent;
+    color: #FFFFFF;
+    border-bottom-width: medium;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: lightgray;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+}
+
+    input[type=password]:focus {
+        background-color: transparent;
+        color: #FFFFFF;
+    }
+
 input[type=number] {
     background-color: transparent;
     color: #FFFFFF;
@@ -228,6 +245,7 @@ a[role=button] {
     font-size: 12px;
     border-radius: 10px;
    
+   
 }
 
 div[role=button] {
@@ -242,6 +260,41 @@ div[role=button] {
     border-radius: 10px;
     margin-left: 2px;
     /*margin-bottom:10px;*/
+    
+}
+
+input[type=button] {
+    background-color: #7f4caf;
+    border: none;
+    color: white;
+    padding: 12px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 10px;
+    margin-left: 2px;
+}
+
+button[role=button] {
+    background-color: #7f4caf;
+    border: none;
+    color: white;
+    padding: 12px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 10px;
+    margin-left: 2px;
+}
+
+button[id=EditProfileButton] {
+    margin-bottom: 25%;
+}
+
+div[class=close]{
+    margin-top:15%;
     
 }
 

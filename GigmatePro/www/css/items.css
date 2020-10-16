@@ -24,6 +24,23 @@ input[type=text]:focus
     color: #FFFFFF;
 }
 
+input[type=password] {
+    background-color: transparent;
+    color: #FFFFFF;
+    border-bottom-width: medium;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-color: lightgray;
+    border-top: hidden;
+    border-left: hidden;
+    border-right: hidden;
+}
+
+    input[type=password]:focus {
+        background-color: transparent;
+        color: #FFFFFF;
+    }
+
 input[type=number] {
     background-color: transparent;
     color: #FFFFFF;

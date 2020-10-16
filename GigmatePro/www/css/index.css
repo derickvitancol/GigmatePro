@@ -244,9 +244,9 @@ name2 {
     text-align: center;
     padding: 20px;
     position: center;
-    margin-bottom:auto;
-    margin-top:auto;
-
+    margin-bottom: auto;
+    margin-top: auto;
+    font-family: 'Signika', sans-serif;
 }
 
 .bg-modal-reg {
@@ -259,7 +259,7 @@ name2 {
     align-items: center;
     overflow: auto;
     display: none;
-    font-family: 'Signika', sans-serif;
+    
 }
 
 .bg-modal-r {
@@ -272,7 +272,7 @@ name2 {
     align-items: center;
     overflow: auto;
     display: none;
-    font-family: 'Signika', sans-serif;
+    
 }
 
 .modal-header {

@@ -263,6 +263,32 @@ div[role=button] {
     
 }
 
+input[type=button] {
+    background-color: #7f4caf;
+    border: none;
+    color: white;
+    padding: 12px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 10px;
+    margin-left: 2px;
+}
+
+button[role=button] {
+    background-color: #7f4caf;
+    border: none;
+    color: white;
+    padding: 12px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    border-radius: 10px;
+    margin-left: 2px;
+}
+
 button[id=EditProfileButton] {
     margin-bottom: 25%;
 }

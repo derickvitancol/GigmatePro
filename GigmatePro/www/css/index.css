@@ -271,6 +271,11 @@ name2 {
     display: none;
 }
 
+.modal-header {
+    border: none;
+}
+
+
 .grid-cont {
     width: 100%;
     height: 100%;

@@ -729,18 +729,20 @@
         $('a[href="#Gigs"]').click(function () {
             $('.navbar-toggle:visible').click();
             $("#MainPage").hide();
-            $("#Gigs").show();
-            GetGigsForProf();
             $("#Songs").hide();
             $("#History").hide();
+            $("#Gigs").show();
+            GetGigsForProf();
+            
         });
 
         $('a[href="#History"]').click(function () {
             $('.navbar-toggle:visible').click();
             $("#MainPage").hide();
-            $("#History").show();
             $("#Songs").hide();
             $("#Gigs").hide();
+            $("#History").show();
+          
         });
 
        

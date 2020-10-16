@@ -143,7 +143,7 @@
                                     </center>
                                     <br />
                                     <center>
-                                        <button class="btn btn-primary" id="EditProfileButton">Edit Information</button>
+                                        <button class="btn btn-primary" id="EditProfileButton" onclick="EditPofileClicked()">Edit Information</button>
                                     </center>
                                 </center>
                             </div>
@@ -731,6 +731,16 @@
             //    });
         }
 
+        function EditPofileClicked()
+        {
+            var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+
+            var password = document.getElementById("passwordLabelModal").value;
+            var age = document.getElementById("ageLabelModal").value;
+            var location = document.getElementById("locationLabelModal").value;
+            var bio = document.getElementById("bioLabelModal").value;
+            alert(age);
+        }
 
         $('a[href="#Songs"]').click(function () {
             $('.navbar-toggle:visible').click();

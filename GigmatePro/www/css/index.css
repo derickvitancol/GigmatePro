@@ -231,6 +231,7 @@ name2 {
     align-items: center;
     overflow: auto;
     display: none;
+    font-family: 'Signika', sans-serif;
     /*padding-left: 10px;
     padding-right: 10px;*/
 }
@@ -256,9 +257,9 @@ name2 {
     top: 0;
     justify-content: center;
     align-items: center;
-    overflow: auto ;
+    overflow: auto;
     display: none;
-   
+    font-family: 'Signika', sans-serif;
 }
 
 .bg-modal-r {
@@ -271,7 +272,7 @@ name2 {
     align-items: center;
     overflow: auto;
     display: none;
- 
+    font-family: 'Signika', sans-serif;
 }
 
 .modal-header {
@@ -293,4 +294,3 @@ name2 {
     padding: 15px;
     height: auto;
 }
-

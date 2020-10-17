@@ -734,6 +734,9 @@
                             $(joinButtonCon).click(function ()
                             {
                                 SendGigRequest(gigIDCon.innerHTML, userDetails.ID, gigCreatorID.innerHTML);
+                                document.querySelector('.bg-modal-reg').style.display = 'none';
+                                window.location.href = 'mainpage.html';
+
                             });
                             buttonCenterCon.appendChild(joinButtonCon);
 
@@ -753,7 +756,7 @@
                             SearchResultCon.appendChild(br5Con);
                             SearchResultCon.appendChild(gigIDCon);
                             SearchResultCon.appendChild(gigCreatorID);
-                            //REMOVE THE CHILDRENWHEN X IS PRESSED  TO DELETE
+                            
                         }
 
                     }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
@@ -790,15 +793,6 @@
                         var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
                         var searchGigmatesCon = document.getElementById("searchedGigmateCon");
 
-         //<!--<label class="names" > Searched Result</label >
-         //                   <br />
-         //                   <label class="capt">Description</label>
-         //                   <br />
-         //                   <ul class="button">
-         //                       <center>
-         //                           <li><a href="#" class="btn btn-primary" role="button">invite?</a></li>
-         //                       </center>
-         //                   </ul>-->
                         for (var i = 0; i < Object.keys(gigmateSearchJSON).length; i++)
                         {
                             var nameCon = document.createElement("label");
@@ -822,18 +816,19 @@
                             gigmateButton.type = "button";
                             gigmateButton.innerHTML = "Gigmate Request";
 
-                            $(gigmateButton).click(function ()
-                            {
-                                alert("Gigmate has: " + idCon.innerHTML + nameCon.innerHTML);
-                            });
-
-
+                          
                             buttonCenter.appendChild(gigmateButton);
 
                             var idCon = document.createElement("label");
                             idCon.innerHTML = gigmateSearchJSON[i].ID;
                             idCon.classList = "d-none";
                             var br4 = document.createElement("br");
+
+                            $(gigmateButton).click(function () {
+                                SendGigmateRequest(userDetails.ID, idCon.innerHTML);
+                                document.querySelector('.bg-modal-r').style.display = 'none';
+                                window.location.href = 'mainpage.html';
+                            });
 
                             searchGigmatesCon.appendChild(nameCon);
                             searchGigmatesCon.appendChild(br1);
@@ -854,6 +849,34 @@
             }
              
 
+        }
+
+        function SendGigmateRequest(senderID,receiverID)
+        {
+            var inviteJSON = {
+                "NewInvite":
+                {
+                    SenderID: senderID,
+                    ReceiverID: receiverID,
+                    TypeID: 3
+                }
+            }
+            var WCFCall = $.ajax(
+                {
+                    type: "POST",
+                    url: "http://192.168.254.11/GigmatesService/Service1.svc/SendPersonInvite",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(inviteJSON)
+                }).done(function (data)
+                {
+                    alert("Invites Sent: " + data.SendPersonInviteResult);
+                    document.querySelector('.bg-modal').style.display = 'none';
+                    window.location.href = 'mainpage.html';
+                }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+                {
+                    alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                });
         }
 
     </script>

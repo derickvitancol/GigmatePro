@@ -169,13 +169,19 @@
                     data: JSON.stringify({ "userID": userDetails.ID })
                 }).done(function (data)
                 {
+                    var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
                     var notifsJSON = JSON.parse(data.GetInvitesResult);
                     var requestCon = document.getElementById("requestCon");
                     if (Object.keys(notifsJSON).length > 0)
                     {
                         for (var i = 0; i < Object.keys(notifsJSON).length; i++) {
-                            
-                            if (notifsJSON[i].TypeID == 1) {
+                            var gigNameCon = null;
+                            var gigDateCon = null;
+                            var gigIDCon = null;
+                            var SenderNameCon = null;
+
+                            var senderIDCon = null;
+
                                 var inviteIDCon = document.createElement("div");
                                 inviteIDCon.innerHTML = notifsJSON[i].ID;
                                 inviteIDCon.classList = "d-none";
@@ -196,23 +202,40 @@
 
                                 var centerMessage = document.createElement("center");
                                 var inviteMess = document.createElement("label");
-                                inviteMess.innerHTML = "Request to join your Gig";
+                                
                                 inviteMess.classList = "capt";
                                 centerMessage.appendChild(inviteMess);
+                                if (parseInt(inviteTypeCon.innerHTML) == 1) {
+                                    gigNameCon = document.createElement("label");
+                                    gigNameCon.innerHTML = notifsJSON[i].GigInvite.Name;
+                                    gigNameCon.classList = "names";
+                                    gigNameCon.id = "gigName";
 
-                                var gigNameCon = document.createElement("label");
-                                gigNameCon.innerHTML = notifsJSON[i].GigInvite.Name;
-                                gigNameCon.classList = "names";
-                                gigNameCon.id = "gigName";
+                                    gigDateCon = document.createElement("label");
+                                    gigDateCon.innerHTML = "Date and Time: " + notifsJSON[i].GigInvite.Date;
+                                    gigDateCon.classList = "capt";
 
-                                var gigDateCon = document.createElement("label");
-                                gigDateCon.innerHTML = "Date and Time: " + notifsJSON[i].GigInvite.Date;
-                                gigDateCon.classList = "capt";
+                                    gigIDCon = document.createElement("div");
+                                    gigIDCon.innerHTML = notifsJSON[i].GigInvite.GigID;
+                                    gigIDCon.classList = "d-none";
+                                    gigIDCon.id = "gigID";
 
-                                var gigIDCon = document.createElement("div");
-                                gigIDCon.innerHTML = notifsJSON[i].GigInvite.GigID;
-                                gigIDCon.classList = "d-none";
-                                gigIDCon.id = "gigID";
+                                    inviteMess.innerHTML = "Request to join your Gig";
+                                }
+                                else if (parseInt(inviteTypeCon.innerHTML) == 3)
+                                {
+                                    SenderNameCon = document.createElement("label");
+                                    SenderNameCon.innerHTML = "Name: "+ notifsJSON[i].GigmateInvite.Firstname + ' ' + notifsJSON[i].GigmateInvite.Lastname;
+                                    SenderNameCon.classList = "names";
+                                    SenderNameCon.id = "personName";
+
+                                    senderIDCon  = document.createElement("label");
+                                    senderIDCon.innerHTML = notifsJSON[i].GigmateInvite.ID;
+                                    senderIDCon.classList = "d-none";
+
+                                    inviteMess.innerHTML = "Request to be your Gigmate";
+                                }
+                               
 
                                 var buttonsCon = document.createElement("ul");
                                 var centerButton = document.createElement("center");
@@ -233,6 +256,18 @@
                                                 SenderID: parseInt(senderIDCon.innerHTML),
                                                 TypeID: parseInt(inviteTypeCon.innerHTML),
                                                 GigInvite: { GigID: parseInt(gigIDCon.innerHTML) }
+                                            }
+                                        };
+                                    }
+                                    else if (parseInt(inviteTypeCon.innerHTML) == 3)
+                                    {
+                                        inviteResponseJSON = {
+                                            "inviteReceived": {
+                                                ID: parseInt(inviteIDCon.innerHTML),
+                                                StatusID: 1,
+                                                SenderID: parseInt(senderIDCon.innerHTML),
+                                                TypeID: parseInt(inviteTypeCon.innerHTML),
+                                                GigmateInvite: { ID: userDetails.ID }
                                             }
                                         };
                                     }
@@ -263,6 +298,18 @@
                                     var inviteResponseJSON;
                                     //LAGAY NG IF DITOOOO 1 - GIG; 2 - BAND; 3 - GIGMATE;
                                     if (parseInt(inviteTypeCon.innerHTML) == 1) {
+                                        inviteResponseJSON = {
+                                            "inviteReceived": {
+                                                ID: parseInt(inviteIDCon.innerHTML),
+                                                StatusID: 3,
+                                                SenderID: parseInt(senderIDCon.innerHTML),
+                                                TypeID: parseInt(inviteTypeCon.innerHTML),
+                                                GigmateInvite: { ID: parseInt(senderIDCon.innerHTML) }
+                                            }
+                                        };
+                                    }
+                                    else if (parseInt(inviteTypeCon.innerHTML) == 3)
+                                    {
                                         inviteResponseJSON = {
                                             "inviteReceived": {
                                                 ID: parseInt(inviteIDCon.innerHTML),
@@ -301,12 +348,20 @@
                                 requestCon.appendChild(senderIDCon);
                                 requestCon.appendChild(senderNameCon);
                                 requestCon.appendChild(centerMessage);
-                                requestCon.appendChild(gigNameCon);
-                                requestCon.appendChild(gigDateCon);
-                                requestCon.appendChild(gigIDCon);
+                                if (parseInt(inviteTypeCon.innerHTML) == 1)
+                                {
+                                    requestCon.appendChild(gigNameCon);
+                                    requestCon.appendChild(gigDateCon);
+                                    requestCon.appendChild(gigIDCon);
+                                }
+                                else if (parseInt(inviteTypeCon.innerHTML) == 3)
+                                {
+                                    requestCon.appendChild(SenderNameCon);
+                                    requestCon.appendChild(senderIDCon);
+                                }
                                 requestCon.appendChild(buttonsCon);
     
-                            }
+                            
                         }
                     }
                     else

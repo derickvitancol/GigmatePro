@@ -42,8 +42,8 @@
                 <div class="grid-conta">
                     <div class="search" id="searchBox">
                         <form class="search-form">
-                            <input type="text" placeholder="Search for Gigs..">
-                            <p class="float-right"><a href="#" class="btn-block" role="button" id="loadSModal">Search</a></p>
+                            <input type="text" placeholder="Search for Gigs.." id="SearchGigBox">
+                            <p class="float-right"><a href="#" class="btn-block" role="button" id="loadSModal" onclick="SearchGigClicked()">Search</a></p>
                         </form>
                     </div>
                 </div>
@@ -147,8 +147,8 @@
                 <div class="grid-conta">
                     <div class="search" id="searchBox">
                         <form class="search-form">
-                            <input type="text" placeholder="Search for Gigs..">
-                            <p class="float-right"><a href="#" class="btn-block" role="button" id="loadSGMModal">Search</a></p>
+                            <input type="text" placeholder="Search for Gigmates.." id="SearchGigmateBox">
+                            <p class="float-right"><a href="#" class="btn-block" role="button" id="loadSGMModal" onclick="SearchGigmateClicked()">Search</a></p>
                         </form>
                     </div>
                 </div>
@@ -221,16 +221,16 @@
                 <div class="grid-container">
                     <div class="col-sm-6 col-md-6">
                         <div class="thumbnail">
-                            <div class="caption">
-                                <label class="names">Searched Result</label>
+                            <div class="caption" id="gigResultCon">
+                                <!--<label class="names">Searched Result</label>
                                 <br />
                                 <label class="capt">Description</label>
                                 <br />
                                 <ul class="button">
                                     <center>
-                                        <li><a href="#" class="btn btn-primary" role="button">Join?</a></li>
+                                        <li><a href="#" class="btn btn-primary" role="button">Join Gig</a></li>
                                     </center>
-                                </ul>
+                                </ul>-->
                             </div>
                         </div>
                     </div>
@@ -256,8 +256,8 @@
                 <div class="grid-container">
                     <div class="col-sm-6 col-md-6">
                         <div class="thumbnail">
-                            <div class="caption">
-                                <label class="names">Searched Result</label>
+                            <div class="caption" id="searchedGigmateCon">
+                                <!--<label class="names">Searched Result</label>
                                 <br />
                                 <label class="capt">Description</label>
                                 <br />
@@ -265,7 +265,7 @@
                                     <center>
                                         <li><a href="#" class="btn btn-primary" role="button">invite?</a></li>
                                     </center>
-                                </ul>
+                                </ul>-->
                             </div>
                         </div>
                     </div>
@@ -453,21 +453,25 @@
 
         $(document).ready(function () {
             document.getElementById('loadSModal').addEventListener('click', function () {
-                document.querySelector('.bg-modal-reg').style.display = 'flex';
+                //document.querySelector('.bg-modal-reg').style.display = 'flex';
             });
 
             document.getElementById('cls').addEventListener('click', function () {
+                window.location.href = 'mainpage.html';
                 document.querySelector('.bg-modal-reg').style.display = 'none';
+                
             });
         });
 
         $(document).ready(function () {
-            document.getElementById('loadSGMModal').addEventListener('click', function () {
-                document.querySelector('.bg-modal-r').style.display = 'flex';
-            });
+            //document.getElementById('loadSGMModal').addEventListener('click', function () {
+            //    document.querySelector('.bg-modal-r').style.display = 'flex';
+            //});
 
             document.getElementById('cls2').addEventListener('click', function () {
+                window.location.href = 'mainpage.html';
                 document.querySelector('.bg-modal-r').style.display = 'none';
+                
             });
         });
 
@@ -514,7 +518,7 @@
                 var xhr = $.ajax(
                     {
                         type: "POST",
-                        url: "http://localhost/GigmatesService/Service1.svc/AddGig",
+                        url: "http://192.168.254.11/GigmatesService/Service1.svc/AddGig",
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         data: JSON.stringify(gigJSON)
@@ -536,7 +540,7 @@
             var WCFCall = $.ajax(
                 {
                     type: "POST",
-                    url: "http://localhost/GigmatesService/Service1.svc/GetAvailableGigs",
+                    url: "http://192.168.254.11/GigmatesService/Service1.svc/GetAvailableGigs",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     data: JSON.stringify(userJSON)
@@ -545,7 +549,6 @@
                     var containerDiv = document.getElementById("GigsContainer");
                     window.localStorage.setItem("AvailableGigs", data.GetAvailableGigsResult);
                     var AvailableGigJSON = JSON.parse(data.GetAvailableGigsResult);
-
                     //FUNCTION THAT DISPLAYS EACH GIG
                     if (Object.keys(AvailableGigJSON).length > 0) {
                         for (var i = 0; i < Object.keys(AvailableGigJSON).length; i++) {
@@ -593,7 +596,9 @@
                                 var gigID = $(joinGigButton).parent().siblings("#gigID").html();
                                 var receiverID = $(joinGigButton).parent().siblings("#creatorID").html();
                                 SendGigRequest(gigID, userDetails.ID, receiverID);
-                                //MAKE REFRESH THEN RECALL AVAILABLE GIGS WITH THE REMOVED GIG REQUEST UPDATE DATABASE STORED PROC
+                                
+                                window.location.href = "mainpage.html";
+                                
                             });
 
                             centerCon.appendChild(nameCon);
@@ -641,7 +646,7 @@
             var WCFCall = $.ajax(
                 {
                     type: "POST",
-                    url: "http://localhost/GigmatesService/Service1.svc/SendGigInvite",
+                    url: "http://192.168.254.11/GigmatesService/Service1.svc/SendGigInvite",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     data: JSON.stringify(inviteJSON)
@@ -651,6 +656,206 @@
                     alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
                 });
         }
+
+        function SearchGigClicked()
+        {
+            var searchContent = document.getElementById("SearchGigBox").value;
+            
+            if (!searchContent)
+            {
+                alert("You didn't enter something to look for!");
+            }
+            else
+            {
+                var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+                var searchJSON = { searchWord: searchContent, userID:userDetails.ID};
+                var WCFCall = $.ajax(
+                    {
+                        type: "POST",
+                        url: "http://192.168.254.11/GigmatesService/Service1.svc/SearchGigs",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: JSON.stringify(searchJSON)
+                    }).done(function (data) {
+                        alert(data.SearchGigsResult)
+                        document.querySelector('.bg-modal-reg').style.display = 'flex';
+                        var SearchResultCon = document.getElementById("gigResultCon");
+
+                        var searchedGigs = JSON.parse(data.SearchGigsResult);
+                        
+                        for (var i = 0; i < Object.keys(searchedGigs).length; i++)
+                        {
+                            
+                            var gigTitleCon = document.createElement("label");
+                            gigTitleCon.innerHTML = searchedGigs[i].Name;
+                            gigTitleCon.classList = "names";
+
+                            var br1Con = document.createElement("br");
+
+                            var br7Con = document.createElement("br");
+                            var gigCreatorName = document.createElement("label");
+                            gigCreatorName.innerHTML = "Creator Name: " + searchedGigs[i].CreatorName;
+                            gigCreatorName.classList = 'capt'; 
+                            var gigCreatorID = document.createElement("label");
+                            gigCreatorID.innerHTML = searchedGigs[i].Creator;
+                            gigCreatorID.classList = 'd-none'; 
+
+                            var gigDateCon = document.createElement("label");
+                            gigDateCon.innerHTML = "Date: "+searchedGigs[i].Date;
+                            gigDateCon.classList = "capt";
+
+                            var br2Con = document.createElement("br");
+                            var gigCreatorCon = document.createElement("label");
+                            gigCreatorCon.innerHTML = "Creator: " + searchedGigs[i].CreatorName;
+                            gigCreatorCon.classList = "capt";
+
+                            var br3Con = document.createElement("br");
+                            var gigGenreCon = document.createElement("label");
+                            gigGenreCon.innerHTML = "Genre: " + searchedGigs[i].GenreName;
+                            gigGenreCon.classList = "capt";
+
+                            var br4Con = document.createElement("br");
+                            var gigVenueCon = document.createElement("label");
+                            gigVenueCon.innerHTML = "Venue: " + searchedGigs[i].Venue;
+                            gigVenueCon.classList = "capt";
+
+                            var br5Con = document.createElement("br");
+                            var gigIDCon = document.createElement("label");
+                            gigIDCon.innerHTML = searchedGigs[i].GigID;
+                            gigIDCon.classList = "d-none";
+
+                            var br6Con = document.createElement("br");
+                            var buttonCenterCon = document.createElement("center");
+                            var joinButtonCon = document.createElement("button");
+                            joinButtonCon.classList = "btn btn-primary";
+                            joinButtonCon.type = "button";
+                            joinButtonCon.innerHTML = "Join Gig";
+
+                            $(joinButtonCon).click(function ()
+                            {
+                                SendGigRequest(gigIDCon.innerHTML, userDetails.ID, gigCreatorID.innerHTML);
+                            });
+                            buttonCenterCon.appendChild(joinButtonCon);
+
+                            SearchResultCon.appendChild(gigTitleCon);
+                            SearchResultCon.appendChild(br1Con);
+                            SearchResultCon.appendChild(gigCreatorName);
+                            SearchResultCon.appendChild(br7Con);
+                            SearchResultCon.appendChild(gigDateCon);
+                            SearchResultCon.appendChild(br2Con);
+                            SearchResultCon.appendChild(gigCreatorCon);
+                            SearchResultCon.appendChild(br3Con);
+                            SearchResultCon.appendChild(gigGenreCon);
+                            SearchResultCon.appendChild(br4Con);
+                            SearchResultCon.appendChild(gigVenueCon);
+                            SearchResultCon.appendChild(br6Con);
+                            SearchResultCon.appendChild(buttonCenterCon);
+                            SearchResultCon.appendChild(br5Con);
+                            SearchResultCon.appendChild(gigIDCon);
+                            SearchResultCon.appendChild(gigCreatorID);
+                            //REMOVE THE CHILDRENWHEN X IS PRESSED  TO DELETE
+                        }
+
+                    }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                    });
+            }
+            
+        }
+
+        function SearchGigmateClicked()
+        {
+            var searchContent = document.getElementById("SearchGigmateBox").value;
+            
+            if (!searchContent)
+            {
+                alert("You didn't enter something to look for!");
+            }
+            else
+            {
+                var searchJSON = { searchWord: searchContent };
+                var WCFCall = $.ajax(
+                    {
+                        type: "POST",
+                        url: "http://192.168.254.11/GigmatesService/Service1.svc/SearchGigmates",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: JSON.stringify(searchJSON)
+                    }).done(function (data)
+                    {
+                        alert(data.SearchGigmatesResult);
+                        document.querySelector('.bg-modal-r').style.display = 'flex';
+
+                        var gigmateSearchJSON = JSON.parse(data.SearchGigmatesResult);
+                        var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+                        var searchGigmatesCon = document.getElementById("searchedGigmateCon");
+
+         //<!--<label class="names" > Searched Result</label >
+         //                   <br />
+         //                   <label class="capt">Description</label>
+         //                   <br />
+         //                   <ul class="button">
+         //                       <center>
+         //                           <li><a href="#" class="btn btn-primary" role="button">invite?</a></li>
+         //                       </center>
+         //                   </ul>-->
+                        for (var i = 0; i < Object.keys(gigmateSearchJSON).length; i++)
+                        {
+                            var nameCon = document.createElement("label");
+                            nameCon.innerHTML = "Name: "+gigmateSearchJSON[i].Firstname + ' ' + gigmateSearchJSON[i].Lastname;
+                            nameCon.classList = "names";
+                            var br1 = document.createElement("br");
+
+                            var usernameCon = document.createElement("label");
+                            usernameCon.innerHTML ="Username: " + gigmateSearchJSON[i].Username;
+                            usernameCon.classList = "capt";
+                            var br2 = document.createElement("br");
+
+                            var locationCon = document.createElement("label");
+                            locationCon.innerHTML = "Location: "+gigmateSearchJSON[i].Location;
+                            locationCon.classList = "capt";
+                            var br3 = document.createElement("br");
+
+                            var buttonCenter = document.createElement("center");
+                            var gigmateButton = document.createElement("button");
+                            gigmateButton.classList = "btn btn-primary";
+                            gigmateButton.type = "button";
+                            gigmateButton.innerHTML = "Gigmate Request";
+
+                            $(gigmateButton).click(function ()
+                            {
+                                alert("Gigmate has: " + idCon.innerHTML + nameCon.innerHTML);
+                            });
+
+
+                            buttonCenter.appendChild(gigmateButton);
+
+                            var idCon = document.createElement("label");
+                            idCon.innerHTML = gigmateSearchJSON[i].ID;
+                            idCon.classList = "d-none";
+                            var br4 = document.createElement("br");
+
+                            searchGigmatesCon.appendChild(nameCon);
+                            searchGigmatesCon.appendChild(br1);
+                            searchGigmatesCon.appendChild(usernameCon);
+                            searchGigmatesCon.appendChild(br2);
+                            searchGigmatesCon.appendChild(locationCon);
+                            searchGigmatesCon.appendChild(br3);
+                            searchGigmatesCon.appendChild(buttonCenter);
+                            searchGigmatesCon.appendChild(idCon);
+                            searchGigmatesCon.appendChild(br4);
+
+                        }
+
+                    }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+                    {
+                        alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                    });
+            }
+             
+
+        }
+
     </script>
 </body>
 </html>

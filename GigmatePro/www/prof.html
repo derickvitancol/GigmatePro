@@ -577,7 +577,7 @@
 
                 var xhr = $.ajax({
                     type: "POST",
-                    url: "http://localhost/GigmatesService/Service1.svc/AddSong",
+                    url: "http://192.168.254.11/GigmatesService/Service1.svc/AddSong",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     data: JSON.stringify(songJSON)
@@ -653,7 +653,7 @@
             var WCFCall = $.ajax(
                 {
                     type: "POST",
-                    url: "http://localhost/GigmatesService/Service1.svc/GetGigsForProf",
+                    url: "http://192.168.254.11/GigmatesService/Service1.svc/GetGigsForProf",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     data: JSON.stringify(personJSON)
@@ -773,7 +773,7 @@
                 var WCFCall = $.ajax(
                     {
                         type: "POST",
-                        url: "http://localhost/GigmatesService/Service1.svc/EditProfile",
+                        url: "http://192.168.254.11/GigmatesService/Service1.svc/EditProfile",
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         data: JSON.stringify(personJSON)

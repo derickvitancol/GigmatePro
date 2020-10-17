@@ -24,7 +24,7 @@ function getGenres(selectBox)
 {
     var xhr = $.ajax({
         type: "POST",
-        url: "http://localhost/GigmatesService/Service1.svc/GetGenreList",
+        url: "http://192.168.254.11/GigmatesService/Service1.svc/GetGenreList",
         contentType: "application/json; charset=utf-8",
         dataType: "json"
 
@@ -56,7 +56,7 @@ function GetSong(uID){
     var xhr = $.ajax({
 
         type: "POST",
-        url: "http://localhost/GigmatesService/Service1.svc/GetSongs",
+        url: "http://192.168.254.11/GigmatesService/Service1.svc/GetSongs",
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         data: JSON.stringify(personJSON)
@@ -75,7 +75,7 @@ function GetPersonTypes()
     var xhr = $.ajax(
         {
             type: "POST",
-            url: "http://localhost/GigmatesService/Service1.svc/GetPersonTypes",
+            url: "http://192.168.254.11/GigmatesService/Service1.svc/GetPersonTypes",
             contentType: "application/json; charset=utf-8",
             dataType: "json"
         }).done(function (data)
@@ -109,7 +109,7 @@ function GetUserDataById(uID)
     var WCFCall = $.ajax(
         {
             type: "POST",
-            url: "http://localhost/GigmatesService/Service1.svc/GetUserDataByID",
+            url: "http://192.168.254.11/GigmatesService/Service1.svc/GetUserDataByID",
             contentType: "application/json; charset=utf-8",
             dataType: "json",
             data: JSON.stringify(userJSON)

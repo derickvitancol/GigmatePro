@@ -67,16 +67,16 @@
                 var xhr = $.ajax({
 
                     type: "POST",
-                    url: "http://localhost/GigmatesService/Service1.svc/Login",
+                    url: "http://192.168.254.11/GigmatesService/Service1.svc/Login",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     data: JSON.stringify(userDetails)
 
                 }).done(function (data) {
-                    alert(data.LoginResult);
+
                     userDetails = JSON.parse(data.LoginResult);
 
-                    alert("Account Details: " + userDetails.Firstname + " " + userDetails.Lastname);
+                    alert("Hello " + userDetails.Firstname + " " + userDetails.Lastname+"!");
                     if (userDetails.Firstname && userDetails.Lastname) {
 
                         window.localStorage.setItem("userDetails", JSON.stringify(userDetails));

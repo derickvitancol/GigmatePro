@@ -163,7 +163,7 @@
             var WCFCall = $.ajax(
                 {
                     type: "POST",
-                    url: "http://localhost/GigmatesService/Service1.svc/GetInvites",
+                    url: "http://192.168.254.11/GigmatesService/Service1.svc/GetInvites",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     data: JSON.stringify({ "userID": userDetails.ID })
@@ -239,13 +239,13 @@
                                     var WCFCall = $.ajax(
                                         {
                                             type: "POST",
-                                            url: "http://localhost/GigmatesService/Service1.svc/InviteResponse",
+                                            url: "http://192.168.254.11/GigmatesService/Service1.svc/InviteResponse",
                                             contentType: "application/json; charset=utf-8",
                                             dataType: "json",
                                             data: JSON.stringify(inviteResponseJSON)
                                         }).done(function (data) {
                                             alert("THE RESULT IS " + data.InviteResponseResult);
-
+                                            window.location.href = "notif.html"
                                         }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
                                             alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
                                         });
@@ -276,13 +276,13 @@
                                     var WCFCall = $.ajax(
                                         {
                                             type: "POST",
-                                            url: "http://localhost/GigmatesService/Service1.svc/InviteResponse",
+                                            url: "http://192.168.254.11/GigmatesService/Service1.svc/InviteResponse",
                                             contentType: "application/json; charset=utf-8",
                                             dataType: "json",
                                             data: JSON.stringify(inviteResponseJSON)
                                         }).done(function (data) {
                                             alert("THE RESULT IS " + data.InviteResponseResult);
-                                            document.location.href = "notif.html"
+                                            window.location.href = "notif.html"
                                         }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
                                             alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
                                         });
@@ -305,8 +305,7 @@
                                 requestCon.appendChild(gigDateCon);
                                 requestCon.appendChild(gigIDCon);
                                 requestCon.appendChild(buttonsCon);
-
-                                //CREATE FUNCTION WHEN USER ACCEPTS OR REJECTS 
+    
                             }
                         }
                     }

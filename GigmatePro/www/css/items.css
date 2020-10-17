@@ -34,12 +34,27 @@ input[type=password] {
     border-top: hidden;
     border-left: hidden;
     border-right: hidden;
+    
 }
 
-    input[type=password]:focus {
-        background-color: transparent;
-        color: #FFFFFF;
-    }
+input[type=password]:focus {
+    background-color: transparent;
+    color: #FFFFFF;
+}
+
+.input-group placeholder{
+    color:white;
+}
+
+/*input[placeholder]{
+    color:white !important;
+}*/
+
+    /*input[type=password]: placeholder {
+        color: white;
+    }*/
+
+
 
 input[type=number] {
     background-color: transparent;

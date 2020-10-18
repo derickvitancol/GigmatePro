@@ -331,477 +331,499 @@
 
                 <h2>INVITE USER</h2>
                 <br />
-                <label for="gnameSelect" style="font-size:12px">Name of Gig:</label>
-                <select id="gnameSelect" />
-                <br />               
-                <br />
-                <input type="text" class="row form-control" placeholder="Name of User" id="nameUBox">
-                
-                <br />
-                <button class="btn btn-primary" role="button">Invite</button>
-
             </center>
+            <div class="grid-container-invite">
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <div class="caption">                           
+                            <center>
+                                <p class="float-right"><button class="btn btn-primary" role="button">Invite</button></p>
+                                <br />
 
 
+                                <label class="names">Name of Gig Mate</label>
+                                <br />
+                                <label class="capt">@username</label>
+                                <br />
+                                <label class="capt">Type</label>
+                            </center>
+                            <br />
+                            <label class="capt">Age</label>
+                            <br />
+                            <label class="capt">Gender</label>
+                            <br />
+                            <label class="capt">Location</label>
+                            <br />
+                            <label class="capt">Bio</label>
+                            <br />
+                            <br />
+                            <label for="gnameSelect" style="font-size:18px">Name of Gig:</label>
+                            <select id="gnameSelect" />
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    
-    <script type="text/javascript" src="scripts/jQuery/jquery-3.5.1.js"></script>
-    <script type="text/javascript" src="scripts/popper.min.js"></script>
-    <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
-    <script type="text/javascript" src="scripts/bootstrap.js"></script>
-    <script type="text/javascript" src="scripts/functions.js"></script>
+            <script type="text/javascript" src="scripts/jQuery/jquery-3.5.1.js"></script>
+            <script type="text/javascript" src="scripts/popper.min.js"></script>
+            <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+            <script type="text/javascript" src="scripts/bootstrap.js"></script>
+            <script type="text/javascript" src="scripts/functions.js"></script>
 
 
 
-    <script>
-        //FUNCTION CALLED ON MAINPAGE ONLOAD
-        function mainloadingFunctions() {
-            getUserData();
-            getGenres(document.getElementById("GigGenreBox"));
-            GetAvailableGigs();
+            <script>
+                //FUNCTION CALLED ON MAINPAGE ONLOAD
+                function mainloadingFunctions() {
+                    getUserData();
+                    getGenres(document.getElementById("GigGenreBox"));
+                    GetAvailableGigs();
 
-        }
-
-
-        $('a[href="#Gigs"]').click(function () {
-            $('.navbar-toggle:visible').click();
-            $("#MainPage").hide();
-            $("#Gigs").show();
-        });
-
-
-        $(document).ready(function () {
-            document.getElementById('loadSModal').addEventListener('click', function () {
-                //document.querySelector('.bg-modal-reg').style.display = 'flex';
-            });
-
-            document.getElementById('cls').addEventListener('click', function () {
-                window.location.href = 'mainpage.html';
-                document.querySelector('.bg-modal-reg').style.display = 'none';
-
-            });
-        });
-
-
-        $(document).ready(function () {
-            //document.getElementById('loadSGMModal').addEventListener('click', function () {
-            //    document.querySelector('.bg-modal-r').style.display = 'flex';
-            //});
-
-            document.getElementById('cls2').addEventListener('click', function () {
-                window.location.href = 'mainpage.html';
-                document.querySelector('.bg-modal-r').style.display = 'none';
-
-            });
-        });
-
-        $(document).ready(function () {
-            document.getElementById('loadIModal').addEventListener('click', function () {
-                document.querySelector('.bg-modal-i').style.display = 'flex';
-            });
-
-            document.getElementById('clsi').addEventListener('click', function () {
-                document.querySelector('.bg-modal-i').style.display = 'none';
-            });
-        });
-
-
-        $(document).ready(function () {
-            document.getElementById('cGigBtn').addEventListener('click', function () {
-                document.querySelector('.bg-modal').style.display = 'flex';
-            });
-
-            document.getElementById('cls1').addEventListener('click', function () {
-                document.querySelector('.bg-modal').style.display = 'none';
-            });
-        });
-
-
-
-
-
-        function CreateGigClicked() {
-
-            if (!document.getElementById("nameBox").value) {
-                alert("Gig Name cannot be empty!");
-            }
-            else if (!document.getElementById("venueBox").value) {
-                alert("Gig Venue cannot be empty!");
-            }
-            else if (!document.getElementById("dateBox").value && !document.getElementById("timeBox").value) {
-                alert("date is not valid");
-            }
-            else {
-
-                var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
-                var gigName = document.getElementById("nameBox").value;
-                var gigVenue = document.getElementById("venueBox").value;
-                var gigGenre = document.getElementById("GigGenreBox").value;
-                var gigDate = document.getElementById("dateBox").value + " " + document.getElementById("timeBox").value + ":00";
-                var gigCreator = userDetails.ID;
-                var gigJSON = {
-                    "newGig": {
-                        Name: gigName,
-                        Date: gigDate,
-                        Creator: gigCreator,
-                        Venue: gigVenue,
-                        GenreID: gigGenre
-                    }
                 }
-                var xhr = $.ajax(
-                    {
-                        type: "POST",
-                        url: "http://192.168.254.11/GigmatesService/Service1.svc/AddGig",
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        data: JSON.stringify(gigJSON)
 
-                    }).done(function (data) {
-                        alert("Number of gigs created: " + data.AddGigResult);
-                        document.getElementById("nameBox").value = "";
-                        gigVenue = document.getElementById("venueBox").value = "";
-                    }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+
+                $('a[href="#Gigs"]').click(function () {
+                    $('.navbar-toggle:visible').click();
+                    $("#MainPage").hide();
+                    $("#Gigs").show();
+                });
+
+
+                $(document).ready(function () {
+                    document.getElementById('loadSModal').addEventListener('click', function () {
+                        //document.querySelector('.bg-modal-reg').style.display = 'flex';
                     });
-            }
-        }
+
+                    document.getElementById('cls').addEventListener('click', function () {
+                        window.location.href = 'mainpage.html';
+                        document.querySelector('.bg-modal-reg').style.display = 'none';
+
+                    });
+                });
 
 
-        function GetAvailableGigs() {
-            var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
-            var userJSON = { "userID": userDetails.ID };
-            var WCFCall = $.ajax(
-                {
-                    type: "POST",
-                    url: "http://192.168.254.11/GigmatesService/Service1.svc/GetAvailableGigs",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    data: JSON.stringify(userJSON)
+                $(document).ready(function () {
+                    //document.getElementById('loadSGMModal').addEventListener('click', function () {
+                    //    document.querySelector('.bg-modal-r').style.display = 'flex';
+                    //});
 
-                }).done(function (data) {
-                    var containerDiv = document.getElementById("GigsContainer");
-                    window.localStorage.setItem("AvailableGigs", data.GetAvailableGigsResult);
-                    var AvailableGigJSON = JSON.parse(data.GetAvailableGigsResult);
-                    //FUNCTION THAT DISPLAYS EACH GIG
-                    if (Object.keys(AvailableGigJSON).length > 0) {
-                        for (var i = 0; i < Object.keys(AvailableGigJSON).length; i++) {
-                            var divParent = document.createElement("div");
-                            var centerCon = document.createElement("center");
-                            divParent.classList = "caption";
-                            var nameCon = document.createElement("label");
-                            nameCon.classList = "capt";
-                            nameCon.innerHTML = AvailableGigJSON[i].Name;
+                    document.getElementById('cls2').addEventListener('click', function () {
+                        window.location.href = 'mainpage.html';
+                        document.querySelector('.bg-modal-r').style.display = 'none';
 
-                            var venueCon = document.createElement("label");
-                            venueCon.innerHTML = "Venue: " + AvailableGigJSON[i].Venue;
-                            venueCon.classList = "capt";
-                            var scheduleCon = document.createElement("label");
-                            scheduleCon.innerHTML = "Date And Time: " + AvailableGigJSON[i].Date;
-                            scheduleCon.classList = "capt";
-                            var genreCon = document.createElement("label");
-                            genreCon.innerHTML = "Genre: " + AvailableGigJSON[i].GenreName;
-                            genreCon.classList = "capt";
+                    });
+                });
 
-                            var brElem2 = document.createElement("br");
-                            var creatorNameCon = document.createElement("label");
-                            creatorNameCon.innerHTML = "Creator Name: " + AvailableGigJSON[i].CreatorName;
-                            creatorNameCon.classList = "capt";
-                            var idCon = document.createElement("div");
-                            idCon.id = "gigID";
-                            idCon.innerHTML = AvailableGigJSON[i].GigID;
-                            idCon.classList = "d-none";
-                            var brElem = document.createElement("br");
+                $(document).ready(function () {
+                    document.getElementById('loadIModal').addEventListener('click', function () {
+                        document.querySelector('.bg-modal-i').style.display = 'flex';
+                    });
 
-                            var creatorIDCon = document.createElement("div");
-                            creatorIDCon.id = "creatorID";
-                            creatorIDCon.innerHTML = AvailableGigJSON[i].Creator;
-                            creatorIDCon.classList = "d-none";
+                    document.getElementById('clsi').addEventListener('click', function () {
+                        document.querySelector('.bg-modal-i').style.display = 'none';
+                    });
+                });
 
-                            var buttonCenter = document.createElement("center");
 
-                            var joinGigButton = document.createElement("button");
-                            joinGigButton.classList = "btn btn-primary";
-                            joinGigButton.type = "button";
-                            joinGigButton.innerHTML = "Join Gig";
+                $(document).ready(function () {
+                    document.getElementById('cGigBtn').addEventListener('click', function () {
+                        document.querySelector('.bg-modal').style.display = 'flex';
+                    });
 
-                            $(joinGigButton).click(function () {
-                                var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
-                                var gigID = $(joinGigButton).parent().siblings("#gigID").html();
-                                var receiverID = $(joinGigButton).parent().siblings("#creatorID").html();
-                                SendGigRequest(gigID, userDetails.ID, receiverID);
+                    document.getElementById('cls1').addEventListener('click', function () {
+                        document.querySelector('.bg-modal').style.display = 'none';
+                    });
+                });
 
-                                window.location.href = "mainpage.html";
 
-                            });
 
-                            centerCon.appendChild(nameCon);
-                            divParent.appendChild(centerCon);
-                            divParent.appendChild(venueCon);
-                            divParent.appendChild(scheduleCon);
-                            divParent.appendChild(genreCon);
-                            divParent.appendChild(brElem2);
-                            divParent.appendChild(creatorNameCon);
-                            divParent.appendChild(brElem);
-                            buttonCenter.appendChild(joinGigButton);
-                            divParent.appendChild(buttonCenter);
-                            divParent.appendChild(idCon);
-                            divParent.appendChild(creatorIDCon);
-                            containerDiv.appendChild(divParent);
 
-                        }
+
+                function CreateGigClicked() {
+
+                    if (!document.getElementById("nameBox").value) {
+                        alert("Gig Name cannot be empty!");
+                    }
+                    else if (!document.getElementById("venueBox").value) {
+                        alert("Gig Venue cannot be empty!");
+                    }
+                    else if (!document.getElementById("dateBox").value && !document.getElementById("timeBox").value) {
+                        alert("date is not valid");
                     }
                     else {
-                        var messageCon = document.createElement("label");
-                        messageCon.innerHTML = "There are no available gigs at the moment.";
-                        containerDiv.appendChild(messageCon);
 
+                        var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+                        var gigName = document.getElementById("nameBox").value;
+                        var gigVenue = document.getElementById("venueBox").value;
+                        var gigGenre = document.getElementById("GigGenreBox").value;
+                        var gigDate = document.getElementById("dateBox").value + " " + document.getElementById("timeBox").value + ":00";
+                        var gigCreator = userDetails.ID;
+                        var gigJSON = {
+                            "newGig": {
+                                Name: gigName,
+                                Date: gigDate,
+                                Creator: gigCreator,
+                                Venue: gigVenue,
+                                GenreID: gigGenre
+                            }
+                        }
+                        var xhr = $.ajax(
+                            {
+                                type: "POST",
+                                url: "http://192.168.254.11/GigmatesService/Service1.svc/AddGig",
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                data: JSON.stringify(gigJSON)
+
+                            }).done(function (data) {
+                                alert("Number of gigs created: " + data.AddGigResult);
+                                document.getElementById("nameBox").value = "";
+                                gigVenue = document.getElementById("venueBox").value = "";
+                            }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                                alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                            });
+                    }
+                }
+
+
+                function GetAvailableGigs() {
+                    var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+                    var userJSON = { "userID": userDetails.ID };
+                    var WCFCall = $.ajax(
+                        {
+                            type: "POST",
+                            url: "http://192.168.254.11/GigmatesService/Service1.svc/GetAvailableGigs",
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify(userJSON)
+
+                        }).done(function (data) {
+                            var containerDiv = document.getElementById("GigsContainer");
+                            window.localStorage.setItem("AvailableGigs", data.GetAvailableGigsResult);
+                            var AvailableGigJSON = JSON.parse(data.GetAvailableGigsResult);
+                            //FUNCTION THAT DISPLAYS EACH GIG
+                            if (Object.keys(AvailableGigJSON).length > 0) {
+                                for (var i = 0; i < Object.keys(AvailableGigJSON).length; i++) {
+                                    var divParent = document.createElement("div");
+                                    var centerCon = document.createElement("center");
+                                    divParent.classList = "caption";
+                                    var nameCon = document.createElement("label");
+                                    nameCon.classList = "capt";
+                                    nameCon.innerHTML = AvailableGigJSON[i].Name;
+
+                                    var venueCon = document.createElement("label");
+                                    venueCon.innerHTML = "Venue: " + AvailableGigJSON[i].Venue;
+                                    venueCon.classList = "capt";
+                                    var scheduleCon = document.createElement("label");
+                                    scheduleCon.innerHTML = "Date And Time: " + AvailableGigJSON[i].Date;
+                                    scheduleCon.classList = "capt";
+                                    var genreCon = document.createElement("label");
+                                    genreCon.innerHTML = "Genre: " + AvailableGigJSON[i].GenreName;
+                                    genreCon.classList = "capt";
+
+                                    var brElem2 = document.createElement("br");
+                                    var creatorNameCon = document.createElement("label");
+                                    creatorNameCon.innerHTML = "Creator Name: " + AvailableGigJSON[i].CreatorName;
+                                    creatorNameCon.classList = "capt";
+                                    var idCon = document.createElement("div");
+                                    idCon.id = "gigID";
+                                    idCon.innerHTML = AvailableGigJSON[i].GigID;
+                                    idCon.classList = "d-none";
+                                    var brElem = document.createElement("br");
+
+                                    var creatorIDCon = document.createElement("div");
+                                    creatorIDCon.id = "creatorID";
+                                    creatorIDCon.innerHTML = AvailableGigJSON[i].Creator;
+                                    creatorIDCon.classList = "d-none";
+
+                                    var buttonCenter = document.createElement("center");
+
+                                    var joinGigButton = document.createElement("button");
+                                    joinGigButton.classList = "btn btn-primary";
+                                    joinGigButton.type = "button";
+                                    joinGigButton.innerHTML = "Join Gig";
+
+                                    $(joinGigButton).click(function () {
+                                        var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+                                        var gigID = $(joinGigButton).parent().siblings("#gigID").html();
+                                        var receiverID = $(joinGigButton).parent().siblings("#creatorID").html();
+                                        SendGigRequest(gigID, userDetails.ID, receiverID);
+
+                                        window.location.href = "mainpage.html";
+
+                                    });
+
+                                    centerCon.appendChild(nameCon);
+                                    divParent.appendChild(centerCon);
+                                    divParent.appendChild(venueCon);
+                                    divParent.appendChild(scheduleCon);
+                                    divParent.appendChild(genreCon);
+                                    divParent.appendChild(brElem2);
+                                    divParent.appendChild(creatorNameCon);
+                                    divParent.appendChild(brElem);
+                                    buttonCenter.appendChild(joinGigButton);
+                                    divParent.appendChild(buttonCenter);
+                                    divParent.appendChild(idCon);
+                                    divParent.appendChild(creatorIDCon);
+                                    containerDiv.appendChild(divParent);
+
+                                }
+                            }
+                            else {
+                                var messageCon = document.createElement("label");
+                                messageCon.innerHTML = "There are no available gigs at the moment.";
+                                containerDiv.appendChild(messageCon);
+
+                            }
+
+
+                        }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                        });
+                }
+
+                function SendGigRequest(gigID, senderID, receiverID) {
+                    var inviteType = 1;
+                    var InviteStatus = 2;
+
+                    var inviteJSON = {
+                        "NewInvite": {
+                            ReceiverID: receiverID,
+                            SenderID: senderID,
+                            StatusID: InviteStatus,
+                            TypeID: inviteType,
+                            PurposeID: gigID
+                        }
+                    };
+                    var WCFCall = $.ajax(
+                        {
+                            type: "POST",
+                            url: "http://192.168.254.11/GigmatesService/Service1.svc/SendGigInvite",
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify(inviteJSON)
+                        }).done(function (data) {
+                            alert("Number of Invites Sent: " + data.SendGigInviteResult);
+                        }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                        });
+                }
+
+                function SearchGigClicked() {
+                    var searchContent = document.getElementById("SearchGigBox").value;
+
+                    if (!searchContent) {
+                        alert("You didn't enter something to look for!");
+                    }
+                    else {
+                        var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+                        var searchJSON = { searchWord: searchContent, userID: userDetails.ID };
+                        var WCFCall = $.ajax(
+                            {
+                                type: "POST",
+                                url: "http://192.168.254.11/GigmatesService/Service1.svc/SearchGigs",
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                data: JSON.stringify(searchJSON)
+                            }).done(function (data) {
+                                alert(data.SearchGigsResult)
+                                document.querySelector('.bg-modal-reg').style.display = 'flex';
+                                var SearchResultCon = document.getElementById("gigResultCon");
+
+                                var searchedGigs = JSON.parse(data.SearchGigsResult);
+
+                                for (var i = 0; i < Object.keys(searchedGigs).length; i++) {
+
+                                    var gigTitleCon = document.createElement("label");
+                                    gigTitleCon.innerHTML = searchedGigs[i].Name;
+                                    gigTitleCon.classList = "names";
+
+                                    var br1Con = document.createElement("br");
+
+                                    var br7Con = document.createElement("br");
+                                    var gigCreatorName = document.createElement("label");
+                                    gigCreatorName.innerHTML = "Creator Name: " + searchedGigs[i].CreatorName;
+                                    gigCreatorName.classList = 'capt';
+                                    var gigCreatorID = document.createElement("label");
+                                    gigCreatorID.innerHTML = searchedGigs[i].Creator;
+                                    gigCreatorID.classList = 'd-none';
+
+                                    var gigDateCon = document.createElement("label");
+                                    gigDateCon.innerHTML = "Date: " + searchedGigs[i].Date;
+                                    gigDateCon.classList = "capt";
+
+                                    var br2Con = document.createElement("br");
+                                    var gigCreatorCon = document.createElement("label");
+                                    gigCreatorCon.innerHTML = "Creator: " + searchedGigs[i].CreatorName;
+                                    gigCreatorCon.classList = "capt";
+
+                                    var br3Con = document.createElement("br");
+                                    var gigGenreCon = document.createElement("label");
+                                    gigGenreCon.innerHTML = "Genre: " + searchedGigs[i].GenreName;
+                                    gigGenreCon.classList = "capt";
+
+                                    var br4Con = document.createElement("br");
+                                    var gigVenueCon = document.createElement("label");
+                                    gigVenueCon.innerHTML = "Venue: " + searchedGigs[i].Venue;
+                                    gigVenueCon.classList = "capt";
+
+                                    var br5Con = document.createElement("br");
+                                    var gigIDCon = document.createElement("label");
+                                    gigIDCon.innerHTML = searchedGigs[i].GigID;
+                                    gigIDCon.classList = "d-none";
+
+                                    var br6Con = document.createElement("br");
+                                    var buttonCenterCon = document.createElement("center");
+                                    var joinButtonCon = document.createElement("button");
+                                    joinButtonCon.classList = "btn btn-primary";
+                                    joinButtonCon.type = "button";
+                                    joinButtonCon.innerHTML = "Join Gig";
+
+                                    $(joinButtonCon).click(function () {
+                                        SendGigRequest(gigIDCon.innerHTML, userDetails.ID, gigCreatorID.innerHTML);
+                                        document.querySelector('.bg-modal-reg').style.display = 'none';
+                                        window.location.href = 'mainpage.html';
+
+                                    });
+                                    buttonCenterCon.appendChild(joinButtonCon);
+
+                                    SearchResultCon.appendChild(gigTitleCon);
+                                    SearchResultCon.appendChild(br1Con);
+                                    SearchResultCon.appendChild(gigCreatorName);
+                                    SearchResultCon.appendChild(br7Con);
+                                    SearchResultCon.appendChild(gigDateCon);
+                                    SearchResultCon.appendChild(br2Con);
+                                    SearchResultCon.appendChild(gigCreatorCon);
+                                    SearchResultCon.appendChild(br3Con);
+                                    SearchResultCon.appendChild(gigGenreCon);
+                                    SearchResultCon.appendChild(br4Con);
+                                    SearchResultCon.appendChild(gigVenueCon);
+                                    SearchResultCon.appendChild(br6Con);
+                                    SearchResultCon.appendChild(buttonCenterCon);
+                                    SearchResultCon.appendChild(br5Con);
+                                    SearchResultCon.appendChild(gigIDCon);
+                                    SearchResultCon.appendChild(gigCreatorID);
+
+                                }
+
+                            }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                                alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                            });
+                    }
+
+                }
+
+                function SearchGigmateClicked() {
+                    var searchContent = document.getElementById("SearchGigmateBox").value;
+
+                    if (!searchContent) {
+                        alert("You didn't enter something to look for!");
+                    }
+                    else {
+                        var searchJSON = { searchWord: searchContent };
+                        var WCFCall = $.ajax(
+                            {
+                                type: "POST",
+                                url: "http://192.168.254.11/GigmatesService/Service1.svc/SearchGigmates",
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                data: JSON.stringify(searchJSON)
+                            }).done(function (data) {
+                                alert(data.SearchGigmatesResult);
+                                document.querySelector('.bg-modal-r').style.display = 'flex';
+
+                                var gigmateSearchJSON = JSON.parse(data.SearchGigmatesResult);
+                                var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+                                var searchGigmatesCon = document.getElementById("searchedGigmateCon");
+
+                                for (var i = 0; i < Object.keys(gigmateSearchJSON).length; i++) {
+                                    var nameCon = document.createElement("label");
+                                    nameCon.innerHTML = "Name: " + gigmateSearchJSON[i].Firstname + ' ' + gigmateSearchJSON[i].Lastname;
+                                    nameCon.classList = "names";
+                                    var br1 = document.createElement("br");
+
+                                    var usernameCon = document.createElement("label");
+                                    usernameCon.innerHTML = "Username: " + gigmateSearchJSON[i].Username;
+                                    usernameCon.classList = "capt";
+                                    var br2 = document.createElement("br");
+
+                                    var locationCon = document.createElement("label");
+                                    locationCon.innerHTML = "Location: " + gigmateSearchJSON[i].Location;
+                                    locationCon.classList = "capt";
+                                    var br3 = document.createElement("br");
+
+                                    var buttonCenter = document.createElement("center");
+                                    var gigmateButton = document.createElement("button");
+                                    gigmateButton.classList = "btn btn-primary";
+                                    gigmateButton.type = "button";
+                                    gigmateButton.innerHTML = "Gigmate Request";
+
+
+                                    buttonCenter.appendChild(gigmateButton);
+
+                                    var idCon = document.createElement("label");
+                                    idCon.innerHTML = gigmateSearchJSON[i].ID;
+                                    idCon.classList = "d-none";
+                                    var br4 = document.createElement("br");
+
+                                    $(gigmateButton).click(function () {
+                                        SendGigmateRequest(userDetails.ID, idCon.innerHTML);
+                                        document.querySelector('.bg-modal-r').style.display = 'none';
+                                        window.location.href = 'mainpage.html';
+                                    });
+
+                                    searchGigmatesCon.appendChild(nameCon);
+                                    searchGigmatesCon.appendChild(br1);
+                                    searchGigmatesCon.appendChild(usernameCon);
+                                    searchGigmatesCon.appendChild(br2);
+                                    searchGigmatesCon.appendChild(locationCon);
+                                    searchGigmatesCon.appendChild(br3);
+                                    searchGigmatesCon.appendChild(buttonCenter);
+                                    searchGigmatesCon.appendChild(idCon);
+                                    searchGigmatesCon.appendChild(br4);
+
+                                }
+
+                            }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                                alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                            });
                     }
 
 
-                }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
-                });
-        }
-
-        function SendGigRequest(gigID, senderID, receiverID) {
-            var inviteType = 1;
-            var InviteStatus = 2;
-
-            var inviteJSON = {
-                "NewInvite": {
-                    ReceiverID: receiverID,
-                    SenderID: senderID,
-                    StatusID: InviteStatus,
-                    TypeID: inviteType,
-                    PurposeID: gigID
                 }
-            };
-            var WCFCall = $.ajax(
-                {
-                    type: "POST",
-                    url: "http://192.168.254.11/GigmatesService/Service1.svc/SendGigInvite",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    data: JSON.stringify(inviteJSON)
-                }).done(function (data) {
-                    alert("Number of Invites Sent: " + data.SendGigInviteResult);
-                }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
-                });
-        }
 
-        function SearchGigClicked() {
-            var searchContent = document.getElementById("SearchGigBox").value;
-
-            if (!searchContent) {
-                alert("You didn't enter something to look for!");
-            }
-            else {
-                var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
-                var searchJSON = { searchWord: searchContent, userID: userDetails.ID };
-                var WCFCall = $.ajax(
-                    {
-                        type: "POST",
-                        url: "http://192.168.254.11/GigmatesService/Service1.svc/SearchGigs",
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        data: JSON.stringify(searchJSON)
-                    }).done(function (data) {
-                        alert(data.SearchGigsResult)
-                        document.querySelector('.bg-modal-reg').style.display = 'flex';
-                        var SearchResultCon = document.getElementById("gigResultCon");
-
-                        var searchedGigs = JSON.parse(data.SearchGigsResult);
-
-                        for (var i = 0; i < Object.keys(searchedGigs).length; i++) {
-
-                            var gigTitleCon = document.createElement("label");
-                            gigTitleCon.innerHTML = searchedGigs[i].Name;
-                            gigTitleCon.classList = "names";
-
-                            var br1Con = document.createElement("br");
-
-                            var br7Con = document.createElement("br");
-                            var gigCreatorName = document.createElement("label");
-                            gigCreatorName.innerHTML = "Creator Name: " + searchedGigs[i].CreatorName;
-                            gigCreatorName.classList = 'capt';
-                            var gigCreatorID = document.createElement("label");
-                            gigCreatorID.innerHTML = searchedGigs[i].Creator;
-                            gigCreatorID.classList = 'd-none';
-
-                            var gigDateCon = document.createElement("label");
-                            gigDateCon.innerHTML = "Date: " + searchedGigs[i].Date;
-                            gigDateCon.classList = "capt";
-
-                            var br2Con = document.createElement("br");
-                            var gigCreatorCon = document.createElement("label");
-                            gigCreatorCon.innerHTML = "Creator: " + searchedGigs[i].CreatorName;
-                            gigCreatorCon.classList = "capt";
-
-                            var br3Con = document.createElement("br");
-                            var gigGenreCon = document.createElement("label");
-                            gigGenreCon.innerHTML = "Genre: " + searchedGigs[i].GenreName;
-                            gigGenreCon.classList = "capt";
-
-                            var br4Con = document.createElement("br");
-                            var gigVenueCon = document.createElement("label");
-                            gigVenueCon.innerHTML = "Venue: " + searchedGigs[i].Venue;
-                            gigVenueCon.classList = "capt";
-
-                            var br5Con = document.createElement("br");
-                            var gigIDCon = document.createElement("label");
-                            gigIDCon.innerHTML = searchedGigs[i].GigID;
-                            gigIDCon.classList = "d-none";
-
-                            var br6Con = document.createElement("br");
-                            var buttonCenterCon = document.createElement("center");
-                            var joinButtonCon = document.createElement("button");
-                            joinButtonCon.classList = "btn btn-primary";
-                            joinButtonCon.type = "button";
-                            joinButtonCon.innerHTML = "Join Gig";
-
-                            $(joinButtonCon).click(function () {
-                                SendGigRequest(gigIDCon.innerHTML, userDetails.ID, gigCreatorID.innerHTML);
-                                document.querySelector('.bg-modal-reg').style.display = 'none';
-                                window.location.href = 'mainpage.html';
-
-                            });
-                            buttonCenterCon.appendChild(joinButtonCon);
-
-                            SearchResultCon.appendChild(gigTitleCon);
-                            SearchResultCon.appendChild(br1Con);
-                            SearchResultCon.appendChild(gigCreatorName);
-                            SearchResultCon.appendChild(br7Con);
-                            SearchResultCon.appendChild(gigDateCon);
-                            SearchResultCon.appendChild(br2Con);
-                            SearchResultCon.appendChild(gigCreatorCon);
-                            SearchResultCon.appendChild(br3Con);
-                            SearchResultCon.appendChild(gigGenreCon);
-                            SearchResultCon.appendChild(br4Con);
-                            SearchResultCon.appendChild(gigVenueCon);
-                            SearchResultCon.appendChild(br6Con);
-                            SearchResultCon.appendChild(buttonCenterCon);
-                            SearchResultCon.appendChild(br5Con);
-                            SearchResultCon.appendChild(gigIDCon);
-                            SearchResultCon.appendChild(gigCreatorID);
-
+                function SendGigmateRequest(senderID, receiverID) {
+                    var inviteJSON = {
+                        "NewInvite":
+                        {
+                            SenderID: senderID,
+                            ReceiverID: receiverID,
+                            TypeID: 3
                         }
-
-                    }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
-                    });
-            }
-
-        }
-
-        function SearchGigmateClicked() {
-            var searchContent = document.getElementById("SearchGigmateBox").value;
-
-            if (!searchContent) {
-                alert("You didn't enter something to look for!");
-            }
-            else {
-                var searchJSON = { searchWord: searchContent };
-                var WCFCall = $.ajax(
-                    {
-                        type: "POST",
-                        url: "http://192.168.254.11/GigmatesService/Service1.svc/SearchGigmates",
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        data: JSON.stringify(searchJSON)
-                    }).done(function (data) {
-                        alert(data.SearchGigmatesResult);
-                        document.querySelector('.bg-modal-r').style.display = 'flex';
-
-                        var gigmateSearchJSON = JSON.parse(data.SearchGigmatesResult);
-                        var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
-                        var searchGigmatesCon = document.getElementById("searchedGigmateCon");
-
-                        for (var i = 0; i < Object.keys(gigmateSearchJSON).length; i++) {
-                            var nameCon = document.createElement("label");
-                            nameCon.innerHTML = "Name: " + gigmateSearchJSON[i].Firstname + ' ' + gigmateSearchJSON[i].Lastname;
-                            nameCon.classList = "names";
-                            var br1 = document.createElement("br");
-
-                            var usernameCon = document.createElement("label");
-                            usernameCon.innerHTML = "Username: " + gigmateSearchJSON[i].Username;
-                            usernameCon.classList = "capt";
-                            var br2 = document.createElement("br");
-
-                            var locationCon = document.createElement("label");
-                            locationCon.innerHTML = "Location: " + gigmateSearchJSON[i].Location;
-                            locationCon.classList = "capt";
-                            var br3 = document.createElement("br");
-
-                            var buttonCenter = document.createElement("center");
-                            var gigmateButton = document.createElement("button");
-                            gigmateButton.classList = "btn btn-primary";
-                            gigmateButton.type = "button";
-                            gigmateButton.innerHTML = "Gigmate Request";
-
-
-                            buttonCenter.appendChild(gigmateButton);
-
-                            var idCon = document.createElement("label");
-                            idCon.innerHTML = gigmateSearchJSON[i].ID;
-                            idCon.classList = "d-none";
-                            var br4 = document.createElement("br");
-
-                            $(gigmateButton).click(function () {
-                                SendGigmateRequest(userDetails.ID, idCon.innerHTML);
-                                document.querySelector('.bg-modal-r').style.display = 'none';
-                                window.location.href = 'mainpage.html';
-                            });
-
-                            searchGigmatesCon.appendChild(nameCon);
-                            searchGigmatesCon.appendChild(br1);
-                            searchGigmatesCon.appendChild(usernameCon);
-                            searchGigmatesCon.appendChild(br2);
-                            searchGigmatesCon.appendChild(locationCon);
-                            searchGigmatesCon.appendChild(br3);
-                            searchGigmatesCon.appendChild(buttonCenter);
-                            searchGigmatesCon.appendChild(idCon);
-                            searchGigmatesCon.appendChild(br4);
-
-                        }
-
-                    }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
-                        alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
-                    });
-            }
-
-
-        }
-
-        function SendGigmateRequest(senderID, receiverID) {
-            var inviteJSON = {
-                "NewInvite":
-                {
-                    SenderID: senderID,
-                    ReceiverID: receiverID,
-                    TypeID: 3
+                    }
+                    var WCFCall = $.ajax(
+                        {
+                            type: "POST",
+                            url: "http://192.168.254.11/GigmatesService/Service1.svc/SendPersonInvite",
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify(inviteJSON)
+                        }).done(function (data) {
+                            alert("Invites Sent: " + data.SendPersonInviteResult);
+                            document.querySelector('.bg-modal').style.display = 'none';
+                            window.location.href = 'mainpage.html';
+                        }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                        });
                 }
-            }
-            var WCFCall = $.ajax(
-                {
-                    type: "POST",
-                    url: "http://192.168.254.11/GigmatesService/Service1.svc/SendPersonInvite",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    data: JSON.stringify(inviteJSON)
-                }).done(function (data) {
-                    alert("Invites Sent: " + data.SendPersonInviteResult);
-                    document.querySelector('.bg-modal').style.display = 'none';
-                    window.location.href = 'mainpage.html';
-                }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
-                    alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
-                });
-        }
 
 
 
-    </script>
+            </script>
 </body>
 </html>

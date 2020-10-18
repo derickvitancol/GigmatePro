@@ -325,15 +325,20 @@
     <div class="bg-modal-i" style="display:none">
         <div class="modal-cont">
             <div class="modal-header">
-                <div class="close" id="clsi">x</div>
+                <div class="close" id="clsi" style="cursor:pointer">x</div>
             </div>
             <center>
 
                 <h2>INVITE USER</h2>
                 <br />
-                <label for="gnameSelect">Name of Gig:</label>
+                <label for="gnameSelect" style="font-size:12px">Name of Gig:</label>
                 <select id="gnameSelect" />
-
+                <br />               
+                <br />
+                <input type="text" class="row form-control" placeholder="Name of User" id="nameUBox">
+                
+                <br />
+                <button class="btn btn-primary" role="button">Invite</button>
 
             </center>
 

@@ -169,7 +169,7 @@
                 <div id="page-wrapper">
                     <div id="page-inner">
 
-                        <div class="grid-container">
+                        <div class="grid-container-invite">
                             <div class="col-sm-6 col-md-4">
                                 <div class="thumbnail">
                                     <div class="caption">
@@ -189,7 +189,7 @@
                                         <br />
                                         <label class="capt">Bio</label>
                                         <center>
-                                            <p><a href="#" class="btn btn-primary" role="button">Invite</a></p>
+                                            <p><a href="#Invite" class="btn btn-primary" role="button" id="loadIModal">Invite</a></p>
                                         </center>
 
                                     </div>
@@ -197,6 +197,25 @@
                             </div>
                         </div>
                         <!-- /. PAGE INNER  -->
+                        <!--FOR INVITE USER-->
+                        <!--<div class="bg-modal-i" style="display:none">
+                            <div class="modal-cont">
+                                <div class="modal-header">
+                                    <div class="close" id="clsi">x</div>
+                                </div>
+                                <center>
+
+                                    <h2>INVITE USER</h2>
+                                    <br />
+                                    <label for="gnameSelect">Name of Gig:</label>
+                                    <select id="gnameSelect" />
+
+
+                                </center>
+
+
+                            </div>
+                        </div>-->
 
                     </div>
                     <!-- /. PAGE WRAPPER  -->
@@ -206,6 +225,30 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+    <!--BOTTOM NAV-->
+    <nav class="navbar fixed-bottom navbar-dark bg-dark" id="Main">
+        <div class="navbar-nav">
+            <ul class="actions" id="main-menu">
+                <li>
+                    <a class="nav-item nav-link active" href="mainpage.html">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li>
+                    <a class="nav-item nav-link" href="notif.html">Notifications</a>
+                </li>
+                <li>
+                    <a class="nav-item nav-link" href="prof.html">Profile</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
 
     <!--MODAL OF SEARCH UPCOMING GIGS-->
     <div class="bg-modal-reg" style="display:none">
@@ -269,163 +312,36 @@
                             </div>
                         </div>
                     </div>
-                </div>   
+                </div>
             </center>
 
 
 
-            
+
         </div>
     </div>
 
-    <!--BOTTOM NAV-->
-    <nav class="navbar fixed-bottom navbar-dark bg-dark" id="Main">
-        <div class="navbar-nav">
-            <ul class="actions" id="main-menu">
-                <li>
-                    <a class="nav-item nav-link active" href="mainpage.html">Home<span class="sr-only">(current)</span></a>
-                </li>
-                <li>
-                    <a class="nav-item nav-link" href="notif.html">Notifications</a>
-                </li>
-                <li>
-                    <a class="nav-item nav-link" href="prof.html">Profile</a>
-                </li>
-            </ul>
+    <!--FOR INVITE USER-->
+    <div class="bg-modal-i" style="display:none">
+        <div class="modal-cont">
+            <div class="modal-header">
+                <div class="close" id="clsi">x</div>
+            </div>
+            <center>
+
+                <h2>INVITE USER</h2>
+                <br />
+                <label for="gnameSelect">Name of Gig:</label>
+                <select id="gnameSelect" />
+
+
+            </center>
+
+
         </div>
-    </nav>
+    </div>
 
-    <style>
-
-        .vertical-menu {
-            width: 500px;
-        }
-
-            .vertical-menu a {
-                background-color: transparent;
-                color: white;
-                display: block;
-                padding: 12px;
-                text-decoration: none;
-            }
-
-                .vertical-menu a:hover {
-                    background-color: #ccc;
-                }
-
-                .vertical-menu a.active {
-                    color: lightblue;
-                }
-
-        .search {
-            /*border: 2px solid #3b1fa0;*/
-            /*border: 2px solid #7f4caf;*/
-            /*border: 2px solid rgb(18, 15, 51);*/
-            border: 2px solid #36498f;
-            overflow: auto;
-            border-radius: 5px;
-            -moz-border-radius: 5px;
-            -webkit-border-radius: 5px;
-        }
-
-            .search input[type="text"] {
-                border: 0px;
-                width: 67%;
-                padding: 10px 10px;
-            }
-
-                .search input[type="text"]:focus {
-                    outline: 0;
-                }
-
-            .search a[id=loadSModal] {
-                border: 0px;
-                background: none;
-                /*background-color: #4932c9;*/
-                /*background-color: rgb(12, 8, 68);*/
-                background-color: #36498f;
-                opacity: 0.7;
-                color: #fff;
-                float: right;
-                padding: 10px;
-                border-radius-top-right: 5px;
-                -moz-border-radius-top-right: 5px;
-                -webkit-border-radius-top-right: 5px;
-                border-radius-bottom-right: 5px;
-                -moz-border-radius-bottom-right: 5px;
-                -webkit-border-radius-bottom-right: 5px;
-                cursor: pointer;
-                border-radius: 0px;
-            }
-
-            .search a[id=loadSGMModal] {
-                border: 0px;
-                background: none;
-                /*background-color: #4932c9;*/
-                /*background-color: rgb(12, 8, 68);*/
-                background-color: #36498f;
-                opacity: 0.7;
-                color: #fff;
-                float: right;
-                padding: 10px;
-                border-radius-top-right: 5px;
-                -moz-border-radius-top-right: 5px;
-                -webkit-border-radius-top-right: 5px;
-                border-radius-bottom-right: 5px;
-                -moz-border-radius-bottom-right: 5px;
-                -webkit-border-radius-bottom-right: 5px;
-                cursor: pointer;
-                border-radius: 0px;
-            }
-
-            .search p[class=float-right] {
-                margin-bottom: 0;
-            }
-
-
-        /* ===========================
-        ====== Medua Query for Search Box ======
-        =========================== */
-
-        @media only screen and (min-width : 150px) and (max-width : 780px) {
-
-        {
-        }
-
-        .search {
-            width: 95%;
-            margin: 0 auto;
-        }
-
-        }
-
-        .grid-container {
-            display: grid;
-            grid-gap: 10px;
-            background-color: #36498f;
-            opacity: 0.9;
-            padding: 15px;
-            height: auto;
-            
-        }
-
-        .grid-item {
-            background-color: rgba(255, 255, 255, 0.8);
-            text-align: center;
-            padding: 20px;
-            font-size: 30px;
-        }
-
-        .item1 {
-            grid-column: 1;
-            grid-row: 1;
-        }
-
-        .item2 {
-            grid-column: 2 / span 3;
-            grid-row: 1;
-        }
-    </style>
+    
     <script type="text/javascript" src="scripts/jQuery/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="scripts/popper.min.js"></script>
     <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
@@ -459,9 +375,10 @@
             document.getElementById('cls').addEventListener('click', function () {
                 window.location.href = 'mainpage.html';
                 document.querySelector('.bg-modal-reg').style.display = 'none';
-                
+
             });
         });
+
 
         $(document).ready(function () {
             //document.getElementById('loadSGMModal').addEventListener('click', function () {
@@ -471,9 +388,20 @@
             document.getElementById('cls2').addEventListener('click', function () {
                 window.location.href = 'mainpage.html';
                 document.querySelector('.bg-modal-r').style.display = 'none';
-                
+
             });
         });
+
+        $(document).ready(function () {
+            document.getElementById('loadIModal').addEventListener('click', function () {
+                document.querySelector('.bg-modal-i').style.display = 'flex';
+            });
+
+            document.getElementById('clsi').addEventListener('click', function () {
+                document.querySelector('.bg-modal-i').style.display = 'none';
+            });
+        });
+
 
         $(document).ready(function () {
             document.getElementById('cGigBtn').addEventListener('click', function () {
@@ -484,6 +412,8 @@
                 document.querySelector('.bg-modal').style.display = 'none';
             });
         });
+
+
 
 
 
@@ -596,9 +526,9 @@
                                 var gigID = $(joinGigButton).parent().siblings("#gigID").html();
                                 var receiverID = $(joinGigButton).parent().siblings("#creatorID").html();
                                 SendGigRequest(gigID, userDetails.ID, receiverID);
-                                
+
                                 window.location.href = "mainpage.html";
-                                
+
                             });
 
                             centerCon.appendChild(nameCon);
@@ -657,18 +587,15 @@
                 });
         }
 
-        function SearchGigClicked()
-        {
+        function SearchGigClicked() {
             var searchContent = document.getElementById("SearchGigBox").value;
-            
-            if (!searchContent)
-            {
+
+            if (!searchContent) {
                 alert("You didn't enter something to look for!");
             }
-            else
-            {
+            else {
                 var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
-                var searchJSON = { searchWord: searchContent, userID:userDetails.ID};
+                var searchJSON = { searchWord: searchContent, userID: userDetails.ID };
                 var WCFCall = $.ajax(
                     {
                         type: "POST",
@@ -682,10 +609,9 @@
                         var SearchResultCon = document.getElementById("gigResultCon");
 
                         var searchedGigs = JSON.parse(data.SearchGigsResult);
-                        
-                        for (var i = 0; i < Object.keys(searchedGigs).length; i++)
-                        {
-                            
+
+                        for (var i = 0; i < Object.keys(searchedGigs).length; i++) {
+
                             var gigTitleCon = document.createElement("label");
                             gigTitleCon.innerHTML = searchedGigs[i].Name;
                             gigTitleCon.classList = "names";
@@ -695,13 +621,13 @@
                             var br7Con = document.createElement("br");
                             var gigCreatorName = document.createElement("label");
                             gigCreatorName.innerHTML = "Creator Name: " + searchedGigs[i].CreatorName;
-                            gigCreatorName.classList = 'capt'; 
+                            gigCreatorName.classList = 'capt';
                             var gigCreatorID = document.createElement("label");
                             gigCreatorID.innerHTML = searchedGigs[i].Creator;
-                            gigCreatorID.classList = 'd-none'; 
+                            gigCreatorID.classList = 'd-none';
 
                             var gigDateCon = document.createElement("label");
-                            gigDateCon.innerHTML = "Date: "+searchedGigs[i].Date;
+                            gigDateCon.innerHTML = "Date: " + searchedGigs[i].Date;
                             gigDateCon.classList = "capt";
 
                             var br2Con = document.createElement("br");
@@ -731,8 +657,7 @@
                             joinButtonCon.type = "button";
                             joinButtonCon.innerHTML = "Join Gig";
 
-                            $(joinButtonCon).click(function ()
-                            {
+                            $(joinButtonCon).click(function () {
                                 SendGigRequest(gigIDCon.innerHTML, userDetails.ID, gigCreatorID.innerHTML);
                                 document.querySelector('.bg-modal-reg').style.display = 'none';
                                 window.location.href = 'mainpage.html';
@@ -756,26 +681,23 @@
                             SearchResultCon.appendChild(br5Con);
                             SearchResultCon.appendChild(gigIDCon);
                             SearchResultCon.appendChild(gigCreatorID);
-                            
+
                         }
 
                     }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
                         alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
                     });
             }
-            
+
         }
 
-        function SearchGigmateClicked()
-        {
+        function SearchGigmateClicked() {
             var searchContent = document.getElementById("SearchGigmateBox").value;
-            
-            if (!searchContent)
-            {
+
+            if (!searchContent) {
                 alert("You didn't enter something to look for!");
             }
-            else
-            {
+            else {
                 var searchJSON = { searchWord: searchContent };
                 var WCFCall = $.ajax(
                     {
@@ -784,8 +706,7 @@
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
                         data: JSON.stringify(searchJSON)
-                    }).done(function (data)
-                    {
+                    }).done(function (data) {
                         alert(data.SearchGigmatesResult);
                         document.querySelector('.bg-modal-r').style.display = 'flex';
 
@@ -793,20 +714,19 @@
                         var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
                         var searchGigmatesCon = document.getElementById("searchedGigmateCon");
 
-                        for (var i = 0; i < Object.keys(gigmateSearchJSON).length; i++)
-                        {
+                        for (var i = 0; i < Object.keys(gigmateSearchJSON).length; i++) {
                             var nameCon = document.createElement("label");
-                            nameCon.innerHTML = "Name: "+gigmateSearchJSON[i].Firstname + ' ' + gigmateSearchJSON[i].Lastname;
+                            nameCon.innerHTML = "Name: " + gigmateSearchJSON[i].Firstname + ' ' + gigmateSearchJSON[i].Lastname;
                             nameCon.classList = "names";
                             var br1 = document.createElement("br");
 
                             var usernameCon = document.createElement("label");
-                            usernameCon.innerHTML ="Username: " + gigmateSearchJSON[i].Username;
+                            usernameCon.innerHTML = "Username: " + gigmateSearchJSON[i].Username;
                             usernameCon.classList = "capt";
                             var br2 = document.createElement("br");
 
                             var locationCon = document.createElement("label");
-                            locationCon.innerHTML = "Location: "+gigmateSearchJSON[i].Location;
+                            locationCon.innerHTML = "Location: " + gigmateSearchJSON[i].Location;
                             locationCon.classList = "capt";
                             var br3 = document.createElement("br");
 
@@ -816,7 +736,7 @@
                             gigmateButton.type = "button";
                             gigmateButton.innerHTML = "Gigmate Request";
 
-                          
+
                             buttonCenter.appendChild(gigmateButton);
 
                             var idCon = document.createElement("label");
@@ -842,17 +762,15 @@
 
                         }
 
-                    }).fail(function (XMLHttpRequest, textStatus, errorThrown)
-                    {
+                    }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
                         alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
                     });
             }
-             
+
 
         }
 
-        function SendGigmateRequest(senderID,receiverID)
-        {
+        function SendGigmateRequest(senderID, receiverID) {
             var inviteJSON = {
                 "NewInvite":
                 {
@@ -868,16 +786,16 @@
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     data: JSON.stringify(inviteJSON)
-                }).done(function (data)
-                {
+                }).done(function (data) {
                     alert("Invites Sent: " + data.SendPersonInviteResult);
                     document.querySelector('.bg-modal').style.display = 'none';
                     window.location.href = 'mainpage.html';
-                }).fail(function (XMLHttpRequest, textStatus, errorThrown)
-                {
+                }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
                     alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
                 });
         }
+
+
 
     </script>
 </body>

@@ -172,8 +172,8 @@
                         <div class="grid-container">
                             <div class="col-sm-6 col-md-4">
                                 <div class="thumbnail">
-                                    <div class="caption">
-                                        <center>
+                                    <div class="caption" id="GigmatesCon">
+                                        <!--<center>
                                             <label class="names">Name of Gig Mate</label>
                                             <br />
                                             <label class="capt">@username</label>
@@ -190,7 +190,7 @@
                                         <label class="capt">Bio</label>
                                         <center>
                                             <p><a href="#" class="btn btn-primary" role="button">Invite</a></p>
-                                        </center>
+                                        </center>-->
 
                                     </div>
                                 </div>
@@ -270,11 +270,7 @@
                         </div>
                     </div>
                 </div>   
-            </center>
-
-
-
-            
+            </center>           
         </div>
     </div>
 
@@ -440,6 +436,7 @@
             getUserData();
             getGenres(document.getElementById("GigGenreBox"));
             GetAvailableGigs();
+            
 
         }
 
@@ -447,6 +444,7 @@
         $('a[href="#Gigs"]').click(function () {
             $('.navbar-toggle:visible').click();
             $("#MainPage").hide();
+            GetGigmates();
             $("#Gigs").show();
         });
 
@@ -536,7 +534,7 @@
 
         function GetAvailableGigs() {
             var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
-            var userJSON = { "userID": userDetails.ID };
+            var userJSON = { "userID": userDetails.ID};
             var WCFCall = $.ajax(
                 {
                     type: "POST",
@@ -609,8 +607,13 @@
                             divParent.appendChild(brElem2);
                             divParent.appendChild(creatorNameCon);
                             divParent.appendChild(brElem);
-                            buttonCenter.appendChild(joinGigButton);
-                            divParent.appendChild(buttonCenter);
+                            
+                            if (userDetails.TypeID == 1)
+                            {
+                                buttonCenter.appendChild(joinGigButton);
+                                divParent.appendChild(buttonCenter);
+                            }
+                            
                             divParent.appendChild(idCon);
                             divParent.appendChild(creatorIDCon);
                             containerDiv.appendChild(divParent);
@@ -623,7 +626,6 @@
                         containerDiv.appendChild(messageCon);
 
                     }
-
 
                 }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
                     alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
@@ -677,7 +679,7 @@
                         dataType: "json",
                         data: JSON.stringify(searchJSON)
                     }).done(function (data) {
-                        alert(data.SearchGigsResult)
+
                         document.querySelector('.bg-modal-reg').style.display = 'flex';
                         var SearchResultCon = document.getElementById("gigResultCon");
 
@@ -762,14 +764,12 @@
                     }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
                         alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
                     });
-            }
-            
+            }            
         }
 
         function SearchGigmateClicked()
         {
-            var searchContent = document.getElementById("SearchGigmateBox").value;
-            
+            var searchContent = document.getElementById("SearchGigmateBox").value;            
             if (!searchContent)
             {
                 alert("You didn't enter something to look for!");
@@ -786,7 +786,6 @@
                         data: JSON.stringify(searchJSON)
                     }).done(function (data)
                     {
-                        alert(data.SearchGigmatesResult);
                         document.querySelector('.bg-modal-r').style.display = 'flex';
 
                         var gigmateSearchJSON = JSON.parse(data.SearchGigmatesResult);
@@ -847,8 +846,7 @@
                         alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
                     });
             }
-             
-
+            
         }
 
         function SendGigmateRequest(senderID,receiverID)
@@ -873,6 +871,103 @@
                     alert("Invites Sent: " + data.SendPersonInviteResult);
                     document.querySelector('.bg-modal').style.display = 'none';
                     window.location.href = 'mainpage.html';
+                }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+                {
+                    alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                });
+        }
+
+        function GetGigmates()
+        {
+            var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+            var personJSON = { userID: userDetails.ID };
+            var WCFCall = $.ajax(
+                {
+                    type: "POST",
+                    url: "http://192.168.254.11/GigmatesService/Service1.svc/GetGigmates",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(personJSON)
+                }).done(function (data)
+                {
+             
+                    var gigmateList = JSON.parse(data.GetGigmatesResult);
+
+                    var gigmatesContainer = document.getElementById("GigmatesCon");
+                    if (0 < Object.keys(gigmateList).length)
+                    {
+                        for (var i = 0; i < Object.keys(gigmateList).length; i++)
+                        {
+                            var centerCon = document.createElement("center");
+                            var nameCon = document.createElement("label");
+                            nameCon.innerHTML = gigmateList[i].Firstname + ' ' + gigmateList[i].Lastname;
+                            nameCon.classList = "names";
+                            centerCon.appendChild(nameCon);
+
+                            var br1Con = document.createElement("br");
+
+                            var genderCon = document.createElement("label");
+                            genderCon.innerHTML = "Gender: " + determineGenderName(gigmateList[i].Gender);
+                            genderCon.classList = "capt";
+                            var br2Con = document.createElement("br");
+
+                            var locationCon = document.createElement("label");
+                            locationCon.innerHTML = "Location: " + gigmateList[i].Location;
+                            locationCon.classList = "capt";
+                            var br3Con = document.createElement("br");
+
+                            var usernameCon = document.createElement("label");
+                            usernameCon.innerHTML = "Username: " + gigmateList[i].Username;
+                            usernameCon.classList = "capt";
+                            var br4Con = document.createElement("br");
+
+                            var bioCon = document.createElement("label");
+                            bioCon.innerHTML = "Bio: " + gigmateList[i].Bio;
+                            bioCon.classList = "capt";
+                            var br5Con = document.createElement("br");
+
+                            var idCon = document.createElement("label");
+                            idCon.innerHTML = gigmateList[i].ID;
+                            idCon.classList = "d-none";
+
+                            var personTypeCon = document.createElement("label");
+                            personTypeCon.innerHTML = gigmateList[i].Type;
+                            personTypeCon.classList = "d-none";
+
+                            var buttonCenter = document.createElement("center");
+                            var inviteToGigButtonCon = document.createElement("button");
+                            inviteToGigButtonCon.classList = "btn btn-primary";
+                            inviteToGigButtonCon.type = "button";
+                            inviteToGigButtonCon.innerHTML = "Invite To Your Gig";
+                            buttonCenter.appendChild(inviteToGigButtonCon);
+
+                            gigmatesContainer.appendChild(centerCon);
+                            gigmatesContainer.appendChild(br1Con);
+                            gigmatesContainer.appendChild(genderCon);
+                            gigmatesContainer.appendChild(br2Con);
+                            gigmatesContainer.appendChild(locationCon);
+                            gigmatesContainer.appendChild(br3Con);
+                            gigmatesContainer.appendChild(usernameCon);
+                            gigmatesContainer.appendChild(br4Con);
+                            gigmatesContainer.appendChild(bioCon);
+                            gigmatesContainer.appendChild(br5Con);
+                            if (parseInt(personTypeCon.innerHTML) == 1)
+                            {
+                                gigmatesContainer.appendChild(buttonCenter);
+                            }                          
+                            gigmatesContainer.appendChild(idCon);
+                        }
+                    }
+                    else
+                    {
+                        var messCon = document.createElement("label");
+                        messCon.innerHTML = "You don't have gigmates yet.";
+                        messCon.classList = "capt";
+
+                        gigmatesContainer.appendChild(messCon);
+                    }
+                    
+                    
                 }).fail(function (XMLHttpRequest, textStatus, errorThrown)
                 {
                     alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);

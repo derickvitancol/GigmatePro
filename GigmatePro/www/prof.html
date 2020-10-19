@@ -84,16 +84,16 @@
                             <div class="col-sm-6 col-md-4">
                                 <div class="thumbnail">
                                     <div class="col-sm-6">
-                                        <center>
+                                        <center id="reviewsCon">
                                             <label class="namess">RATINGS AND REVIEWS</label>
                                             <br />
-                                            <label class="hsix">Name of User</label>
+                                            <!--<label class="hsix">Name of User</label>
                                             <br />
                                             <label class="hfive">Rating</label>
                                             <br />
                                             <label class="hfive">Review</label>
                                             <br />
-                                            <br />
+                                            <br />-->
                                         </center>
                                     
                                     </div>
@@ -363,15 +363,15 @@
                         <div class="grid-container">
                             <div class="col-sm-6 col-md-4">
                                 <div class="thumbnail">
-                                    <div class="caption">
-                                        <center>
+                                    <div class="caption" id="historyCon">
+                                        <!--<center>
                                             <label class="names">Name of Gig Attended</label>
                                         </center>
                                         <br />
                                         <label class="capt">Venue</label>
                                         <br />
                                         <label class="capt">Schedule</label>
-                                        <br />
+                                        <br />-->
 
                                     </div>
                                 </div>
@@ -519,6 +519,7 @@
             document.getElementById("locationLabel").innerHTML = "Location: "+userDetails.Location;
 
             GetSong(userDetails.ID); 
+            GetUserReviews();
         }
 
         function getProfileDataForModal()
@@ -542,14 +543,12 @@
             setTimeout(function () { document.location.href = "index.html", 500 });
         }
 
-        
+        //FUNCTION CALLED WHEN THE PAGE IS LOADED 
         function loadingFunctions() {
             getGenres(document.getElementById("genreSelect"));
             personJSON = JSON.parse(window.localStorage.getItem("userDetails"));
 
-
-            document.getElementById("mArtistBox").value = personJSON.Username;
-
+            document.getElementById("mArtistBox").value = personJSON.Username;  
             
         }
 
@@ -610,38 +609,50 @@
             var songList = window.localStorage.getItem("songList");
             var songDisplay = document.getElementById("SongListDiv");
             songList = JSON.parse(songList);
-            for (var i = 0; i < Object.keys(songList).length; i++)
+            if (Object.keys(songList).length > 0)
             {
-                var capElem = document.createElement("div");
-                capElem.setAttribute("class", "caption");
+                for (var i = 0; i < Object.keys(songList).length; i++) {
+                    var capElem = document.createElement("div");
+                    capElem.setAttribute("class", "caption");
 
-                var centerCon = document.createElement("center");
-                var labCon = document.createElement("label");
+                    var centerCon = document.createElement("center");
+                    var labCon = document.createElement("label");
+                    var br1Elem = document.createElement("br");
 
-                var titleCon = document.createElement("label");
-                titleCon.classList = "names";
+                    var titleCon = document.createElement("label");
+                    titleCon.classList = "names";
+                    var br2Elem = document.createElement("br");
 
-                var descCon = document.createElement("label");
-                descCon.classList = "capt";
+                    var descCon = document.createElement("label");
+                    descCon.classList = "capt";
 
-                var genreCon = document.createElement("label");
-                genreCon.classList = "capt";
-                var SongGenre = songList[i].Genre;
+                    var genreCon = document.createElement("label");
+                    genreCon.classList = "capt";
+                    var SongGenre = songList[i].Genre;
 
+                    descCon.innerHTML = "Description:" + songList[i].Description;
+                    genreCon.innerHTML = "Genre: " + determineGenre(songList[i].Genre);
+                    titleCon.innerHTML = "Title: " + songList[i].Name;
 
+                    labCon.appendChild(titleCon);
+                    centerCon.appendChild(labCon);
+                    capElem.appendChild(labCon);
+                    capElem.appendChild(br1Elem);
+                    capElem.appendChild(genreCon);
+                    capElem.appendChild(br2Elem);
+                    capElem.appendChild(descCon);
 
-                descCon.innerHTML = songList[i].Description;
-                genreCon.innerHTML = determineGenre(songList[i].Genre);
-                titleCon.innerHTML = songList[i].Name;
-
-                
-                labCon.appendChild(titleCon);
-                centerCon.appendChild(labCon);
-                capElem.appendChild(labCon);
-                capElem.appendChild(genreCon);
-                capElem.appendChild(descCon);
-                songDisplay.appendChild(capElem);
+                    songDisplay.appendChild(capElem);
+                }
             }
+            else
+            {
+                var messCon = document.createElement("label");
+                messCon.innerHTML = "You don't have registered songs.";
+                messCon.classList = "capt";
+                songDisplay.appendChild(messCon);
+            }
+            
             
         }
         //FUNCTION TO GET JOINS JOINED THAT ARE UPCOMING
@@ -662,10 +673,8 @@
 
                     var gigList = JSON.parse(data.GetGigsForProfResult);
                     var parentContainer = document.getElementById("GigsCon");
-                    if (Object.keys(gigList).length > 0)
-                    {
-                        for (var i = 0; i < Object.keys(gigList).length; i++)
-                        {
+                    if (Object.keys(gigList).length > 0) {
+                        for (var i = 0; i < Object.keys(gigList).length; i++) {
                             var centerName = document.createElement("center");
                             var nameCon = document.createElement("label");
                             nameCon.innerHTML = gigList[i].Name;
@@ -676,27 +685,27 @@
                             var brElem = document.createElement("br");
 
                             var venueCon = document.createElement("label");
-                            venueCon.innerHTML = "Venue: "+gigList[i].Venue;
+                            venueCon.innerHTML = "Venue: " + gigList[i].Venue;
                             venueCon.classList = "capt";
                             var br2Elem = document.createElement("br");
 
                             var dateCon = document.createElement("label");
-                            dateCon.innerHTML = "Schedule: "+gigList[i].Date;
+                            dateCon.innerHTML = "Schedule: " + gigList[i].Date;
                             dateCon.classList = "capt";
                             var br3Elem = document.createElement("br");
 
                             var genreCon = document.createElement("label");
-                            genreCon.innerHTML = "Genre: "+gigList[i].GenreName;
+                            genreCon.innerHTML = "Genre: " + gigList[i].GenreName;
                             genreCon.classList = "capt";
                             var br4Elem = document.createElement("br");
 
                             var creatorCon = document.createElement("label");
-                            creatorCon.innerHTML = "Gig By: "+gigList[i].CreatorName;
+                            creatorCon.innerHTML = "Gig By: " + gigList[i].CreatorName;
                             creatorCon.classList = "capt";
                             var br5Elem = document.createElement("br");
 
                             var statusCon = document.createElement("label");
-                            statusCon.innerHTML = "Status: "+gigList[i].Status;
+                            statusCon.innerHTML = "Status: " + gigList[i].Status;
                             statusCon.classList = "capt";
 
                             parentContainer.appendChild(centerName);
@@ -713,6 +722,13 @@
 
                         }
                     }
+                    else
+                    {
+                        var messCon = document.createElement("label");
+                        messCon.innerHTML = "You don't have upcoming gigs."
+                        messCon.classList = "capt";
+                        parentContainer.appendChild(messCon);
+                    }
                 }).fail(function (XMLHttpRequest, textStatus, errorThrown)
                 {
                     alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
@@ -723,7 +739,80 @@
         function GetGigsHistory()
         {
             var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
-            var personJSON = { userID: userDetails.ID };
+            var WCFCall = $.ajax(
+                {
+                    type: "POST",
+                    url: "http://192.168.254.11/GigmatesService/Service1.svc/GetGigHistory",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify({ userID: userDetails.ID })
+                }).done(function (data)
+                {
+
+                    var historyResult = JSON.parse(data.GetGigHistoryResult);
+                    var historyCon = document.getElementById("historyCon");
+                    if (Object.keys(historyResult).length > 0)
+                    {
+                        for (var i = 0; i < Object.keys(historyResult).length; i++)
+                        {
+                            var centerName = document.createElement("center");
+                            var nameCon = document.createElement("label");
+                            nameCon.innerHTML = historyResult[i].Name;
+                            nameCon.classList = "names";
+                            centerName.appendChild(nameCon);
+                            var br1Elem = document.createElement("br");
+
+                            var venueCon = document.createElement("label");
+                            venueCon.innerHTML ="Venue: "+ historyResult[i].Venue;
+                            venueCon.classList = "capt";
+                            var br2Elem = document.createElement("br");
+
+                            var dateCon = document.createElement("label");
+                            dateCon.innerHTML = "Date: "+ historyResult[i].Date;
+                            dateCon.classList = "capt";
+                            var br3Elem = document.createElement("br");
+
+                            var genreCon = document.createElement("label");
+                            genreCon.innerHTML = "Genre: " + historyResult[i].GenreName;
+                            genreCon.classList = "capt";
+                            var br4Elem = document.createElement("br");
+
+                            var creatorNameCon = document.createElement("label");
+                            creatorNameCon.innerHTML = "Created by: "+ historyResult[i].CreatorName;
+                            creatorNameCon.classList = "capt";
+                            var br5Elem = document.createElement("br");
+
+                            var creatorUsernameCon = document.createElement("label");
+                            creatorUsernameCon.innerHTML = "Creator Username: "+historyResult[i].CreatorUsername;
+                            creatorUsernameCon.classList = "capt";
+
+                            historyCon.appendChild(centerName);
+                            historyCon.appendChild(br1Elem);
+                            historyCon.appendChild(venueCon);
+                            historyCon.appendChild(br2Elem);
+                            historyCon.appendChild(dateCon);
+                            historyCon.appendChild(br3Elem);
+                            historyCon.appendChild(genreCon);
+                            historyCon.appendChild(br4Elem);
+                            historyCon.appendChild(creatorNameCon);
+                            historyCon.appendChild(br5Elem);
+                            historyCon.appendChild(creatorUsernameCon);
+                        }
+                       
+                    }
+                    else
+                    {
+                        var messCon = document.createElement("label");
+                        messCon.innerHTML = "You have attended a gig yet.";
+                        messCon.classList = "capt";
+
+                        historyCon.appendChild(messCon);
+                    }
+
+                }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+                {
+                    alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                });
 
             //var WCFCall = $.ajax(
             //    {
@@ -790,6 +879,78 @@
             }
         }
 
+        function GetUserReviews()
+        {
+            var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+
+            var WCFCall = $.ajax(
+                {
+                    type: "POST",
+                    url: "http://192.168.254.11/GigmatesService/Service1.svc/GetUserReviews",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify({ userID: userDetails.ID })
+                }).done(function (data)
+                {
+                    //<!--<label class="hsix" > Name of User</label >
+                    //    <br />
+                    //    <label class="hfive">Rating</label>
+                    //    <br />
+                    //    <label class="hfive">Review</label>
+                    //    <br />
+                    //    <br />-->
+                    var reviewCon = document.getElementById("reviewsCon");
+                    var reviewList = JSON.parse(data.GetUserReviewsResult);
+                    var listLen = Object.keys(reviewList).length;
+                    if (listLen > 0)
+                    {
+                        for (var i = 0; i < listLen; i++)
+                        {
+                            var rateLabel = document.createElement("label");
+                            rateLabel.classList = "capt";
+                            rateLabel.innerHTML = "Rating";
+
+                            var br1Elem = document.createElement("br");
+
+                            var ratingCon = document.createElement("label");
+                            ratingCon.innerHTML = reviewList[i].Rate;
+                            ratingCon.classList = "hfive";
+
+                            var br2Elem = document.createElement("br");                           
+
+                            var remarkLabel = document.createElement("label");
+                            remarkLabel.innerHTML = "Comment";
+                            remarkLabel.classList = "capt";
+
+                            var br3Elem = document.createElement("br");
+
+                            var remarkCon = document.createElement("label");
+                            remarkCon.innerHTML = reviewList[i].Remarks;
+                            remarkCon.classList = "hfive";
+
+                            reviewCon.appendChild(rateLabel);
+                            reviewCon.appendChild(br1Elem);
+                            reviewCon.appendChild(ratingCon);
+                            reviewCon.appendChild(br2Elem);
+                            reviewCon.appendChild(remarkLabel);
+                            reviewCon.appendChild(br3Elem);
+                            reviewCon.appendChild(remarkCon);
+                        }
+                    }
+                    else
+                    {
+                        var messCon = document.createElement("label");
+                        messCon.innerHTML = "You have no reviews at the moment";
+                        messCon.classList = "names";
+
+                        reviewCon.appendChild(messCon);
+                    }
+                }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+                {
+                    alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                });
+        }
+
         $('a[href="#Songs"]').click(function () {
             $('.navbar-toggle:visible').click();
             $("#MainPage").hide();
@@ -817,6 +978,7 @@
             $("#Songs").hide();
             $("#Gigs").hide();
             $("#History").show();
+            GetGigsHistory();
           
         });
 

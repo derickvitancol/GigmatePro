@@ -13,7 +13,7 @@
 
     <title>Sign up</title>
 </head>
-<body>
+<body onload="loadingFunc()">
     <!--NAvbaar-->
     <div class="navbar navbar-expand-md navbar-dark bg-dark d-none d-md-block nbar">
         <div class="container-fluid">
@@ -102,8 +102,7 @@
         //FUNCTION TO REGISTER A NEW USER - NEEDS CHECKING OF INPUT
         function loadingFunc()
         {
-            GetPersonTypes();
-            GetPersonTypesSelect(document.getElementById("UserTypebox"));
+            GetPersonTypes(document.getElementById("UserTypebox"));
         }
 
         function RegisterClicked() {
@@ -134,31 +133,30 @@
 
                 var val;
                 var prob;
-                $.ajax({
+                $.ajax(
+                    {
                     type: "POST",
                     url: "http://192.168.254.11/GigmatesService/Service1.svc/Register",
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     data: JSON.stringify(personJSON)
-                }).done(function (data) {
-                    alert(JSON.stringify(data.RegisterResult) + " is result");
-                    alert("registered");
-                    val = data.RegisterResult;
+                    }).done(function (data)
+                    {
+                        alert(JSON.stringify(data.RegisterResult) + " is result");
+                        alert("registered");
+                        val = data.RegisterResult;
 
-                    CancelSignupClicked();
-                }).fail(function (prob) {
-                    console.log(prob);
-                    alert(prob);
-                    val = prob;
-                });
+                        CancelSignupClicked();
+                    }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+                    {
+                        alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                    });
 
             }
             else
             {
                 alert("Please make sure all boxes have correct inputs");
-            }
-
-            
+            }            
         }
 
         //FUNCTION TO RETURN TO LOGIN PAGE ON SIGN UP
@@ -166,7 +164,7 @@
         {
 
             window.close = "signup.html";
-            window.location.href = 'index.html';
+            window.location.href = "index.html";
         }
     </script>
 </body>

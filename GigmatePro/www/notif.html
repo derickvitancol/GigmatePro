@@ -35,10 +35,10 @@
         </div>
     </div>
 
-    <div class="grid-container">
+    <!--<div class="grid-container">
         <div class="col-sm-6 col-md-6">
             <div class="thumbnail">
-                <div class="caption">
+                <div class="caption" id="ReviewCon">
                     <label class="names">Review User</label>
                     <br />
                     <label class="capt">Description</label>
@@ -51,7 +51,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
 
     <div class="bg-modal" style="display:none">
         <div class="modal-cont">
@@ -60,18 +60,33 @@
             </div>
             <center>
                 <!--<div class="close" id="cls1">x</div>
-                <br />-->
-                <h2>REVIEW USER</h2>            
+    <br />-->
+                <h2>REVIEW USER</h2>
                 <br />
-                <label for="rating">Rating:</label>
-                <input type="number" class="row form-control" id="ratingBox" min="1" max="5">
+                <label id="nameConModal" class="name">name</label>
+                <br />
+                <label id="gigConModal" class="capt">gig</label>
+                <br />
+                <label id="gigDateConModal" class="capt">date</label>
+                <br />
+                <label>Rating:</label>
+                <select class="form-control" id="ratingSelect">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select> <!--type="number" class="row form-control" id="ratingBox" min="1" max="5">-->
                 <br />
                 <label for="rating">Remarks:</label>
                 <input type="text" class="row form-control" id="remarkBox">
                 <br />
 
+                <button class="btn btn-primary" role="button" onclick="SaveRevClicked()">Save Review</button>
+                <div id="invIDCon" class="d-none">d</div>
+                <div id="pIDCon" class="d-none">p</div>
 
-                <button class="btn btn-primary" role="button">Save Review</button>              
+
             </center>
         </div>
     </div>
@@ -169,6 +184,7 @@
                     data: JSON.stringify({ "userID": userDetails.ID })
                 }).done(function (data)
                 {
+                    var reviewsCon = document.getElementById("ReviewCon");
                     var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
                     var notifsJSON = JSON.parse(data.GetInvitesResult);
                     var requestCon = document.getElementById("requestCon");
@@ -222,18 +238,40 @@
 
                                     inviteMess.innerHTML = "Request to join your Gig";
                                 }
-                                else if (parseInt(inviteTypeCon.innerHTML) == 3)
-                                {
+                                else if (parseInt(inviteTypeCon.innerHTML) == 3) {
                                     SenderNameCon = document.createElement("label");
-                                    SenderNameCon.innerHTML = "Name: "+ notifsJSON[i].GigmateInvite.Firstname + ' ' + notifsJSON[i].GigmateInvite.Lastname;
+                                    SenderNameCon.innerHTML = "Name: " + notifsJSON[i].GigmateInvite.Firstname + ' ' + notifsJSON[i].GigmateInvite.Lastname;
                                     SenderNameCon.classList = "names";
                                     SenderNameCon.id = "personName";
 
-                                    senderIDCon  = document.createElement("label");
+                                    senderIDCon = document.createElement("label");
                                     senderIDCon.innerHTML = notifsJSON[i].GigmateInvite.ID;
                                     senderIDCon.classList = "d-none";
 
                                     inviteMess.innerHTML = "Request to be your Gigmate";
+                                }
+                                else if (parseInt(inviteTypeCon.innerHTML) == 4)
+                                {
+                                    inviteMess.innerHTML = "Make a review of";
+
+                                    senderNameCon.innerHTML = "Name: " + notifsJSON[i].SenderName;
+                                    senderNameCon.classList = "names";
+                                    senderNameCon.id = "personName";
+
+                                    gigNameCon = document.createElement("label");
+                                    gigNameCon.innerHTML ="On gig: "+ notifsJSON[i].GigInvite.Name;
+                                    gigNameCon.classList = "names";
+                                    gigNameCon.id = "gigName";
+
+                                    gigDateCon = document.createElement("label");
+                                    gigDateCon.innerHTML = "Date and Time: " + notifsJSON[i].GigInvite.Date;
+                                    gigDateCon.classList = "capt";
+
+                                    gigIDCon = document.createElement("div");
+                                    gigIDCon.innerHTML = notifsJSON[i].GigInvite.GigID;
+                                    gigIDCon.classList = "d-none";
+                                    gigIDCon.id = "gigID";
+
                                 }
                                
 
@@ -335,33 +373,63 @@
                                         });
 
                                 });
+                                    rejectItemCon.appendChild(rejectItemButton);
 
-                                rejectItemCon.appendChild(rejectItemButton);
+                                    centerButton.appendChild(acceptItemCon);
+                                    centerButton.appendChild(rejectItemCon);
 
-                                centerButton.appendChild(acceptItemCon);
-                                centerButton.appendChild(rejectItemCon);
+                                    buttonsCon.appendChild(centerButton);
 
-                                buttonsCon.appendChild(centerButton);
-
-                                requestCon.appendChild(inviteIDCon);
-                                requestCon.appendChild(inviteTypeCon);
-                                requestCon.appendChild(senderIDCon);
-                                requestCon.appendChild(senderNameCon);
-                                requestCon.appendChild(centerMessage);
-                                if (parseInt(inviteTypeCon.innerHTML) == 1)
-                                {
-                                    requestCon.appendChild(gigNameCon);
-                                    requestCon.appendChild(gigDateCon);
-                                    requestCon.appendChild(gigIDCon);
-                                }
-                                else if (parseInt(inviteTypeCon.innerHTML) == 3)
-                                {
-                                    requestCon.appendChild(SenderNameCon);
+                                    requestCon.appendChild(inviteIDCon);
+                                    requestCon.appendChild(inviteTypeCon);
                                     requestCon.appendChild(senderIDCon);
-                                }
-                                requestCon.appendChild(buttonsCon);
-    
-                            
+                                    requestCon.appendChild(senderNameCon);
+                                    requestCon.appendChild(centerMessage);
+                                    if (parseInt(inviteTypeCon.innerHTML) == 1)
+                                    {
+                                        requestCon.appendChild(gigNameCon);
+                                        requestCon.appendChild(gigDateCon);
+                                        requestCon.appendChild(gigIDCon);
+
+                                        requestCon.appendChild(buttonsCon);
+                                    }
+                                    else if (parseInt(inviteTypeCon.innerHTML) == 3)
+                                    {
+                                        requestCon.appendChild(SenderNameCon);
+                                        requestCon.appendChild(senderIDCon);
+
+                                        requestCon.appendChild(buttonsCon);
+                                    }
+                                    else if (parseInt(inviteTypeCon.innerHTML) == 4)
+                                    {
+                                        requestCon.appendChild(inviteMess);
+                                        requestCon.appendChild(senderNameCon);
+
+                                        requestCon.appendChild(gigNameCon);
+                                        requestCon.appendChild(gigDateCon);
+                                        requestCon.appendChild(gigIDCon);
+
+                                        var showButton = document.createElement("button");
+                                        showButton.innerHTML = "More Details";
+                                        showButton.classList = "btn btn-primary"
+                                        showButton.type = "button";
+
+                                        $(showButton).click(function ()
+                                        {
+                                            document.querySelector('.bg-modal').style.display = 'flex';
+                                            document.getElementById("nameConModal").innerHTML = senderNameCon.innerHTML;
+                                            document.getElementById("gigConModal").innerHTML = gigNameCon.innerHTML;
+                                            document.getElementById("gigDateConModal").innerHTML = gigDateCon.innerHTML;
+                                            document.getElementById("invIDCon").innerHTML = inviteIDCon.innerHTML;
+                                            document.getElementById("pIDCon").innerHTML = senderIDCon.innerHTML; 
+
+                                        });
+                                        
+                                        requestCon.appendChild(showButton);
+                                        requestCon.appendChild(inviteIDCon);
+
+                                    }
+                                                              
                         }
                     }
                     else
@@ -380,13 +448,76 @@
                 });
         }
 
+        function SaveRevClicked()
+        {
+            var reviewContent = document.getElementById("remarkBox").value;
+            var reviewRate = document.getElementById("ratingSelect").value;
+            var participantID = parseInt(document.getElementById("pIDCon").innerHTML);
+            var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+            var invID = parseInt(document.getElementById("invIDCon").innerHTML);
+
+            if (!reviewContent)
+            {
+                alert("Review content cannot be empty!");
+            }
+            else
+            {
+                var reviewJSON = {
+                    "newReview": {
+                        Remarks: reviewContent,
+                        Rate: parseInt(reviewRate),
+                        RevieweeID: parseInt(participantID),
+                        CreatorID: userDetails.ID
+                    }
+                };
+
+                var WCFCall = $.ajax(
+                    {
+                        type: "POST",
+                        url: "http://192.168.254.11/GigmatesService/Service1.svc/CreateReview",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: JSON.stringify(reviewJSON)
+                    }).done(function (data) {
+                        alert("Number of reviews made: " + data.CreateReviewResult);
+
+                        var inviteResponseJSON = {
+                            "inviteReceived": {
+                                ID: invID,
+                                StatusID: 1,
+                                TypeID: 4,
+                                SenderID: participantID
+                            }
+                        }
+                        var updateInv = $.ajax(
+                            {
+                                type: "POST",
+                                url: "http://192.168.254.11/GigmatesService/Service1.svc/InviteResponse",
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                data: JSON.stringify(inviteResponseJSON)
+                            }).done(function (data)
+                            {
+                                alert("Updated Invites: " + data.InviteResponseResult);
+                            }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+                            {
+                                alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                            });
+                        window.location.href = "notif.html";
+                    }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                    });
+            }
+            
+        }
+
         $(document).ready(function () {
-            document.getElementById('sMBtn').addEventListener('click', function () {
-                document.querySelector('.bg-modal').style.display = 'flex';
-            });
+            //document.getElementById('sMBtn').addEventListener('click', function () {
+            //    //document.querySelector('.bg-modal').style.display = 'flex';
+            //});
             // When the user clicks the X on the login popup modal, close it
             document.getElementById('cls1').addEventListener('click', function () {
-                document.querySelector('.bg-modal').style.display = 'none';
+                document.querySelector('bg-modal').style.display = 'none';
             });
         });
     </script>

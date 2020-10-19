@@ -70,7 +70,7 @@ function GetSong(uID){
 }
 
 //FUNCTION TO GET THE PERSON TYPES FROM THE DATABASE
-function GetPersonTypes()
+function GetPersonTypes(selectBox)
 {
     var xhr = $.ajax(
         {
@@ -80,7 +80,15 @@ function GetPersonTypes()
             dataType: "json"
         }).done(function (data)
         {
-            window.localStorage.setItem("PersonTypes", data.GetPersonTypesResult);
+            var personTypes = JSON.parse(data.GetPersonTypesResult);
+            for (var i = 0; i < Object.keys(personTypes).length; i++)
+            {
+                var optionElem = document.createElement("option");
+                optionElem.innerHTML = personTypes[i].Name;
+                optionElem.value = personTypes[i].ID;
+
+                selectBox.appendChild(optionElem);
+            }
         }).fail(function (XMLHttpRequest, textStatus, errorThrown)
         {
             alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);

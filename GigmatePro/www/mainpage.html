@@ -76,8 +76,6 @@
                                             <!--<center>
                                                 <label class="names">Name of Gig</label>
                                             </center>
-
-
                                             <br />
                                             <label class="capt">Venue</label>
                                             <br />
@@ -169,7 +167,7 @@
                 <div id="page-wrapper">
                     <div id="page-inner">
 
-                        <div class="grid-container-invite">
+                        <div class="grid-container">
                             <div class="col-sm-6 col-md-4">
                                 <div class="thumbnail">
                                     <div class="caption" id="GigmatesCon">
@@ -189,33 +187,14 @@
                                         <br />
                                         <label class="capt">Bio</label>
                                         <center>
-                                            <p><a href="#Invite" class="btn btn-primary" role="button" id="loadIModal">Invite</a></p>
-                                        </center>
+                                            <p><a href="#" class="btn btn-primary" role="button">Invite</a></p>
+                                        </center>-->
 
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- /. PAGE INNER  -->
-                        <!--FOR INVITE USER-->
-                        <!--<div class="bg-modal-i" style="display:none">
-                            <div class="modal-cont">
-                                <div class="modal-header">
-                                    <div class="close" id="clsi">x</div>
-                                </div>
-                                <center>
-
-                                    <h2>INVITE USER</h2>
-                                    <br />
-                                    <label for="gnameSelect">Name of Gig:</label>
-                                    <select id="gnameSelect" />
-
-
-                                </center>
-
-
-                            </div>
-                        </div>-->
 
                     </div>
                     <!-- /. PAGE WRAPPER  -->
@@ -225,30 +204,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-    <!--BOTTOM NAV-->
-    <nav class="navbar fixed-bottom navbar-dark bg-dark" id="Main">
-        <div class="navbar-nav">
-            <ul class="actions" id="main-menu">
-                <li>
-                    <a class="nav-item nav-link active" href="mainpage.html">Home<span class="sr-only">(current)</span></a>
-                </li>
-                <li>
-                    <a class="nav-item nav-link" href="notif.html">Notifications</a>
-                </li>
-                <li>
-                    <a class="nav-item nav-link" href="prof.html">Profile</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-
 
     <!--MODAL OF SEARCH UPCOMING GIGS-->
     <div class="bg-modal-reg" style="display:none">
@@ -312,68 +267,164 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </center>
-
-
-
-
+                </div>   
+            </center>           
         </div>
     </div>
 
-    <!--FOR INVITE USER-->
-    <div class="bg-modal-i" style="display:none">
-        <div class="modal-cont">
-            <div class="modal-header">
-                <div class="close" id="clsi" style="cursor:pointer">x</div>
-            </div>
-            <center>
-
-                <h2>INVITE USER</h2>
-                <br />
-            </center>
-            <div class="grid-container-invite">
-                <div class="col-sm-6 col-md-4">
-                    <div class="thumbnail">
-                        <div class="caption">                           
-                            <center>
-                                <p class="float-right"><button class="btn btn-primary" role="button">Invite</button></p>
-                                <br />
-
-
-                                <label class="names">Name of Gig Mate</label>
-                                <br />
-                                <label class="capt">@username</label>
-                                <br />
-                                <label class="capt">Type</label>
-                            </center>
-                            <br />
-                            <label class="capt">Age</label>
-                            <br />
-                            <label class="capt">Gender</label>
-                            <br />
-                            <label class="capt">Location</label>
-                            <br />
-                            <label class="capt">Bio</label>
-                            <br />
-                            <br />
-                            <label for="gnameSelect" style="font-size:18px">Name of Gig:</label>
-                            <select id="gnameSelect" />
-
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <!--BOTTOM NAV-->
+    <nav class="navbar fixed-bottom navbar-dark bg-dark" id="Main">
+        <div class="navbar-nav">
+            <ul class="actions" id="main-menu">
+                <li>
+                    <a class="nav-item nav-link active" href="mainpage.html">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li>
+                    <a class="nav-item nav-link" href="notif.html">Notifications</a>
+                </li>
+                <li>
+                    <a class="nav-item nav-link" href="prof.html">Profile</a>
+                </li>
+            </ul>
         </div>
-    </div>
+    </nav>
 
-            <script type="text/javascript" src="scripts/jQuery/jquery-3.5.1.js"></script>
-            <script type="text/javascript" src="scripts/popper.min.js"></script>
-            <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
-            <script type="text/javascript" src="scripts/bootstrap.js"></script>
-            <script type="text/javascript" src="scripts/functions.js"></script>
+    <style>
+
+        .vertical-menu {
+            width: 500px;
+        }
+
+            .vertical-menu a {
+                background-color: transparent;
+                color: white;
+                display: block;
+                padding: 12px;
+                text-decoration: none;
+            }
+
+                .vertical-menu a:hover {
+                    background-color: #ccc;
+                }
+
+                .vertical-menu a.active {
+                    color: lightblue;
+                }
+
+        .search {
+            /*border: 2px solid #3b1fa0;*/
+            /*border: 2px solid #7f4caf;*/
+            /*border: 2px solid rgb(18, 15, 51);*/
+            border: 2px solid #36498f;
+            overflow: auto;
+            border-radius: 5px;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+        }
+
+            .search input[type="text"] {
+                border: 0px;
+                width: 67%;
+                padding: 10px 10px;
+            }
+
+                .search input[type="text"]:focus {
+                    outline: 0;
+                }
+
+            .search a[id=loadSModal] {
+                border: 0px;
+                background: none;
+                /*background-color: #4932c9;*/
+                /*background-color: rgb(12, 8, 68);*/
+                background-color: #36498f;
+                opacity: 0.7;
+                color: #fff;
+                float: right;
+                padding: 10px;
+                border-radius-top-right: 5px;
+                -moz-border-radius-top-right: 5px;
+                -webkit-border-radius-top-right: 5px;
+                border-radius-bottom-right: 5px;
+                -moz-border-radius-bottom-right: 5px;
+                -webkit-border-radius-bottom-right: 5px;
+                cursor: pointer;
+                border-radius: 0px;
+            }
+
+            .search a[id=loadSGMModal] {
+                border: 0px;
+                background: none;
+                /*background-color: #4932c9;*/
+                /*background-color: rgb(12, 8, 68);*/
+                background-color: #36498f;
+                opacity: 0.7;
+                color: #fff;
+                float: right;
+                padding: 10px;
+                border-radius-top-right: 5px;
+                -moz-border-radius-top-right: 5px;
+                -webkit-border-radius-top-right: 5px;
+                border-radius-bottom-right: 5px;
+                -moz-border-radius-bottom-right: 5px;
+                -webkit-border-radius-bottom-right: 5px;
+                cursor: pointer;
+                border-radius: 0px;
+            }
+
+            .search p[class=float-right] {
+                margin-bottom: 0;
+            }
+
+
+        /* ===========================
+        ====== Medua Query for Search Box ======
+        =========================== */
+
+        @media only screen and (min-width : 150px) and (max-width : 780px) {
+
+        {
+        }
+
+        .search {
+            width: 95%;
+            margin: 0 auto;
+        }
+
+        }
+
+        .grid-container {
+            display: grid;
+            grid-gap: 10px;
+            background-color: #36498f;
+            opacity: 0.9;
+            padding: 15px;
+            height: auto;
+            
+        }
+
+        .grid-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 20px;
+            font-size: 30px;
+        }
+
+        .item1 {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .item2 {
+            grid-column: 2 / span 3;
+            grid-row: 1;
+        }
+    </style>
+    <script type="text/javascript" src="scripts/jQuery/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="scripts/popper.min.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="scripts/functions.js"></script>
 
 
 
@@ -396,101 +447,87 @@
         });
 
 
-                $(document).ready(function () {
-                    document.getElementById('loadSModal').addEventListener('click', function () {
-                        //document.querySelector('.bg-modal-reg').style.display = 'flex';
-                    });
+        $(document).ready(function () {
+            document.getElementById('loadSModal').addEventListener('click', function () {
+                //document.querySelector('.bg-modal-reg').style.display = 'flex';
+            });
 
-                    document.getElementById('cls').addEventListener('click', function () {
-                        window.location.href = 'mainpage.html';
-                        document.querySelector('.bg-modal-reg').style.display = 'none';
+            document.getElementById('cls').addEventListener('click', function () {
+                window.location.href = 'mainpage.html';
+                document.querySelector('.bg-modal-reg').style.display = 'none';
+                
+            });
+        });
 
-                    });
-                });
+        $(document).ready(function () {
+            //document.getElementById('loadSGMModal').addEventListener('click', function () {
+            //    document.querySelector('.bg-modal-r').style.display = 'flex';
+            //});
 
+            document.getElementById('cls2').addEventListener('click', function () {
+                window.location.href = 'mainpage.html';
+                document.querySelector('.bg-modal-r').style.display = 'none';
+                
+            });
+        });
 
-                $(document).ready(function () {
-                    //document.getElementById('loadSGMModal').addEventListener('click', function () {
-                    //    document.querySelector('.bg-modal-r').style.display = 'flex';
-                    //});
+        $(document).ready(function () {
+            document.getElementById('cGigBtn').addEventListener('click', function () {
+                document.querySelector('.bg-modal').style.display = 'flex';
+            });
 
-                    document.getElementById('cls2').addEventListener('click', function () {
-                        window.location.href = 'mainpage.html';
-                        document.querySelector('.bg-modal-r').style.display = 'none';
-
-                    });
-                });
-
-                $(document).ready(function () {
-                    document.getElementById('loadIModal').addEventListener('click', function () {
-                        document.querySelector('.bg-modal-i').style.display = 'flex';
-                    });
-
-                    document.getElementById('clsi').addEventListener('click', function () {
-                        document.querySelector('.bg-modal-i').style.display = 'none';
-                    });
-                });
-
-
-                $(document).ready(function () {
-                    document.getElementById('cGigBtn').addEventListener('click', function () {
-                        document.querySelector('.bg-modal').style.display = 'flex';
-                    });
-
-                    document.getElementById('cls1').addEventListener('click', function () {
-                        document.querySelector('.bg-modal').style.display = 'none';
-                    });
-                });
+            document.getElementById('cls1').addEventListener('click', function () {
+                document.querySelector('.bg-modal').style.display = 'none';
+            });
+        });
 
 
 
+        function CreateGigClicked() {
 
+            if (!document.getElementById("nameBox").value) {
+                alert("Gig Name cannot be empty!");
+            }
+            else if (!document.getElementById("venueBox").value) {
+                alert("Gig Venue cannot be empty!");
+            }
+            else if (!document.getElementById("dateBox").value && !document.getElementById("timeBox").value) {
+                alert("date is not valid");
+            }
+            else {
 
-                function CreateGigClicked() {
-
-                    if (!document.getElementById("nameBox").value) {
-                        alert("Gig Name cannot be empty!");
-                    }
-                    else if (!document.getElementById("venueBox").value) {
-                        alert("Gig Venue cannot be empty!");
-                    }
-                    else if (!document.getElementById("dateBox").value && !document.getElementById("timeBox").value) {
-                        alert("date is not valid");
-                    }
-                    else {
-
-                        var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
-                        var gigName = document.getElementById("nameBox").value;
-                        var gigVenue = document.getElementById("venueBox").value;
-                        var gigGenre = document.getElementById("GigGenreBox").value;
-                        var gigDate = document.getElementById("dateBox").value + " " + document.getElementById("timeBox").value + ":00";
-                        var gigCreator = userDetails.ID;
-                        var gigJSON = {
-                            "newGig": {
-                                Name: gigName,
-                                Date: gigDate,
-                                Creator: gigCreator,
-                                Venue: gigVenue,
-                                GenreID: gigGenre
-                            }
-                        }
-                        var xhr = $.ajax(
-                            {
-                                type: "POST",
-                                url: "http://192.168.254.11/GigmatesService/Service1.svc/AddGig",
-                                contentType: "application/json; charset=utf-8",
-                                dataType: "json",
-                                data: JSON.stringify(gigJSON)
-
-                            }).done(function (data) {
-                                alert("Number of gigs created: " + data.AddGigResult);
-                                document.getElementById("nameBox").value = "";
-                                gigVenue = document.getElementById("venueBox").value = "";
-                            }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
-                                alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
-                            });
+                var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+                var gigName = document.getElementById("nameBox").value;
+                var gigVenue = document.getElementById("venueBox").value;
+                var gigGenre = document.getElementById("GigGenreBox").value;
+                var gigDate = document.getElementById("dateBox").value + " " + document.getElementById("timeBox").value + ":00";
+                var gigCreator = userDetails.ID;
+                var gigJSON = {
+                    "newGig": {
+                        Name: gigName,
+                        Date: gigDate,
+                        Creator: gigCreator,
+                        Venue: gigVenue,
+                        GenreID: gigGenre
                     }
                 }
+                var xhr = $.ajax(
+                    {
+                        type: "POST",
+                        url: "http://192.168.254.11/GigmatesService/Service1.svc/AddGig",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        data: JSON.stringify(gigJSON)
+
+                    }).done(function (data) {
+                        alert("Number of gigs created: " + data.AddGigResult);
+                        document.getElementById("nameBox").value = "";
+                        gigVenue = document.getElementById("venueBox").value = "";
+                    }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                    });
+            }
+        }
 
 
         function GetAvailableGigs() {
@@ -644,81 +681,83 @@
                         document.querySelector('.bg-modal-reg').style.display = 'flex';
                         var SearchResultCon = document.getElementById("gigResultCon");
 
-                                var searchedGigs = JSON.parse(data.SearchGigsResult);
+                        var searchedGigs = JSON.parse(data.SearchGigsResult);
+                        
+                        for (var i = 0; i < Object.keys(searchedGigs).length; i++)
+                        {
+                            
+                            var gigTitleCon = document.createElement("label");
+                            gigTitleCon.innerHTML = searchedGigs[i].Name;
+                            gigTitleCon.classList = "names";
 
-                                for (var i = 0; i < Object.keys(searchedGigs).length; i++) {
+                            var br1Con = document.createElement("br");
 
-                                    var gigTitleCon = document.createElement("label");
-                                    gigTitleCon.innerHTML = searchedGigs[i].Name;
-                                    gigTitleCon.classList = "names";
+                            var br7Con = document.createElement("br");
+                            var gigCreatorName = document.createElement("label");
+                            gigCreatorName.innerHTML = "Creator Name: " + searchedGigs[i].CreatorName;
+                            gigCreatorName.classList = 'capt'; 
+                            var gigCreatorID = document.createElement("label");
+                            gigCreatorID.innerHTML = searchedGigs[i].Creator;
+                            gigCreatorID.classList = 'd-none'; 
 
-                                    var br1Con = document.createElement("br");
+                            var gigDateCon = document.createElement("label");
+                            gigDateCon.innerHTML = "Date: "+searchedGigs[i].Date;
+                            gigDateCon.classList = "capt";
 
-                                    var br7Con = document.createElement("br");
-                                    var gigCreatorName = document.createElement("label");
-                                    gigCreatorName.innerHTML = "Creator Name: " + searchedGigs[i].CreatorName;
-                                    gigCreatorName.classList = 'capt';
-                                    var gigCreatorID = document.createElement("label");
-                                    gigCreatorID.innerHTML = searchedGigs[i].Creator;
-                                    gigCreatorID.classList = 'd-none';
+                            var br2Con = document.createElement("br");
+                            var gigCreatorCon = document.createElement("label");
+                            gigCreatorCon.innerHTML = "Creator: " + searchedGigs[i].CreatorName;
+                            gigCreatorCon.classList = "capt";
 
-                                    var gigDateCon = document.createElement("label");
-                                    gigDateCon.innerHTML = "Date: " + searchedGigs[i].Date;
-                                    gigDateCon.classList = "capt";
+                            var br3Con = document.createElement("br");
+                            var gigGenreCon = document.createElement("label");
+                            gigGenreCon.innerHTML = "Genre: " + searchedGigs[i].GenreName;
+                            gigGenreCon.classList = "capt";
 
-                                    var br2Con = document.createElement("br");
-                                    var gigCreatorCon = document.createElement("label");
-                                    gigCreatorCon.innerHTML = "Creator: " + searchedGigs[i].CreatorName;
-                                    gigCreatorCon.classList = "capt";
+                            var br4Con = document.createElement("br");
+                            var gigVenueCon = document.createElement("label");
+                            gigVenueCon.innerHTML = "Venue: " + searchedGigs[i].Venue;
+                            gigVenueCon.classList = "capt";
 
-                                    var br3Con = document.createElement("br");
-                                    var gigGenreCon = document.createElement("label");
-                                    gigGenreCon.innerHTML = "Genre: " + searchedGigs[i].GenreName;
-                                    gigGenreCon.classList = "capt";
+                            var br5Con = document.createElement("br");
+                            var gigIDCon = document.createElement("label");
+                            gigIDCon.innerHTML = searchedGigs[i].GigID;
+                            gigIDCon.classList = "d-none";
 
-                                    var br4Con = document.createElement("br");
-                                    var gigVenueCon = document.createElement("label");
-                                    gigVenueCon.innerHTML = "Venue: " + searchedGigs[i].Venue;
-                                    gigVenueCon.classList = "capt";
+                            var br6Con = document.createElement("br");
+                            var buttonCenterCon = document.createElement("center");
+                            var joinButtonCon = document.createElement("button");
+                            joinButtonCon.classList = "btn btn-primary";
+                            joinButtonCon.type = "button";
+                            joinButtonCon.innerHTML = "Join Gig";
 
-                                    var br5Con = document.createElement("br");
-                                    var gigIDCon = document.createElement("label");
-                                    gigIDCon.innerHTML = searchedGigs[i].GigID;
-                                    gigIDCon.classList = "d-none";
+                            $(joinButtonCon).click(function ()
+                            {
+                                SendGigRequest(gigIDCon.innerHTML, userDetails.ID, gigCreatorID.innerHTML);
+                                document.querySelector('.bg-modal-reg').style.display = 'none';
+                                window.location.href = 'mainpage.html';
 
-                                    var br6Con = document.createElement("br");
-                                    var buttonCenterCon = document.createElement("center");
-                                    var joinButtonCon = document.createElement("button");
-                                    joinButtonCon.classList = "btn btn-primary";
-                                    joinButtonCon.type = "button";
-                                    joinButtonCon.innerHTML = "Join Gig";
+                            });
+                            buttonCenterCon.appendChild(joinButtonCon);
 
-                                    $(joinButtonCon).click(function () {
-                                        SendGigRequest(gigIDCon.innerHTML, userDetails.ID, gigCreatorID.innerHTML);
-                                        document.querySelector('.bg-modal-reg').style.display = 'none';
-                                        window.location.href = 'mainpage.html';
-
-                                    });
-                                    buttonCenterCon.appendChild(joinButtonCon);
-
-                                    SearchResultCon.appendChild(gigTitleCon);
-                                    SearchResultCon.appendChild(br1Con);
-                                    SearchResultCon.appendChild(gigCreatorName);
-                                    SearchResultCon.appendChild(br7Con);
-                                    SearchResultCon.appendChild(gigDateCon);
-                                    SearchResultCon.appendChild(br2Con);
-                                    SearchResultCon.appendChild(gigCreatorCon);
-                                    SearchResultCon.appendChild(br3Con);
-                                    SearchResultCon.appendChild(gigGenreCon);
-                                    SearchResultCon.appendChild(br4Con);
-                                    SearchResultCon.appendChild(gigVenueCon);
-                                    SearchResultCon.appendChild(br6Con);
-                                    SearchResultCon.appendChild(buttonCenterCon);
-                                    SearchResultCon.appendChild(br5Con);
-                                    SearchResultCon.appendChild(gigIDCon);
-                                    SearchResultCon.appendChild(gigCreatorID);
-
-                                }
+                            SearchResultCon.appendChild(gigTitleCon);
+                            SearchResultCon.appendChild(br1Con);
+                            SearchResultCon.appendChild(gigCreatorName);
+                            SearchResultCon.appendChild(br7Con);
+                            SearchResultCon.appendChild(gigDateCon);
+                            SearchResultCon.appendChild(br2Con);
+                            SearchResultCon.appendChild(gigCreatorCon);
+                            SearchResultCon.appendChild(br3Con);
+                            SearchResultCon.appendChild(gigGenreCon);
+                            SearchResultCon.appendChild(br4Con);
+                            SearchResultCon.appendChild(gigVenueCon);
+                            SearchResultCon.appendChild(br6Con);
+                            SearchResultCon.appendChild(buttonCenterCon);
+                            SearchResultCon.appendChild(br5Con);
+                            SearchResultCon.appendChild(gigIDCon);
+                            SearchResultCon.appendChild(gigCreatorID);
+                            
+                        }
 
                     }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
                         alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
@@ -747,57 +786,58 @@
                     {
                         document.querySelector('.bg-modal-r').style.display = 'flex';
 
-                                var gigmateSearchJSON = JSON.parse(data.SearchGigmatesResult);
-                                var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
-                                var searchGigmatesCon = document.getElementById("searchedGigmateCon");
+                        var gigmateSearchJSON = JSON.parse(data.SearchGigmatesResult);
+                        var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+                        var searchGigmatesCon = document.getElementById("searchedGigmateCon");
 
-                                for (var i = 0; i < Object.keys(gigmateSearchJSON).length; i++) {
-                                    var nameCon = document.createElement("label");
-                                    nameCon.innerHTML = "Name: " + gigmateSearchJSON[i].Firstname + ' ' + gigmateSearchJSON[i].Lastname;
-                                    nameCon.classList = "names";
-                                    var br1 = document.createElement("br");
+                        for (var i = 0; i < Object.keys(gigmateSearchJSON).length; i++)
+                        {
+                            var nameCon = document.createElement("label");
+                            nameCon.innerHTML = "Name: "+gigmateSearchJSON[i].Firstname + ' ' + gigmateSearchJSON[i].Lastname;
+                            nameCon.classList = "names";
+                            var br1 = document.createElement("br");
 
-                                    var usernameCon = document.createElement("label");
-                                    usernameCon.innerHTML = "Username: " + gigmateSearchJSON[i].Username;
-                                    usernameCon.classList = "capt";
-                                    var br2 = document.createElement("br");
+                            var usernameCon = document.createElement("label");
+                            usernameCon.innerHTML ="Username: " + gigmateSearchJSON[i].Username;
+                            usernameCon.classList = "capt";
+                            var br2 = document.createElement("br");
 
-                                    var locationCon = document.createElement("label");
-                                    locationCon.innerHTML = "Location: " + gigmateSearchJSON[i].Location;
-                                    locationCon.classList = "capt";
-                                    var br3 = document.createElement("br");
+                            var locationCon = document.createElement("label");
+                            locationCon.innerHTML = "Location: "+gigmateSearchJSON[i].Location;
+                            locationCon.classList = "capt";
+                            var br3 = document.createElement("br");
 
-                                    var buttonCenter = document.createElement("center");
-                                    var gigmateButton = document.createElement("button");
-                                    gigmateButton.classList = "btn btn-primary";
-                                    gigmateButton.type = "button";
-                                    gigmateButton.innerHTML = "Gigmate Request";
+                            var buttonCenter = document.createElement("center");
+                            var gigmateButton = document.createElement("button");
+                            gigmateButton.classList = "btn btn-primary";
+                            gigmateButton.type = "button";
+                            gigmateButton.innerHTML = "Gigmate Request";
 
+                          
+                            buttonCenter.appendChild(gigmateButton);
 
-                                    buttonCenter.appendChild(gigmateButton);
+                            var idCon = document.createElement("label");
+                            idCon.innerHTML = gigmateSearchJSON[i].ID;
+                            idCon.classList = "d-none";
+                            var br4 = document.createElement("br");
 
-                                    var idCon = document.createElement("label");
-                                    idCon.innerHTML = gigmateSearchJSON[i].ID;
-                                    idCon.classList = "d-none";
-                                    var br4 = document.createElement("br");
+                            $(gigmateButton).click(function () {
+                                SendGigmateRequest(userDetails.ID, idCon.innerHTML);
+                                document.querySelector('.bg-modal-r').style.display = 'none';
+                                window.location.href = 'mainpage.html';
+                            });
 
-                                    $(gigmateButton).click(function () {
-                                        SendGigmateRequest(userDetails.ID, idCon.innerHTML);
-                                        document.querySelector('.bg-modal-r').style.display = 'none';
-                                        window.location.href = 'mainpage.html';
-                                    });
+                            searchGigmatesCon.appendChild(nameCon);
+                            searchGigmatesCon.appendChild(br1);
+                            searchGigmatesCon.appendChild(usernameCon);
+                            searchGigmatesCon.appendChild(br2);
+                            searchGigmatesCon.appendChild(locationCon);
+                            searchGigmatesCon.appendChild(br3);
+                            searchGigmatesCon.appendChild(buttonCenter);
+                            searchGigmatesCon.appendChild(idCon);
+                            searchGigmatesCon.appendChild(br4);
 
-                                    searchGigmatesCon.appendChild(nameCon);
-                                    searchGigmatesCon.appendChild(br1);
-                                    searchGigmatesCon.appendChild(usernameCon);
-                                    searchGigmatesCon.appendChild(br2);
-                                    searchGigmatesCon.appendChild(locationCon);
-                                    searchGigmatesCon.appendChild(br3);
-                                    searchGigmatesCon.appendChild(buttonCenter);
-                                    searchGigmatesCon.appendChild(idCon);
-                                    searchGigmatesCon.appendChild(br4);
-
-                                }
+                        }
 
                     }).fail(function (XMLHttpRequest, textStatus, errorThrown)
                     {
@@ -807,30 +847,33 @@
             
         }
 
-                function SendGigmateRequest(senderID, receiverID) {
-                    var inviteJSON = {
-                        "NewInvite":
-                        {
-                            SenderID: senderID,
-                            ReceiverID: receiverID,
-                            TypeID: 3
-                        }
-                    }
-                    var WCFCall = $.ajax(
-                        {
-                            type: "POST",
-                            url: "http://192.168.254.11/GigmatesService/Service1.svc/SendPersonInvite",
-                            contentType: "application/json; charset=utf-8",
-                            dataType: "json",
-                            data: JSON.stringify(inviteJSON)
-                        }).done(function (data) {
-                            alert("Invites Sent: " + data.SendPersonInviteResult);
-                            document.querySelector('.bg-modal').style.display = 'none';
-                            window.location.href = 'mainpage.html';
-                        }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
-                            alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
-                        });
+        function SendGigmateRequest(senderID,receiverID)
+        {
+            var inviteJSON = {
+                "NewInvite":
+                {
+                    SenderID: senderID,
+                    ReceiverID: receiverID,
+                    TypeID: 3
                 }
+            }
+            var WCFCall = $.ajax(
+                {
+                    type: "POST",
+                    url: "http://192.168.254.11/GigmatesService/Service1.svc/SendPersonInvite",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(inviteJSON)
+                }).done(function (data)
+                {
+                    alert("Invites Sent: " + data.SendPersonInviteResult);
+                    document.querySelector('.bg-modal').style.display = 'none';
+                    window.location.href = 'mainpage.html';
+                }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+                {
+                    alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                });
+        }
 
         function GetGigmates()
         {

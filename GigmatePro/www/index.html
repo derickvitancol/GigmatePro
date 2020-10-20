@@ -76,9 +76,9 @@
 
                     userDetails = JSON.parse(data.LoginResult);
 
-                    alert("Hello " + userDetails.Firstname + " " + userDetails.Lastname+"!");
+                    
                     if (userDetails.Firstname && userDetails.Lastname) {
-
+                        alert("Hello " + userDetails.Firstname + " " + userDetails.Lastname + "!");
                         window.localStorage.setItem("userDetails", JSON.stringify(userDetails));
                         GetPersonTypes();
                         setTimeout(function () { document.location.href = "mainpage.html", 500 });

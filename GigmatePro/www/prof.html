@@ -58,8 +58,8 @@
                                             <label class="hfive" id="usernameLabel">@username</label>
                                             <br />
                                             <label class="hfive" id="typeLabel">Type</label>
-
-                                            <label class="hfive">--ratings--</label>
+                                            <br/>
+                                            <label class="hfive" id="rateLabel">--ratings--</label>
                                         </center>
 
                                         <label class="hfour" id="ageLabel">Age</h4></label>
@@ -68,9 +68,12 @@
                                         <br />
                                         <label class="hfour" id="locationLabel">Location</label>
                                         <br />
-                                        <label class="hfour">Bio</label>
+                                        <label class="hfour" id="bioLabel">Bio</label>
                                         <br /> 
-
+                                        <label class="d-none" id="instrumentLabel">instrument</label>
+                                        <br/>
+                                        <label class="d-none" id="instrumentIDCon">id</label>
+                                        <br/>
                                         <!--<p class="float-left"><a href="#" class="btn btn-primary" role="button" id="eProfBtn">Edit Profile</a></p>-->
                                         <p class="float-left"><a href="#" class="btn btn-primary" role="button" id="eProfBtn" onclick="loadModal()">Edit Profile</a></p>
                                         <p class="float-right"><div class="btn btn-primary" role="button" onclick="LogoutClicked()">Logout</div></p>
@@ -127,13 +130,13 @@
                                         <input type="text" name="usertype" id="typeLabelModal" readonly />
                                         <br />
                                         <label for="instrumentBoxModal" style="color:white;">Musical Instrument</label>
-                                        <input type="text" name="mInstru" id="instrumentBoxModal" />
-                                        <br />
+                                        <select name="mInstru" id="instrumentBoxModal" />
+                                        <!--<br />
                                         <label for="preferenceBoxModal" style="color:white;">Musical Preference</label>
-                                        <input type="text" name="mPref" id="preferenceBoxModal" />
+                                        <input type="text" name="mPref" id="preferenceBoxModal" />-->
                                         <br />
                                         <label for="ratingsBoxModal">Rating</label>
-                                        <input id="ratingsBoxModal" type="text" readonly />
+                                        <input id="ratingsBoxModal" type="text" readonly class="d-none" />
                                         <br />
                                         <label for="ageLabelModal">Age</label>
                                         <input type="number" class="col-4" id="ageLabelModal" />
@@ -201,17 +204,7 @@
                         <div class="grid-container">
                             <div class="col-sm-6 col-md-4">
                                 <div class="thumbnail" id="SongListDiv">
-                                    <!--<div class="caption">
-                                        <center>
-                                            <label class="names">Name of Song</label>
-                                        </center>
-                                        <br />
-                                        <label class="capt">Genre of Music</label>
-                                        <br />
-                                        <label class="capt">Description</label>
-                                        <br />
-
-                                    </div>-->
+                                    <!--CONTAINER OF SONGS IN PROFILE-->
                                 </div>
                             </div>
                         </div>
@@ -311,14 +304,7 @@
                             <div class="col-sm-6 col-md-4">
                                 <div class="thumbnail">
                                     <div class="caption" id="GigsCon">
-                                        <!--<center>
-                                            <label class="names">Name of Gig</label>
-                                        </center>
-                                        <br />
-                                        <label class="capt">Venue</label>
-                                        <br />
-                                        <label class="capt">Schedule</label>
-                                        <br />-->
+                                        <!--CONTAINER OF JOIN UPCOMING GIGS -->
                                     </div>
                                 </div>
                             </div>
@@ -357,7 +343,6 @@
                         </ul>
                     </center>
                 </div>
-
                 <br />
 
                 <div id="page-wrapper">
@@ -367,15 +352,7 @@
                             <div class="col-sm-6 col-md-4">
                                 <div class="thumbnail">
                                     <div class="caption" id="historyCon">
-                                        <!--<center>
-                                            <label class="names">Name of Gig Attended</label>
-                                        </center>
-                                        <br />
-                                        <label class="capt">Venue</label>
-                                        <br />
-                                        <label class="capt">Schedule</label>
-                                        <br />-->
-
+                                        <!--CONTAINER OF ATTENDED GIGS-->
                                     </div>
                                 </div>
                             </div>
@@ -413,7 +390,6 @@
 
 
     <style>
-
         .vertical-menu {
             width: 500px;
         }
@@ -519,10 +495,16 @@
             document.getElementById("genderLabel").innerHTML = "Gender: "+determineGenderName(userDetails.Gender);
             document.getElementById("typeLabel").innerHTML= "Type: " + determineTypeName(userDetails.Type);
             document.getElementById("ageLabel").innerHTML = "Age: "+userDetails.Age;
-            document.getElementById("locationLabel").innerHTML = "Location: "+userDetails.Location;
-
+            document.getElementById("locationLabel").innerHTML = "Location: "+ userDetails.Location;
+            document.getElementById("bioLabel").innerHTML = "Bio: " + userDetails.Bio;
+            document.getElementById("rateLabel").innerHTML = "Overall Rate: " + userDetails.Rate;
             GetSong(userDetails.ID); 
             GetUserReviews();
+            if (userDetails.Type = "1")
+            {
+                GetInstrument(document.getElementById("instrumentIDCon"),document.getElementById("instrumentLabel"));            
+            }
+           
         }
 
         function getProfileDataForModal()
@@ -536,6 +518,8 @@
             document.getElementById("typeLabelModal").value = determineTypeName(userDetails.Type);
             document.getElementById("ageLabelModal").value = userDetails.Age;
             document.getElementById("locationLabelModal").value = userDetails.Location;
+            document.getElementById("bioLabelModal").value = userDetails.Bio;
+            
         }
 
         //FUNCTION CALLED WHEN THE LOGOUT BUTTON IS CLICKED 
@@ -584,18 +568,16 @@
                     dataType: "json",
                     data: JSON.stringify(songJSON)
 
-                }).done(function (data) {
-                    alert(data.AddSongResult);
-                    if (data.AddSongResult == "1") {
-                        alert("Song Added");
-                        var userDetails = window.localStorage.getItem("userDetails");
-                        GetSong(userDetails.ID);
-                        window.close = "addsong.html";
-                        setTimeout(function () { document.location.href = "prof.html", 500 });
-                    }
-                    else {
-                        alert("Song not added");
-                    }
+                }).done(function (data)
+                {
+                    
+                   
+                    alert(""+data.AddSongResult);
+                    var userDetails = window.localStorage.getItem("userDetails");
+                    GetSong(userDetails.ID);                      
+                    setTimeout(function () { document.location.href = "prof.html", 500 });
+                  
+                    
                 }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
                     alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message)
                 })
@@ -818,16 +800,6 @@
                     alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
                 });
 
-            //var WCFCall = $.ajax(
-            //    {
-
-            //    }).done(function (data)
-            //    {
-                    
-            //    }).fail(function (XMLHttpRequest, textStatus, errorThrown)
-            //    {
-            //        alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
-            //    });
         }
 
        
@@ -861,8 +833,10 @@
                         Location: location,
                         Password: password,
                         Bio: bio
-                    }
+                    }, InstrumentID: document.getElementById("instrumentBoxModal").value
                 };
+
+                alert(JSON.stringify(personJSON));
                 var WCFCall = $.ajax(
                     {
                         type: "POST",
@@ -882,7 +856,7 @@
                     });
             }
         }
-
+        //FUNCTION TO GET THE USER REVIEWS SAVED ON THE DATABASE
         function GetUserReviews()
         {
             var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
@@ -896,13 +870,6 @@
                     data: JSON.stringify({ userID: userDetails.ID })
                 }).done(function (data)
                 {
-                    //<!--<label class="hsix" > Name of User</label >
-                    //    <br />
-                    //    <label class="hfive">Rating</label>
-                    //    <br />
-                    //    <label class="hfive">Review</label>
-                    //    <br />
-                    //    <br />-->
                     var reviewCon = document.getElementById("reviewsCon");
                     var reviewList = JSON.parse(data.GetUserReviewsResult);
                     var listLen = Object.keys(reviewList).length;
@@ -954,6 +921,38 @@
                     alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
                 });
         }
+        //FUNCTION TO GET THE INSTRUMENT SET BY THE USER
+        function GetInstrument(idContainer,nameContainer)
+        {
+            var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+            var WCFCall = $.ajax(
+                {
+                    type: "POST",
+                    url: "http://192.168.254.11/GigmatesService/Service1.svc/GetPersonInstrument",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify({ userID: userDetails.ID })
+                }).done(function (data)
+                {
+
+                    var personInstrument = JSON.parse(data.GetPersonInstrumentResult);
+                    if (personInstrument.InstrumentID != 0)
+                    {
+                        
+                        var instrumentInfo = JSON.parse(data.GetPersonInstrumentResult);
+                        idContainer.innerHTML = instrumentInfo.InstrumentID;
+
+                        nameContainer.innerHTML = "Instrument: "+instrumentInfo.InstrumentName;
+                        nameContainer.classList = "hfour";
+
+                    }
+                    
+                    
+                }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+                {
+                    alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                });
+        }
 
         $('a[href="#Songs"]').click(function () {
             $('.navbar-toggle:visible').click();
@@ -986,32 +985,11 @@
           
         });
 
-       
-
-        //$(document).ready(function () {
-        //    document.getElementById('eProfBtn').addEventListener('click', function () {
-        //        getProfileDataForModal();
-        //        document.querySelector('.bg-modal').style.display = 'flex';
-        //    });
-
-        //    document.getElementById('cls1').addEventListener('click', function () {
-        //        document.querySelector('.bg-modal').style.display = 'none';
-        //    });
-
-
-
-        //    document.getElementById('aSongBtn').addEventListener('click', function () {
-        //        document.querySelector('.bg-modal').style.display = 'flex';
-        //    });
-        //    // When the user clicks the X on the login popup modal, close it
-        //    document.getElementById('cls1').addEventListener('click', function () {
-        //        document.querySelector('.bg-modal').style.display = 'none';
-        //    });
-        //});
-
         function loadModal() {           
-            getProfileDataForModal()
+            
             document.querySelector('.bg-modal').style.display = 'flex';
+            getProfileDataForModal();
+            GetInstruments(document.getElementById("instrumentBoxModal"));
             
         }  
 

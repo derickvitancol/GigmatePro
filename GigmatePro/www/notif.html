@@ -317,7 +317,7 @@
                                             dataType: "json",
                                             data: JSON.stringify(inviteResponseJSON)
                                         }).done(function (data) {
-                                            alert("THE RESULT IS " + data.InviteResponseResult);
+                                            alert(""+data.InviteResponseResult);
                                             window.location.href = "notif.html"
                                         }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
                                             alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
@@ -479,7 +479,7 @@
                         dataType: "json",
                         data: JSON.stringify(reviewJSON)
                     }).done(function (data) {
-                        alert("Number of reviews made: " + data.CreateReviewResult);
+                        alert(""+data.CreateReviewResult);
 
                         var inviteResponseJSON = {
                             "inviteReceived": {

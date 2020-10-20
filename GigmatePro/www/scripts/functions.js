@@ -110,6 +110,31 @@ function GetPersonTypesSelect(selectBox)
     }
 }
 
+function GetInstruments(selectBox)
+{
+    var WCFCall = $.ajax(
+        {
+            type: "GET",
+            url: "http://192.168.254.11/GigmatesService/Service1.svc/GetInstruments",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        }).done(function (data)
+        {
+            var instrumentsList = JSON.parse(data.GetInstrumentsResult);
+            for (var i = 0; i < Object.keys(instrumentsList).length; i++)
+            {
+                var instrumentOption = document.createElement("option");
+                instrumentOption.innerHTML = instrumentsList[i].Name;
+                instrumentOption.value = instrumentsList[i].ID;
+
+                selectBox.appendChild(instrumentOption);
+            }
+        }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+        {
+
+        });
+}
+
 
 function GetUserDataById(uID)
 {
@@ -122,7 +147,7 @@ function GetUserDataById(uID)
             dataType: "json",
             data: JSON.stringify(userJSON)
         }).done(function (data)
-        {
+        {           
             window.localStorage.setItem("userDetails", data.GetUserDataByIDResult);
         }).fail(function (XMLHttpRequest, textStatus, errorThrown)
         {

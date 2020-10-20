@@ -142,8 +142,7 @@
                     data: JSON.stringify(personJSON)
                     }).done(function (data)
                     {
-                        alert(JSON.stringify(data.RegisterResult) + " is result");
-                        alert("registered");
+                        alert(""+data.RegisterResult);
                         val = data.RegisterResult;
 
                         CancelSignupClicked();

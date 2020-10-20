@@ -407,9 +407,10 @@
                         data: JSON.stringify(gigJSON)
 
                     }).done(function (data) {
-                        alert("Number of gigs created: " + data.AddGigResult);
+                        alert(""+data.AddGigResult);
                         document.getElementById("nameBox").value = "";
                         gigVenue = document.getElementById("venueBox").value = "";
+                        window.location.href = "mainpage.html"
                     }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
                         alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
                     });
@@ -538,7 +539,7 @@
                     dataType: "json",
                     data: JSON.stringify(inviteJSON)
                 }).done(function (data) {
-                    alert("Number of Invites Sent: " + data.SendGigInviteResult);
+                    alert(""+data.SendGigInviteResult);
                 }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
                     alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
                 });
@@ -753,7 +754,7 @@
                     data: JSON.stringify(inviteJSON)
                 }).done(function (data)
                 {
-                    alert("Invites Sent: " + data.SendPersonInviteResult);
+                    alert("data.SendPersonInviteResult");
                     document.querySelector('.bg-modal').style.display = 'none';
                     window.location.href = 'mainpage.html';
                 }).fail(function (XMLHttpRequest, textStatus, errorThrown)
@@ -931,6 +932,7 @@
             var gigID = document.getElementById("gnameSelect").value
             alert("Receiver " + receiverID + "gigID: " + gigID);
             SendGigRequest(gigID, userDetails.ID, receiverID);
+            window.location.href = "mainpage.html";
         }
         
     </script>

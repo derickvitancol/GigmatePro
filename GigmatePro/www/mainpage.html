@@ -171,24 +171,6 @@
                             <div class="col-sm-6 col-md-4">
                                 <div class="thumbnail">
                                     <div class="caption" id="GigmatesCon">
-                                        <!--<center>
-                                            <label class="names">Name of Gig Mate</label>
-                                            <br />
-                                            <label class="capt">@username</label>
-                                            <br />
-                                            <label class="capt">Type</label>
-                                        </center>
-                                        <br />
-                                        <label class="capt">Age</label>
-                                        <br />
-                                        <label class="capt">Gender</label>
-                                        <br />
-                                        <label class="capt">Location</label>
-                                        <br />
-                                        <label class="capt">Bio</label>
-                                        <center>
-                                            <p><a href="#" class="btn btn-primary" role="button">Invite</a></p>
-                                        </center>-->
 
                                     </div>
                                 </div>
@@ -220,15 +202,7 @@
                     <div class="col-sm-6 col-md-6">
                         <div class="thumbnail">
                             <div class="caption" id="gigResultCon">
-                                <!--<label class="names">Searched Result</label>
-                                <br />
-                                <label class="capt">Description</label>
-                                <br />
-                                <ul class="button">
-                                    <center>
-                                        <li><a href="#" class="btn btn-primary" role="button">Join Gig</a></li>
-                                    </center>
-                                </ul>-->
+                                <!--CONTAINER OF UPCOMING GIG THAT  WERE SEARCHED -->
                             </div>
                         </div>
                     </div>
@@ -255,15 +229,7 @@
                     <div class="col-sm-6 col-md-6">
                         <div class="thumbnail">
                             <div class="caption" id="searchedGigmateCon">
-                                <!--<label class="names">Searched Result</label>
-                                <br />
-                                <label class="capt">Description</label>
-                                <br />
-                                <ul class="button">
-                                    <center>
-                                        <li><a href="#" class="btn btn-primary" role="button">invite?</a></li>
-                                    </center>
-                                </ul>-->
+                                <!--CONTAINER OF SEARCHED GIGMATES THAT CAN BE ADDED-->
                             </div>
                         </div>
                     </div>
@@ -289,137 +255,53 @@
         </div>
     </nav>
 
-    <style>
+    
+    <!--FOR INVITE USER-->
+    <div class="bg-modal-i" style="display:none">
+        <div class="modal-cont">
+            <div class="modal-header">
+                <div class="close" id="clsi" style="cursor:pointer">x</div>
+            </div>
+            <center>
 
-        .vertical-menu {
-            width: 500px;
-        }
+                <h2>INVITE USER</h2>
+                <br />
+            </center>
+            <div class="grid-container-invite">
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <center>
+                                <div id="gigmateID" class="d-none">p</div>
+                                <p class="float-right"><button class="btn btn-primary" role="button" onclick="inviteGigmateClicked()">Invite</button></p>
+                                <br />
+                                <label class="names" id="gigmateNameCon">Name of Gig Mate</label>
+                                <br />
+                                <label class="capt" id="gigmateUserCon">@username</label>
+                                <!--<br />
+    <label class="capt">Type</label>-->
+                            </center>
+                            <!--<br />
+    <label class="capt">Age</label>-->
+                            <br />
+                            <label class="capt" id="gigmateGenderCon">Gender</label>
+                            <br />
+                            <label class="capt" id="gigmateLocationCon">Location</label>
+                            <!--<br />
+    <label class="capt">Bio</label>-->
+                            <br />
+                            <br />
+                            <label for="gnameSelect" style="font-size:18px">Name of Gig:</label>
+                            <select id="gnameSelect"/>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            .vertical-menu a {
-                background-color: transparent;
-                color: white;
-                display: block;
-                padding: 12px;
-                text-decoration: none;
-            }
-
-                .vertical-menu a:hover {
-                    background-color: #ccc;
-                }
-
-                .vertical-menu a.active {
-                    color: lightblue;
-                }
-
-        .search {
-            /*border: 2px solid #3b1fa0;*/
-            /*border: 2px solid #7f4caf;*/
-            /*border: 2px solid rgb(18, 15, 51);*/
-            border: 2px solid #36498f;
-            overflow: auto;
-            border-radius: 5px;
-            -moz-border-radius: 5px;
-            -webkit-border-radius: 5px;
-        }
-
-            .search input[type="text"] {
-                border: 0px;
-                width: 67%;
-                padding: 10px 10px;
-            }
-
-                .search input[type="text"]:focus {
-                    outline: 0;
-                }
-
-            .search a[id=loadSModal] {
-                border: 0px;
-                background: none;
-                /*background-color: #4932c9;*/
-                /*background-color: rgb(12, 8, 68);*/
-                background-color: #36498f;
-                opacity: 0.7;
-                color: #fff;
-                float: right;
-                padding: 10px;
-                border-radius-top-right: 5px;
-                -moz-border-radius-top-right: 5px;
-                -webkit-border-radius-top-right: 5px;
-                border-radius-bottom-right: 5px;
-                -moz-border-radius-bottom-right: 5px;
-                -webkit-border-radius-bottom-right: 5px;
-                cursor: pointer;
-                border-radius: 0px;
-            }
-
-            .search a[id=loadSGMModal] {
-                border: 0px;
-                background: none;
-                /*background-color: #4932c9;*/
-                /*background-color: rgb(12, 8, 68);*/
-                background-color: #36498f;
-                opacity: 0.7;
-                color: #fff;
-                float: right;
-                padding: 10px;
-                border-radius-top-right: 5px;
-                -moz-border-radius-top-right: 5px;
-                -webkit-border-radius-top-right: 5px;
-                border-radius-bottom-right: 5px;
-                -moz-border-radius-bottom-right: 5px;
-                -webkit-border-radius-bottom-right: 5px;
-                cursor: pointer;
-                border-radius: 0px;
-            }
-
-            .search p[class=float-right] {
-                margin-bottom: 0;
-            }
-
-
-        /* ===========================
-        ====== Medua Query for Search Box ======
-        =========================== */
-
-        @media only screen and (min-width : 150px) and (max-width : 780px) {
-
-        {
-        }
-
-        .search {
-            width: 95%;
-            margin: 0 auto;
-        }
-
-        }
-
-        .grid-container {
-            display: grid;
-            grid-gap: 10px;
-            background-color: #36498f;
-            opacity: 0.9;
-            padding: 15px;
-            height: auto;
-            
-        }
-
-        .grid-item {
-            background-color: rgba(255, 255, 255, 0.8);
-            text-align: center;
-            padding: 20px;
-            font-size: 30px;
-        }
-
-        .item1 {
-            grid-column: 1;
-            grid-row: 1;
-        }
-
-        .item2 {
-            grid-column: 2 / span 3;
-            grid-row: 1;
-        }
-    </style>
     <script type="text/javascript" src="scripts/jQuery/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="scripts/popper.min.js"></script>
     <script type="text/javascript" src="scripts/bootstrap.min.js"></script>
@@ -434,16 +316,15 @@
             getUserData();
             getGenres(document.getElementById("GigGenreBox"));
             GetAvailableGigs();
-            
-
+           
         }
 
 
         $('a[href="#Gigs"]').click(function () {
             $('.navbar-toggle:visible').click();
-            $("#MainPage").hide();
-            GetGigmates();
+            $("#MainPage").hide();            
             $("#Gigs").show();
+            GetGigmates();
         });
 
 
@@ -481,7 +362,13 @@
             });
         });
 
-
+        $(document).ready(function ()
+        {
+            document.getElementById("clsi").addEventListener("click", function ()
+            {
+                document.querySelector(".bg-modal-i").style.display = "none";
+            })
+        });
 
         function CreateGigClicked() {
 
@@ -606,7 +493,7 @@
                             divParent.appendChild(creatorNameCon);
                             divParent.appendChild(brElem);
                             
-                            if (userDetails.TypeID == 1)
+                            if (parseInt(userDetails.Type) == 1)
                             {
                                 buttonCenter.appendChild(joinGigButton);
                                 divParent.appendChild(buttonCenter);
@@ -896,27 +783,35 @@
                     {
                         for (var i = 0; i < Object.keys(gigmateList).length; i++)
                         {
+                            var cellContainer = document.createElement("div");
+
+
                             var centerCon = document.createElement("center");
+                            centerCon.id = "centerName";
                             var nameCon = document.createElement("label");
                             nameCon.innerHTML = gigmateList[i].Firstname + ' ' + gigmateList[i].Lastname;
                             nameCon.classList = "names";
+                            nameCon.id = "gigmateName";
                             centerCon.appendChild(nameCon);
 
                             var br1Con = document.createElement("br");
 
                             var genderCon = document.createElement("label");
-                            genderCon.innerHTML = "Gender: " + determineGenderName(gigmateList[i].Gender);
+                            genderCon.innerHTML = "Gender: "+determineGenderName(gigmateList[i].Gender);
                             genderCon.classList = "capt";
+                            genderCon.id = "gigmateGender";
                             var br2Con = document.createElement("br");
 
                             var locationCon = document.createElement("label");
-                            locationCon.innerHTML = "Location: " + gigmateList[i].Location;
+                            locationCon.innerHTML = "Location: "+gigmateList[i].Location;
                             locationCon.classList = "capt";
+                            locationCon.id = "gigmateLocation";
                             var br3Con = document.createElement("br");
 
                             var usernameCon = document.createElement("label");
-                            usernameCon.innerHTML = "Username: " + gigmateList[i].Username;
+                            usernameCon.innerHTML = "Username: "+gigmateList[i].Username;
                             usernameCon.classList = "capt";
+                            usernameCon.id = "gigmateUsername";
                             var br4Con = document.createElement("br");
 
                             var bioCon = document.createElement("label");
@@ -927,6 +822,7 @@
                             var idCon = document.createElement("label");
                             idCon.innerHTML = gigmateList[i].ID;
                             idCon.classList = "d-none";
+                            idCon.id = "idContainer";
 
                             var personTypeCon = document.createElement("label");
                             personTypeCon.innerHTML = gigmateList[i].Type;
@@ -937,24 +833,80 @@
                             inviteToGigButtonCon.classList = "btn btn-primary";
                             inviteToGigButtonCon.type = "button";
                             inviteToGigButtonCon.innerHTML = "Invite To Your Gig";
-                            buttonCenter.appendChild(inviteToGigButtonCon);
+                            inviteToGigButtonCon.id = "inviteButton";
 
-                            gigmatesContainer.appendChild(centerCon);
-                            gigmatesContainer.appendChild(br1Con);
-                            gigmatesContainer.appendChild(genderCon);
-                            gigmatesContainer.appendChild(br2Con);
-                            gigmatesContainer.appendChild(locationCon);
-                            gigmatesContainer.appendChild(br3Con);
-                            gigmatesContainer.appendChild(usernameCon);
-                            gigmatesContainer.appendChild(br4Con);
-                            gigmatesContainer.appendChild(bioCon);
-                            gigmatesContainer.appendChild(br5Con);
+
+                            buttonCenter.appendChild(inviteToGigButtonCon);
+                            
+
+                            cellContainer.appendChild(centerCon);
+                            cellContainer.appendChild(br1Con);
+                            cellContainer.appendChild(genderCon);
+                            cellContainer.appendChild(br2Con);
+                            cellContainer.appendChild(locationCon);
+                            cellContainer.appendChild(br3Con);
+                            cellContainer.appendChild(usernameCon);
+                            cellContainer.appendChild(br4Con);
+                            cellContainer.appendChild(bioCon);
+                            cellContainer.appendChild(br5Con);
+                            cellContainer.appendChild(idCon);
                             if (parseInt(personTypeCon.innerHTML) == 1)
                             {
-                                gigmatesContainer.appendChild(buttonCenter);
+                                cellContainer.appendChild(buttonCenter);
+                                $(inviteToGigButtonCon).click(function () {
+                                    var gigmateName = $("#inviteButton").parent().siblings("#centerName").children("#gigmateName").html();
+                                    var gigmateUser = $("#inviteButton").parent().siblings("#gigmateUsername").html();
+                                    var gigmateGender = $("#inviteButton").parent().siblings("#gigmateGender").html();
+                                    var gigmateLocation = $("#inviteButton").parent().siblings("#gigmateLocation").html();
+                                    var gID = $("#inviteButton").parent().siblings("#idContainer").html();
+
+                                    document.querySelector(".bg-modal-i").style.display = "flex";
+                                    document.getElementById("gigmateNameCon").innerHTML = gigmateName;
+                                    document.getElementById("gigmateUserCon").innerHTML = gigmateUser;
+                                    document.getElementById("gigmateGenderCon").innerHTML = gigmateGender;
+                                    document.getElementById("gigmateLocationCon").innerHTML = gigmateLocation;
+                                    document.getElementById("gigmateID").innerHTML = gID;
+
+                                    //AJAX CALL HERE
+
+                                    var getGetCreated = $.ajax(
+                                        {
+                                            type: "POST",
+                                            url: "http://192.168.254.11/GigmatesService/Service1.svc/GetCreatedGigs",
+                                            contentType: "application/json; charset=utf-8",
+                                            dataType: "json",
+                                            data: JSON.stringify({ userID: userDetails.ID, gigMateID: parseInt(gID)})
+                                        }).done(function (data)
+                                        {
+
+                                            var gigSelectBox = document.getElementById("gnameSelect"); 
+                                            var gigCreatedList = JSON.parse(data.GetCreatedGigsResult);
+                                            if (Object.keys(gigCreatedList).length > 0)
+                                            {
+                                                for (var i = 0; i < Object.keys(gigCreatedList).length; i++)
+                                                {
+                                                    var optionCreated = document.createElement("option");
+                                                    optionCreated.value = gigCreatedList[i].GigID;
+                                                    optionCreated.innerHTML = gigCreatedList[i].Name;
+
+                                                    gigSelectBox.appendChild(optionCreated);
+                                                }
+                                                    
+                                            }
+                                        }).fail(function (XMLHttpRequest, textStatus, errorThrown)
+                                        {
+                                            alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
+                                        });
+
+                                });
                             }                          
-                            gigmatesContainer.appendChild(idCon);
+                            
+                            gigmatesContainer.appendChild(cellContainer);
+
+                            
                         }
+
+
                     }
                     else
                     {
@@ -972,6 +924,15 @@
                 });
         }
 
+        function inviteGigmateClicked()
+        {
+            var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
+            var receiverID = document.getElementById("gigmateID").innerHTML;
+            var gigID = document.getElementById("gnameSelect").value
+            alert("Receiver " + receiverID + "gigID: " + gigID);
+            SendGigRequest(gigID, userDetails.ID, receiverID);
+        }
+        
     </script>
 </body>
 </html>

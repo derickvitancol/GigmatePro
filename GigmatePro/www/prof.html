@@ -538,7 +538,7 @@
             document.getElementById("locationLabelModal").value = userDetails.Location;
         }
 
-
+        //FUNCTION CALLED WHEN THE LOGOUT BUTTON IS CLICKED 
         function LogoutClicked() {
             localStorage.removeItem("userDetails");
             localStorage.removeItem("songList");
@@ -658,6 +658,7 @@
             
             
         }
+
         //FUNCTION TO GET JOINS JOINED THAT ARE UPCOMING
         function GetGigsForProf()
         {
@@ -738,7 +739,7 @@
                 });
         }
 
-        //NOT YT DONE
+        //FUNCTION TO GET THE ATTENDED GIGS THAT ARE DONE
         function GetGigsHistory()
         {
             var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));

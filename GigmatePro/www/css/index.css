@@ -442,8 +442,9 @@ div[class=close]{
     grid-gap: 10px;
     background-color: #36498f;
     opacity: 0.9;
-    padding: 15px;
+    /*padding: 15px;*/
     height: auto;
+    padding-bottom:60px;
 }
 
 .grid-item {

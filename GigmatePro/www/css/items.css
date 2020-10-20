@@ -450,3 +450,12 @@ div[id=cls] {
       
     }
 
+.grid-container-e {
+    display: grid;
+    grid-gap: 10px;
+    /*background-color: #3f1e9b;*/
+    background-color: #36498f;
+    opacity: 0.9;
+    padding: 15px;
+    margin-bottom: 10px;
+}

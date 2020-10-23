@@ -28,10 +28,11 @@ body {
     /*position:absolute;*/
     margin: 0;
     height: 100%;
-    /*FOR MAINPAGE, NOTIF, PROF*/
-    background-image: url(/www/images/banner.png);
-    background-size: contain;
-    background-position: center;
+    /*FOR MAINPAGE, NOTIF, PROF
+    background-image: url(/www/images/banner.png);*/
+    background: #130417;
+    background-size: auto;
+    /*background-position: center;*/
     font-family: 'RobotoRegular', 'Droid Sans', 'Segoe UI', Segoe, 'San Francisco', 'Helvetica Neue', Helvetica, Arial, Geneva, sans-serif;
     font-size: 12px;
     /*background-color: #36498f;*/
@@ -423,17 +424,17 @@ div[class=close]{
         ====== Medua Query for Search Box ======
         =========================== */
 
-@media only screen and (min-width : 150px) and (max-width : 780px) {
+/*@media only screen and (min-width : 150px) and (max-width : 780px) {
 
-{
-}
+
+}*/
 
 .search {
     width: 95%;
     margin: 0 auto;
 }
 
-}
+
 
 
 
@@ -468,3 +469,26 @@ div[class=close]{
 select[id=gnameSelect]{
     overflow:auto;
 }
+
+
+
+.gigCell {
+    border-style:double;
+    border-color:azure;
+    background-color:#4b0082;
+    margin-top:1em;
+    margin-bottom:2em;
+    padding:2em;
+}
+
+    .gigCell .btn {
+        margin-top: 1em;
+        border-radius: 1em;
+    }
+
+    .gigCell .titleItem {
+        font-size: 3em;
+        border-bottom: solid;
+        border-bottom-color: #663399;
+    }
+

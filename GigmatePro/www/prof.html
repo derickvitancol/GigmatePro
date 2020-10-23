@@ -494,7 +494,7 @@
                 {
                     
                    
-                    alert(""+data.AddSongResult);
+                    alert(" "+data.AddSongResult);
                     var userDetails = window.localStorage.getItem("userDetails");
                     GetSong(userDetails.ID);                      
                     setTimeout(function () { document.location.href = "prof.html", 500 });
@@ -520,14 +520,14 @@
             {
                 for (var i = 0; i < Object.keys(songList).length; i++) {
                     var capElem = document.createElement("div");
-                    capElem.setAttribute("class", "caption");
+                    capElem.setAttribute("class", "caption gigCell");
 
                     var centerCon = document.createElement("center");
                     var labCon = document.createElement("label");
                     var br1Elem = document.createElement("br");
 
                     var titleCon = document.createElement("label");
-                    titleCon.classList = "names";
+                    titleCon.classList = "names titleItem";
                     var br2Elem = document.createElement("br");
 
                     var descCon = document.createElement("label");
@@ -581,12 +581,15 @@
 
                     var gigList = JSON.parse(data.GetGigsForProfResult);
                     var parentContainer = document.getElementById("GigsCon");
+                    parentContainer.classList = "caption";
                     if (Object.keys(gigList).length > 0) {
                         for (var i = 0; i < Object.keys(gigList).length; i++) {
+                            var cellCon = document.createElement("div");
+                            cellCon.classList = "gigCell";
                             var centerName = document.createElement("center");
                             var nameCon = document.createElement("label");
                             nameCon.innerHTML = gigList[i].Name;
-                            nameCon.classList = "names";
+                            nameCon.classList = "names titleItem";
 
                             centerName.appendChild(nameCon);
 
@@ -616,18 +619,18 @@
                             statusCon.innerHTML = "Status: " + gigList[i].Status;
                             statusCon.classList = "capt";
 
-                            parentContainer.appendChild(centerName);
-                            parentContainer.appendChild(brElem);
-                            parentContainer.appendChild(venueCon);
-                            parentContainer.appendChild(br2Elem);
-                            parentContainer.appendChild(dateCon);
-                            parentContainer.appendChild(br3Elem);
-                            parentContainer.appendChild(genreCon);
-                            parentContainer.appendChild(br4Elem);
-                            parentContainer.appendChild(creatorCon);
-                            parentContainer.appendChild(br5Elem);
-                            parentContainer.appendChild(statusCon);
-
+                            cellCon.appendChild(centerName);
+                            cellCon.appendChild(brElem);
+                            cellCon.appendChild(venueCon);
+                            cellCon.appendChild(br2Elem);
+                            cellCon.appendChild(dateCon);
+                            cellCon.appendChild(br3Elem);
+                            cellCon.appendChild(genreCon);
+                            cellCon.appendChild(br4Elem);
+                            cellCon.appendChild(creatorCon);
+                            cellCon.appendChild(br5Elem);
+                            cellCon.appendChild(statusCon);                           
+                            parentContainer.appendChild(cellCon);
                         }
                     }
                     else
@@ -663,10 +666,12 @@
                     {
                         for (var i = 0; i < Object.keys(historyResult).length; i++)
                         {
+                            var divParent = document.createElement("div");
+                            divParent.classList = "gigCell";
                             var centerName = document.createElement("center");
                             var nameCon = document.createElement("label");
                             nameCon.innerHTML = historyResult[i].Name;
-                            nameCon.classList = "names";
+                            nameCon.classList = "names titleItem";
                             centerName.appendChild(nameCon);
                             var br1Elem = document.createElement("br");
 
@@ -694,24 +699,26 @@
                             creatorUsernameCon.innerHTML = "Creator Username: "+historyResult[i].CreatorUsername;
                             creatorUsernameCon.classList = "capt";
 
-                            historyCon.appendChild(centerName);
-                            historyCon.appendChild(br1Elem);
-                            historyCon.appendChild(venueCon);
-                            historyCon.appendChild(br2Elem);
-                            historyCon.appendChild(dateCon);
-                            historyCon.appendChild(br3Elem);
-                            historyCon.appendChild(genreCon);
-                            historyCon.appendChild(br4Elem);
-                            historyCon.appendChild(creatorNameCon);
-                            historyCon.appendChild(br5Elem);
-                            historyCon.appendChild(creatorUsernameCon);
+                            divParent.appendChild(centerName);
+                            divParent.appendChild(br1Elem);
+                            divParent.appendChild(venueCon);
+                            divParent.appendChild(br2Elem);
+                            divParent.appendChild(dateCon);
+                            divParent.appendChild(br3Elem);
+                            divParent.appendChild(genreCon);
+                            divParent.appendChild(br4Elem);
+                            divParent.appendChild(creatorNameCon);
+                            divParent.appendChild(br5Elem);
+                            divParent.appendChild(creatorUsernameCon);
+                            historyCon.appendChild(divParent);
+                            
                         }
                        
                     }
                     else
                     {
                         var messCon = document.createElement("label");
-                        messCon.innerHTML = "You have attended a gig yet.";
+                        messCon.innerHTML = "You have not attended a gig yet.";
                         messCon.classList = "capt";
 
                         historyCon.appendChild(messCon);
@@ -758,7 +765,7 @@
                     }, InstrumentID: document.getElementById("instrumentBoxModal").value
                 };
 
-                alert(JSON.stringify(personJSON));
+                
                 var WCFCall = $.ajax(
                     {
                         type: "POST",
@@ -768,7 +775,7 @@
                         data: JSON.stringify(personJSON)
                     }).done(function (data)
                     {
-                        alert("rows affected: " + data.EditProfileResult);
+                        alert(" " + data.EditProfileResult);
                         GetUserDataById(userDetails.ID);
                         getProfileData();
                         window.location.href = "prof.html";
@@ -799,6 +806,8 @@
                     {
                         for (var i = 0; i < listLen; i++)
                         {
+                            var revCon = document.createElement("div");
+                            revCon.classList = "gigCell";
                             var rateLabel = document.createElement("label");
                             rateLabel.classList = "capt";
                             rateLabel.innerHTML = "Rating";
@@ -821,13 +830,15 @@
                             remarkCon.innerHTML = reviewList[i].Remarks;
                             remarkCon.classList = "hfive";
 
-                            reviewCon.appendChild(rateLabel);
-                            reviewCon.appendChild(br1Elem);
-                            reviewCon.appendChild(ratingCon);
-                            reviewCon.appendChild(br2Elem);
-                            reviewCon.appendChild(remarkLabel);
-                            reviewCon.appendChild(br3Elem);
-                            reviewCon.appendChild(remarkCon);
+                            revCon.appendChild(rateLabel);
+                            revCon.appendChild(br1Elem);
+                            revCon.appendChild(ratingCon);
+                            revCon.appendChild(br2Elem);
+                            revCon.appendChild(remarkLabel);
+                            revCon.appendChild(br3Elem);
+                            revCon.appendChild(remarkCon);
+                            reviewCon.appendChild(revCon);
+                            
                         }
                     }
                     else

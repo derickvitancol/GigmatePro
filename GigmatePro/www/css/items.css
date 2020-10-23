@@ -1,5 +1,7 @@
 ﻿.signmid {
-    background: linear-gradient(to top right,#7A0BB9 0%,#3F0548 30%,#130417 100%);
+    background: linear-gradient(#7A0BB9 0%,#3F0548 30%,#130417 100%);
+
+
 }
 
 
@@ -7,12 +9,10 @@
 input[type=text] {
     background-color: transparent;
     color: #FFFFFF;
-
     border-bottom-width: medium;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    border-bottom-color:lightgray;
-
+    border-bottom-color: #C465EC;
     border-top: hidden;
     border-left: hidden;
     border-right: hidden;
@@ -30,16 +30,16 @@ input[type=password] {
     border-bottom-width: medium;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    border-bottom-color: lightgray;
+    border-bottom-color: #C465EC;
     border-top: hidden;
     border-left: hidden;
     border-right: hidden;
-    
 }
 
 input[type=password]:focus {
     background-color: transparent;
     color: #FFFFFF;
+
 }
 
 .input-group placeholder{
@@ -62,7 +62,7 @@ input[type=number] {
     border-bottom-width: medium;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    border-bottom-color: lightgray;
+    border-bottom-color: #C465EC;
     border-top: hidden;
     border-left: hidden;
     border-right: hidden;
@@ -373,12 +373,16 @@ div[id=cls] {
         .topnav a:hover {
             background-color: #ddd;
             color: black;
+            animation-name: topnavSelect;
+            animation-duration: 0.5s;
         }
 
         /* Add an active class to highlight the current page */
         .topnav a.active {
             background-color: #5e20af;
             color: white;
+            
+            
         }
 
     /* Hide the link that should open and close the topnav on small screens */
@@ -397,7 +401,14 @@ div[id=cls] {
             /*    margin: 0 auto;*/
         }
 
-
+@keyframes topnavSelect {
+    from {
+        background-color: rgb(12, 8, 68);
+    }
+    to {
+        background-color: #ddd;
+    }
+}
 /*TOP NAV FOR PROFILE*/
 .ptopnav {
     background-color: rgb(12, 8, 68);
@@ -406,7 +417,15 @@ div[id=cls] {
     text-align: center;
 }
 
-
+@keyframes profNav {
+    from {
+        background-color: rgb(12, 8, 68);
+    }
+    to {
+        background-color: #5e20af;
+        color: white;
+    }
+}
     .ptopnav a {
         /*float: left;*/
         display: block;
@@ -422,11 +441,19 @@ div[id=cls] {
         font-family: 'Signika', sans-serif;
     }
 
+        .ptopnav a:hover {
+            background-color: #5e20af;
+            color: white;
+            animation-name: profNav;
+            animation-duration: 0.3s;
+        }
 
         /* Add an active class to highlight the current page */
         .ptopnav a.active {
             background-color: #5e20af;
             color: white;
+            animation-name: profNav;
+            animation-delay:0.3s;
         }
 
     /* Hide the link that should open and close the topnav on small screens */
@@ -453,9 +480,20 @@ div[id=cls] {
 .grid-container-e {
     display: grid;
     grid-gap: 10px;
-    /*background-color: #3f1e9b;*/
     background-color: #36498f;
     opacity: 0.9;
     padding: 15px;
     margin-bottom: 10px;
 }
+
+.buttonStyle {
+    background-color: #7f4caf;
+    color:aliceblue;
+    border-radius: 5em;
+}
+
+ .secondary {
+        background-color: lightgray;
+        
+        border-radius: 5em;
+    }

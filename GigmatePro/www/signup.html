@@ -44,7 +44,11 @@
     <!--CONTENT PART-->
     <div class="container-fluid signmid d-inline-block mainpart d-flex flex-column justify-content-center align-items-center">
         <div>
-            <h3 style="color:white;">Sign Up</h3>
+            <center>
+                <h3 style="color:white;">Join us today!</h3>
+                <p style="color:white;">Just fill up the necessary information.</p>
+            </center>
+
         </div>
         <!--Container of the information inputs-->
         <div class="container-fluid" data-role="page">
@@ -79,11 +83,11 @@
             <br />
             <br />
             <center>
-                <button class="btn btn-dark col-xs-12 col-sm-12 col-md-4 col-lg-3" id="proceedButton" onclick="RegisterClicked()">Proceed</button>
+                <button class="btn buttonStyle col-xs-12 col-sm-12 col-md-4 col-lg-3" id="proceedButton" onclick="RegisterClicked()">Proceed</button>
                 <br />
                 <br />
               
-                <button class="btn btn-dark col-xs-12 col-sm-12 col-md-4 col-lg-3 border-0" onclick="CancelSignupClicked()">Cancel</button>
+                <button class="btn secondary col-xs-12 col-sm-12 col-md-4 col-lg-3 border-0" onclick="CancelSignupClicked()">Cancel</button>
 
                 <!--<input type="button" class="btn btn-dark col-xs-12 col-sm-12 col-md-4 col-lg-3" onclick="CancelClicked()" placeholder="Cancel" />-->
         
@@ -142,7 +146,7 @@
                     data: JSON.stringify(personJSON)
                     }).done(function (data)
                     {
-                        alert(""+data.RegisterResult);
+                        alert(" "+data.RegisterResult);
                         val = data.RegisterResult;
 
                         CancelSignupClicked();

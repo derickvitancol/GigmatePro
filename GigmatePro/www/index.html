@@ -18,9 +18,7 @@
     <div class="container-fluid d-inline-block mainpart d-flex flex-column justify-content-center align-items-center">
         <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
             <img class="d-md-none" src="images/logo.png" />
-            <h1 class="h1 d-none d-md-block">
-                Sign In
-            </h1>
+            <span class="mt-3 mt-2"><h2 class="text-center">Let's play together!</h2></span>
             <div class="container d-flex flex-column align-items-center text-center" id="inputBoxes">
                 <div class="input-group col-xs-12 col-sm-12 col-md-4 col lg-3 p-2">
                     <input type="text" class="form-control w-75 p-2" id="usernameBox" placeholder="Enter username" />
@@ -29,19 +27,16 @@
                     <input type="password" class="form-control w-75 p-2" id="passwordBox" placeholder="Password" />
                 </div>
                 <br />
-                <button class="col-xs-12 col-sm-12 col-md-4 col lg-3 btnitem btn btn-dark" id="loginbtn" onclick="LoginClicked()">
+                <button class="col-xs-12 col-sm-12 col-md-4 col lg-3 btnitem btn buttonStyle" id="loginbtn" onclick="LoginClicked()">
                     Login
                 </button>
                 <br />
-                <button class="btn btn-light col-xs-12 col-sm-12 col-md-4 col lg-3" onclick="SignupClicked()">
+                <button class="btn secondary col-xs-12 col-sm-12 col-md-4 col lg-3" onclick="SignupClicked()">
                     Sign Up
                 </button>
             </div>
         </div>
-        <!--ABOUT PAGE-->
-        <div class="container w-100 d-none d-md-block">
-            <div>ABOUT</div>
-        </div>
+
     </div>
   
     <script type="text/javascript" src="scripts/jQuery/jquery-3.5.1.js"></script>

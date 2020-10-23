@@ -144,6 +144,8 @@
 
                             var senderIDCon = null;
 
+                            var itemCon = document.createElement("div");
+                            itemCon.classList = "gigCell";
                                 var inviteIDCon = document.createElement("div");
                                 inviteIDCon.innerHTML = notifsJSON[i].ID;
                                 inviteIDCon.classList = "d-none";
@@ -312,7 +314,7 @@
                                             dataType: "json",
                                             data: JSON.stringify(inviteResponseJSON)
                                         }).done(function (data) {
-                                            alert("THE RESULT IS " + data.InviteResponseResult);
+                                            alert("" + data.InviteResponseResult);
                                             window.location.href = "notif.html"
                                         }).fail(function (XMLHttpRequest, textStatus, errorThrown) {
                                             alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);
@@ -325,35 +327,35 @@
                                     centerButton.appendChild(rejectItemCon);
 
                                     buttonsCon.appendChild(centerButton);
-
-                                    requestCon.appendChild(inviteIDCon);
-                                    requestCon.appendChild(inviteTypeCon);
-                                    requestCon.appendChild(senderIDCon);
-                                    requestCon.appendChild(senderNameCon);
-                                    requestCon.appendChild(centerMessage);
+                                    
+                                    itemCon.appendChild(inviteIDCon);
+                                    itemCon.appendChild(inviteTypeCon);
+                                    itemCon.appendChild(senderIDCon);
+                                    itemCon.appendChild(senderNameCon);
+                                    itemCon.appendChild(centerMessage);
                                     if (parseInt(inviteTypeCon.innerHTML) == 1)
                                     {
-                                        requestCon.appendChild(gigNameCon);
-                                        requestCon.appendChild(gigDateCon);
-                                        requestCon.appendChild(gigIDCon);
+                                        itemCon.appendChild(gigNameCon);
+                                        itemCon.appendChild(gigDateCon);
+                                        itemCon.appendChild(gigIDCon);
 
-                                        requestCon.appendChild(buttonsCon);
+                                        itemCon.appendChild(buttonsCon);
                                     }
                                     else if (parseInt(inviteTypeCon.innerHTML) == 3)
                                     {
-                                        requestCon.appendChild(SenderNameCon);
-                                        requestCon.appendChild(senderIDCon);
+                                        itemCon.appendChild(SenderNameCon);
+                                        itemCon.appendChild(senderIDCon);
 
-                                        requestCon.appendChild(buttonsCon);
+                                        itemCon.appendChild(buttonsCon);
                                     }
                                     else if (parseInt(inviteTypeCon.innerHTML) == 4)
                                     {
-                                        requestCon.appendChild(inviteMess);
-                                        requestCon.appendChild(senderNameCon);
+                                        itemCon.appendChild(inviteMess);
+                                        itemCon.appendChild(senderNameCon);
 
-                                        requestCon.appendChild(gigNameCon);
-                                        requestCon.appendChild(gigDateCon);
-                                        requestCon.appendChild(gigIDCon);
+                                        itemCon.appendChild(gigNameCon);
+                                        itemCon.appendChild(gigDateCon);
+                                        itemCon.appendChild(gigIDCon);
 
                                         var showButton = document.createElement("button");
                                         showButton.innerHTML = "More Details";
@@ -362,6 +364,8 @@
 
                                         $(showButton).click(function ()
                                         {
+                                           
+
                                             document.querySelector('.bg-modal').style.display = 'flex';
                                             document.getElementById("nameConModal").innerHTML = senderNameCon.innerHTML;
                                             document.getElementById("gigConModal").innerHTML = gigNameCon.innerHTML;
@@ -371,10 +375,12 @@
 
                                         });
                                         
-                                        requestCon.appendChild(showButton);
-                                        requestCon.appendChild(inviteIDCon);
+                                        itemCon.appendChild(showButton);
+                                        itemCon.appendChild(inviteIDCon);
 
                                     }
+                                    requestCon.appendChild(itemCon);
+                                    
                                                               
                         }
                     }
@@ -444,7 +450,8 @@
                                 data: JSON.stringify(inviteResponseJSON)
                             }).done(function (data)
                             {
-                                alert("Updated Invites: " + data.InviteResponseResult);
+                                alert("" + data.InviteResponseResult);
+                               
                             }).fail(function (XMLHttpRequest, textStatus, errorThrown)
                             {
                                 alert(XMLHttpRequest.status + ' ' + textStatus + ' ' + errorThrown.message);

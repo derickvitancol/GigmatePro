@@ -68,9 +68,9 @@
                         <div class="grid-container">
                             <div class="col-sm-6 col-md-4">
                                 <div class="thumbnail">
-                                    <center>
+                                    <!--<center>
                                         <img src="images/logo.png" alt="" width="184" height="29">
-                                    </center>
+                                    </center>-->
                                     <div class="caption" id="GigsContainer">
                                         <div>
                                             <!--<center>
@@ -407,7 +407,7 @@
                         data: JSON.stringify(gigJSON)
 
                     }).done(function (data) {
-                        alert(""+data.AddGigResult);
+                        alert(" "+data.AddGigResult);
                         document.getElementById("nameBox").value = "";
                         gigVenue = document.getElementById("venueBox").value = "";
                         window.location.href = "mainpage.html"
@@ -438,9 +438,9 @@
                         for (var i = 0; i < Object.keys(AvailableGigJSON).length; i++) {
                             var divParent = document.createElement("div");
                             var centerCon = document.createElement("center");
-                            divParent.classList = "caption";
+                            divParent.classList = "caption gigCell";
                             var nameCon = document.createElement("label");
-                            nameCon.classList = "capt";
+                            nameCon.classList = "capt titleItem";
                             nameCon.innerHTML = AvailableGigJSON[i].Name;
 
                             var venueCon = document.createElement("label");
@@ -655,14 +655,15 @@
 
         function SearchGigmateClicked()
         {
-            var searchContent = document.getElementById("SearchGigmateBox").value;            
+            var searchContent = document.getElementById("SearchGigmateBox").value;
+            var userDetails = JSON.parse(window.localStorage.getItem("userDetails"));
             if (!searchContent)
             {
                 alert("You didn't enter something to look for!");
             }
             else
             {
-                var searchJSON = { searchWord: searchContent };
+                var searchJSON = { searchWord: searchContent, userID: userDetails.ID };
                 var WCFCall = $.ajax(
                     {
                         type: "POST",
@@ -785,13 +786,13 @@
                         for (var i = 0; i < Object.keys(gigmateList).length; i++)
                         {
                             var cellContainer = document.createElement("div");
-
+                            cellContainer.classList = "gigCell";
 
                             var centerCon = document.createElement("center");
                             centerCon.id = "centerName";
                             var nameCon = document.createElement("label");
                             nameCon.innerHTML = gigmateList[i].Firstname + ' ' + gigmateList[i].Lastname;
-                            nameCon.classList = "names";
+                            nameCon.classList = "names titleItem";
                             nameCon.id = "gigmateName";
                             centerCon.appendChild(nameCon);
 
@@ -831,7 +832,7 @@
 
                             var buttonCenter = document.createElement("center");
                             var inviteToGigButtonCon = document.createElement("button");
-                            inviteToGigButtonCon.classList = "btn btn-primary";
+                            inviteToGigButtonCon.classList = "btn secondary";
                             inviteToGigButtonCon.type = "button";
                             inviteToGigButtonCon.innerHTML = "Invite To Your Gig";
                             inviteToGigButtonCon.id = "inviteButton";
